@@ -32,8 +32,8 @@ const CompanyUserListScreen = () => {
 
     return (
         <>
-            <Container>
-                <h1 className='text-center'>Users</h1>
+            <Container className='mt-5'>
+                <h1 className='text-center'>USERS</h1>
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead>
                         <tr>

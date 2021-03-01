@@ -7,6 +7,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
+import './RegisterScreen.css'
 
 const LoginScreen = ({ location, history }) => {
     //component level state
@@ -32,45 +33,58 @@ const LoginScreen = ({ location, history }) => {
     }
 
     return (//TODO: chagen design
-        <FormContainer>
-            <h1 className='text-center'>Sign In</h1>
-            {error && <Message variant='danger'>{error}</Message>}
-            {loading && <Loader />}
-            <Form onSubmit={submitHandler}>
-                <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control
-                        type='email'
-                        placeholder='Enter email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
+        <div style={{ backgroundImage: `url("/images/registerBG.jpg")` }}>
+            <Container>
+                <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+                    <div class="wrapper wrapper--w680">
+                        <div class="card card-4">
+                            <div class="card-body">
+                                <h2 class="title text-center">Welcome to Carento Family</h2>
 
-                <Form.Group controlId='password'>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder='Enter password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    ></Form.Control>
-                </Form.Group>
+                                {error && <Message variant='danger'>{error}</Message>}
+                                {loading && <Loader />}
 
-                <Button type='submit' variant='primary'>
-                    Sign In
-        </Button>
-            </Form>
+                                <form onSubmit={submitHandler}>
+                                    <div class="row row-space">
+                                        <div class="col-12">
+                                            <div class="input-group">
+                                                <label class="label">Email</label>
+                                                <input class="input--style-4" type="text" placeholder="Your email ..." value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                                            </div>
+                                        </div>
+                                    </div>
 
-            <Row className='py-3'>
-                <Col>
-                    No Account?{' '}
-                    <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
-                        Register
-          </Link>
-                </Col>
-            </Row>
-        </FormContainer>
+                                    <div class="row row-space">
+                                        <div class="col-12">
+                                            <div class="input-group">
+                                                <label class="label">Password</label>
+                                                <input class="input--style-4" type="email" placeholder="Your password" value={password} onChange={(e) => setPassword(e.target.value)} ></input>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="p-t-15 text-center">
+                                        <button class="btn btn-success btn-md" type="submit">Login</button>
+                                    </div>
+
+                                    <div>
+                                        <Row className='py-3 text-center'>
+                                            <Col className='text-dark'>
+                                                Dont Have an Account?{' '}
+                                                <Link to={redirect ? `/register?redirect=${redirect}` : '/login'}>
+                                                    Register
+                                                    </Link>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Container>
+        </div>
     )
 }
 

@@ -21,6 +21,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import CompanyHomeScreen from './screens/CompanyHomeScreen'
 import CompanyRegister from './screens/CompanyRegister'
 import CompanyUserListScreen from './screens/CompanyUserListScreen'
+import CompanyUserEditScreen from './screens/CompanyUserEditScreen'
 
 function App() {
   return (
@@ -37,9 +38,10 @@ function App() {
       <Route path='/payment' component={PaymentScreen} />
       <Route path='/placeorder' component={PlaceOrderScreen} />
 
-      <Route path='/company' component={CompanyHomeScreen} />
-      <Route path='/companyregister' component={CompanyRegister} />
-      <Route path='/companyusers' component={CompanyUserListScreen} />
+      <Route path='/company/home' component={CompanyHomeScreen} />
+      <Route path='/company/register' component={CompanyRegister} />
+      <Route path='/company/userlist' component={CompanyUserListScreen} />
+      <Route path='/company/user/edit' component={CompanyUserEditScreen} />
       <Footer />
     </Router>
   );
