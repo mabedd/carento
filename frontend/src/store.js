@@ -4,8 +4,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
 import { cartReducer } from './reducers/cartReducers'
-import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducers'
-import { carListReducer, carDeleteReducer, carDetailsReducer, carCreateReducer } from './reducers/carReducers'
+import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListReducer } from './reducers/orderReducers'
+import { carListReducer, carDeleteReducer, carDetailsReducer, carCreateReducer, carUpdateReducer } from './reducers/carReducers'
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -21,12 +21,14 @@ const reducer = combineReducers({
     carDetails: carDetailsReducer,
     carDelete: carDeleteReducer,
     carCreate: carCreateReducer,
+    carUpdate: carUpdateReducer,
 
     cart: cartReducer,
 
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
-    orderPay: orderPayReducer
+    orderPay: orderPayReducer,
+    orderList: orderListReducer,
 })
 
 //user inital state

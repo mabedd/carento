@@ -23,6 +23,9 @@ import CompanyRegister from './screens/CompanyRegister'
 import CompanyUserListScreen from './screens/CompanyUserListScreen'
 import CompanyUserEditScreen from './screens/CompanyUserEditScreen'
 import CompanyCarListScreen from './screens/CompanyCarListScreen'
+import CompanyEditCarScreen from './screens/CompanyEditCarScreen'
+import CompanyOrderListScreen from './screens/CompanyOrderListScreen'
+
 
 function App() {
   return (
@@ -42,8 +45,10 @@ function App() {
       <Route path='/company/home' component={CompanyHomeScreen} />
       <Route path='/company/register' component={CompanyRegister} />
       <Route path='/company/userlist' component={CompanyUserListScreen} />
-      <Route path='/company/user/edit' component={CompanyUserEditScreen} />
+      <Route path='/company/user/:id/edit' component={CompanyUserEditScreen} />
       <Route path='/company/carslist' component={CompanyCarListScreen} />
+      <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />
+      <Route path='/company/orders' component={CompanyOrderListScreen} />
       <Footer />
     </Router>
   );

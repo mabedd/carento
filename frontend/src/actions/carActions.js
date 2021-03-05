@@ -5,7 +5,8 @@ import {
     CAR_LIST_REQUEST, CAR_LIST_SUCCESS, CAR_LIST_FAIL,
     CAR_DETAILS_REQUEST, CAR_DETAILS_SUCCESS, CAR_DETAILS_FAIL,
     CAR_DELETE_FAIL, CAR_DELETE_SUCCESS, CAR_DELETE_REQUEST,
-    CAR_CREATE_FAIL, CAR_CREATE_REQUEST, CAR_CREATE_RESET, CAR_CREATE_SUCCESS
+    CAR_CREATE_FAIL, CAR_CREATE_REQUEST, CAR_CREATE_RESET, CAR_CREATE_SUCCESS,
+    CAR_UPDATE_REQUEST, CAR_UPDATE_SUCCESS, CAR_UPDATE_FAIL, CAR_UPDATE_RESET,
 } from '../constants/carConstants'
 
 
@@ -123,6 +124,50 @@ export const createCar = () => async (dispatch, getState) => {
         }
         dispatch({
             type: CAR_CREATE_FAIL,
+            payload: message,
+        })
+    }
+}
+
+export const updateCar = (car) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: CAR_UPDATE_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        //TODO: check
+        const { data } = await axios.put(
+            `/api/cars/${car.plate}`,
+            car,
+            config
+        )
+
+        dispatch({
+            type: CAR_UPDATE_SUCCESS,
+            payload: data,
+        })
+        dispatch({ type: CAR_DETAILS_SUCCESS, payload: data })
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: CAR_UPDATE_FAIL,
             payload: message,
         })
     }
