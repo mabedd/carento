@@ -41,6 +41,7 @@ function App() {
       <Route path='/rentsummary' component={RentSummaryScreen} />
       <Route path='/payment' component={PaymentScreen} />
       <Route path='/placeorder' component={PlaceOrderScreen} />
+      <Route path='/profile' component={UserProfileScreen} />
 
       <Route path='/company/home' component={CompanyHomeScreen} />
       <Route path='/company/register' component={CompanyRegister} />
