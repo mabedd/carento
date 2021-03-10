@@ -79,7 +79,7 @@ const PaymentScreen = ({ history }) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
+                                            <a href='/placeorder'><button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button></a>
                                         </form>
                                     </div>
                                     <div class="tab-pane fade" id="nav-tab-paypal">

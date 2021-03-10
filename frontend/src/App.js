@@ -35,20 +35,20 @@ function App() {
       <Route path='/aboutus' component={AboutUsScreen} />
       <Route path='/offers' component={OffersScreen} />
       <Route path='/contactus' component={ContactScreen} />
-      <Route path='/browse' component={BrowseCarsScreen} />
+      <Route path='/browse' component={BrowseCarsScreen} />{/**!! */}
       <Route path='/login' component={LoginScreen} />
       <Route path='/register' component={RegisterScreen} />
       <Route path='/rentsummary' component={RentSummaryScreen} />
       <Route path='/payment' component={PaymentScreen} />
       <Route path='/placeorder' component={PlaceOrderScreen} />
-      <Route path='/profile' component={UserProfileScreen} />
+      <Route path='/profile' component={UserProfileScreen} />{/** !! */}
 
       <Route path='/company/home' component={CompanyHomeScreen} />
       <Route path='/company/register' component={CompanyRegister} />
       <Route path='/company/userlist' component={CompanyUserListScreen} />
-      <Route path='/company/user/:id/edit' component={CompanyUserEditScreen} />
+      <Route path='/company/user/:id/edit' component={CompanyUserEditScreen} />{/**!! */}
       <Route path='/company/carslist' component={CompanyCarListScreen} />
-      <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />
+      <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />{/**!! */}
       <Route path='/company/orders' component={CompanyOrderListScreen} />
       <Footer />
     </Router>

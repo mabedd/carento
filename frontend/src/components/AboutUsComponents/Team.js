@@ -3,14 +3,14 @@ import React from "react";
 import './Team.css'
 
 const Team = () => {
-    return (
+    return (//TODO: add images
         <>
             <div className="container-fluid d-flex justify-content-center mt-100">
                 <div className="row">
                     <div className="col-lg-4">
                         <div className="card">
-                            <div className="card-body text-center"> <img src="https://i.imgur.com/uIgDDDd.jpg" className="rounded-circle" width="200" height="200"></img>
-                                <h5 className="card-title mt-2 mb-1">Sunaya Golang</h5> <span className="fs-2 mb-3 font-weight-bold">PHP Developer</span>
+                            <div className="card-body text-center"> <img src="" className="rounded-circle" width="200" height="200"></img>
+                                <h5 className="card-title mt-2 mb-1">Dr. Basit Qureshi</h5> <span className="fs-2 mb-3 font-weight-bold">Project Director</span>
                                 <p className="mb-3 mt-3">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy"</p>
                                 <ul className="list-inline">
                                     <li className="list-inline-item"><a><i className="fa fa-facebook fa-2x facebook"></i></a></li>
@@ -23,8 +23,8 @@ const Team = () => {
                     </div>
                     <div className="col-lg-4">
                         <div className="card">
-                            <div className="card-body text-center"> <img src="https://i.imgur.com/cAdLHeY.jpg" className="rounded-circle" width="200" height="200"></img>
-                                <h5 className="card-title mt-2 mb-1">Rusty Monge</h5> <span className="fs-2 mb-3 font-weight-bold">Graphics Designer</span>
+                            <div className="card-body text-center"> <img src="" className="rounded-circle" width="200" height="200"></img>
+                                <h5 className="card-title mt-2 mb-1">Mohammed Abed</h5> <span className="fs-2 mb-3 font-weight-bold">lorem ipsum</span>
                                 <p className="mb-3 mt-3">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy"</p>
                                 <ul className="list-inline">
                                     <li className="list-inline-item"><a><i className="fa fa-facebook fa-2x facebook"></i></a></li>
@@ -37,8 +37,8 @@ const Team = () => {
                     </div>
                     <div className="col-lg-4">
                         <div className="card">
-                            <div className="card-body text-center"> <img src="https://i.imgur.com/tT8rjKC.jpg" className="rounded-circle" width="200" height="200"></img>
-                                <h5 className="card-title mt-2 mb-1">Justin Williams</h5> <span className="fs-2 mb-3 font-weight-bold">C++ Developer</span>
+                            <div className="card-body text-center"> <img src="" className="rounded-circle" width="200" height="200"></img>
+                                <h5 className="card-title mt-2 mb-1">Salim Hijazi</h5> <span className="fs-2 mb-3 font-weight-bold">lorem ipsum</span>
                                 <p className="mb-3 mt-3">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy"</p>
                                 <ul className="list-inline">
                                     <li className="list-inline-item"><a><i className="fa fa-facebook fa-2x facebook"></i></a></li>
@@ -52,8 +52,8 @@ const Team = () => {
                     <div className="row p-3">
                         <div className="col-lg-4">
                             <div className="card">
-                                <div className="card-body text-center"> <img src="https://i.imgur.com/tT8rjKC.jpg" className="rounded-circle" width="200" height="200"></img>
-                                    <h5 className="card-title mt-2 mb-1">Justin Williams</h5> <span className="fs-2 mb-3 font-weight-bold">C++ Developer</span>
+                                <div className="card-body text-center"> <img src="" className="rounded-circle" width="200" height="200"></img>
+                                    <h5 className="card-title mt-2 mb-1">Abdulrahman Al Mazroua</h5> <span className="fs-2 mb-3 font-weight-bold">lorem ipsum</span>
                                     <p className="mb-3 mt-3">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy"</p>
                                     <ul className="list-inline">
                                         <li className="list-inline-item"><a><i className="fa fa-facebook fa-2x facebook"></i></a></li>
@@ -66,8 +66,8 @@ const Team = () => {
                         </div>
                         <div className="col-lg-4">
                             <div className="card">
-                                <div className="card-body text-center"> <img src="https://i.imgur.com/tT8rjKC.jpg" className="rounded-circle" width="200" height="200"></img>
-                                    <h5 className="card-title mt-2 mb-1">Justin Williams</h5> <span className="fs-2 mb-3 font-weight-bold">C++ Developer</span>
+                                <div className="card-body text-center"> <img src="" className="rounded-circle" width="200" height="200"></img>
+                                    <h5 className="card-title mt-2 mb-1">Sammer Nasser</h5> <span className="fs-2 mb-3 font-weight-bold">lorem ipsum</span>
                                     <p className="mb-3 mt-3">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy"</p>
                                     <ul className="list-inline">
                                         <li className="list-inline-item"><a><i className="fa fa-facebook fa-2x facebook"></i></a></li>
@@ -80,8 +80,8 @@ const Team = () => {
                         </div>
                         <div className="col-lg-4">
                             <div className="card">
-                                <div className="card-body text-center"> <img src="https://i.imgur.com/tT8rjKC.jpg" className="rounded-circle" width="200" height="200"></img>
-                                    <h5 className="card-title mt-2 mb-1">Justin Williams</h5> <span className="fs-2 mb-3 font-weight-bold">C++ Developer</span>
+                                <div className="card-body text-center"> <img src="" className="rounded-circle" width="200" height="200"></img>
+                                    <h5 className="card-title mt-2 mb-1">Fahad Al Qahtani</h5> <span className="fs-2 mb-3 font-weight-bold">lorem ipsum</span>
                                     <p className="mb-3 mt-3">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy"</p>
                                     <ul className="list-inline">
                                         <li className="list-inline-item"><a><i className="fa fa-facebook fa-2x facebook"></i></a></li>

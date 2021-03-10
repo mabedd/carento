@@ -4,9 +4,11 @@ import { Container } from 'react-bootstrap'
 import CheckoutSteps from '../components/CheckoutSteps'
 import Rating from '../components/Rating'
 
-const RentSummaryScreen = () => {
+const RentSummaryScreen = ({ history }) => {
 
     //TODO: add state and submit handler
+
+
     //TODO: calculate price
 
 
@@ -111,7 +113,8 @@ const RentSummaryScreen = () => {
                                     </li>
                                 </ul>
 
-                                <button type="button" class="btn btn-primary btn-block waves-effect waves-light">go to payment</button>
+                                <a href='/payment'><button type="button" class="btn btn-primary btn-block waves-effect waves-light" type='submit'>go to payment</button></a>
+
 
                             </div>
                         </div>
