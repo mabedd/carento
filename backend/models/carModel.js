@@ -1,10 +1,22 @@
+import Rent from "./rentModel";
+
 const mongoose = require("mongoose");
 
 const carSchema = mongoose.Schema(
   {
+    company : {
+      type : mongoose.Schema.Types.ObjectId,
+      required : true,
+      ref : 'RentalCompany'
+    },
+    image : {
+        type : String,
+        required: true
+    },
     carPlate:{
       type : String,
-      required : true
+      required : true,
+      unique : true
     } ,
     carModel: {
       type : Number,
@@ -30,10 +42,11 @@ const carSchema = mongoose.Schema(
     benefits : [String],
     registrationDate: Date,
     endOfRegistrationDate: Date,
+    rents : [Rent]
   },
   {
     timestamps: true
   });
 
-const RentalCompany = mongoose.model('RentalCompany',rentalCompanySchema)
-export default RentalCompany;
+const Car = mongoose.model('Car',carSchema)
+export default Car;

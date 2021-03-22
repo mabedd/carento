@@ -8,7 +8,8 @@ const rentSchema = mongoose.Schema(
     } ,
     rentId: {
       type : Number,
-      required : true
+      required : true,
+      unique : true
     },
     renterId: {
         type : Number,

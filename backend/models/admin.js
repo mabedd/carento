@@ -1,16 +1,15 @@
-import Rent from "./rentModel";
 import Ticket from "./ticketModel";
 
 const mongoose = require("mongoose");
 
-const renterSchema = mongoose.Schema(
+const adminSchema = mongoose.Schema(
   {
     username:{
       type : String,
       required : true,
       unique : true
     } ,
-    nationalId: {
+    adminId: {
       type : String,
       required : true,
       unique : true
@@ -19,20 +18,8 @@ const renterSchema = mongoose.Schema(
       type : String,
       required : true
     },
-    age: {
-      type : Number,
-      required : true
-    },
-    rating: {
-      type : Number,
-      required : true
-    },
     phoneNumber : {
       type : String,
-      required : true
-    },
-    isBlackListed : {
-      type : Boolean,
       required : true
     },
     email : {
@@ -40,12 +27,11 @@ const renterSchema = mongoose.Schema(
       required : true,
       unique : true
     },
-    rents : [Rent],
-    tickets : [Ticket]
+    rents : [Ticket]
   },
   {
     timestamps: true
   });
 
-const Renter = mongoose.model('Renter',renterSchema)
-export default Renter;
+const Admin = mongoose.model('Admin',adminSchema)
+export default Admin;
