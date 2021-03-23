@@ -1,6 +1,6 @@
-import Rent from "./rentModel";
+import Rent from "./rentModel.js";
 
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
 
 const carSchema = mongoose.Schema(
   {
@@ -42,11 +42,11 @@ const carSchema = mongoose.Schema(
     benefits : [String],
     registrationDate: Date,
     endOfRegistrationDate: Date,
-    rents : [Rent]
+    // rents : [Rent]
   },
   {
     timestamps: true
   });
 
-const Car = mongoose.model('Car',carSchema)
+const Car = mongoose.model('Car',carSchema).schema
 export default Car;

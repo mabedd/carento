@@ -1,6 +1,6 @@
-import Ticket from "./ticketModel";
+import Ticket from "./ticketModel.js";
 
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
 
 const adminSchema = mongoose.Schema(
   {
@@ -27,11 +27,11 @@ const adminSchema = mongoose.Schema(
       required : true,
       unique : true
     },
-    rents : [Ticket]
+    // rents : [Ticket]
   },
   {
     timestamps: true
   });
 
-const Admin = mongoose.model('Admin',adminSchema)
+const Admin = mongoose.model('Admin',adminSchema).schema
 export default Admin;

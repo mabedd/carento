@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
 
 const rentSchema = mongoose.Schema(
   {
@@ -52,5 +52,5 @@ const rentSchema = mongoose.Schema(
     timestamps: true
   });
 
-const Rent = mongoose.model('Rent',rentSchema)
+const Rent = mongoose.model('Rent',rentSchema).Schema
 export default Rent;

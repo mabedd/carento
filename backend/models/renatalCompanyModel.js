@@ -1,9 +1,9 @@
-import Car from "./CarModel";
-import Renter from "./renterModel";
-import Rent from "./rentModel";
-import Ticket from "./ticketModel";
+import Car from "./CarModel.js";
+import Renter from "./renterModel.js";
+import Rent from "./rentModel.js";
+import Ticket from "./ticketModel.js";
 
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
 
 const rentalCompanySchema = mongoose.Schema(
   {
@@ -23,16 +23,24 @@ const rentalCompanySchema = mongoose.Schema(
       required : true,
       unique : true
     },
+    password: {
+      type : String,
+      required : true
+    },
+    phoneNumber : {
+      type : String,
+      required : true
+    },
     registrationDate: Date,
     endOfRegistrationDate: Date,
-    rents : [Rent],
-    renters : [Renter],
-    tickets : [Ticket],
-    cars : [Car]
+    // rents : [Rent],
+    // renters : [Renter],
+    // tickets : [Ticket],
+    // cars : [Car]
   },
   {
     timestamps: true
   });
 
-const RentalCompany = mongoose.model('RentalCompany',rentalCompanySchema)
+const RentalCompany = mongoose.model('RentalCompany',rentalCompanySchema).schema
 export default RentalCompany;

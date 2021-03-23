@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
 
 const ticketSchema = mongoose.Schema(
   {
@@ -30,5 +30,5 @@ const ticketSchema = mongoose.Schema(
     timestamps: true
   });
 
-const Ticket = mongoose.model('Ticket',ticketSchema)
+const Ticket = mongoose.model('Ticket',ticketSchema).schema
 export default Ticket;

@@ -1,7 +1,7 @@
-import Rent from "./rentModel";
-import Ticket from "./ticketModel";
+import Rent from "./rentModel.js";
+import Ticket from "./ticketModel.js";
 
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
 
 const renterSchema = mongoose.Schema(
   {
@@ -40,12 +40,12 @@ const renterSchema = mongoose.Schema(
       required : true,
       unique : true
     },
-    rents : [Rent],
-    tickets : [Ticket]
+    // rents : [Rent],
+    // tickets : [Ticket]
   },
   {
     timestamps: true
   });
 
-const Renter = mongoose.model('Renter',renterSchema)
+const Renter = mongoose.model('Renter',renterSchema).schema
 export default Renter;
