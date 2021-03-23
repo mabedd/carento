@@ -34,5 +34,6 @@ function ensureAuthenticated(req, res, next) {
 function routes (app) {
   app.post('/auth/login', Auth.login);
   app.post('/auth/signup', Auth.signup);
+  
 };
 export default routes
