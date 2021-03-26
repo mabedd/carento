@@ -1,23 +1,18 @@
-import Car from "./CarModel.js";
+import Car from "./carModel.js";
 import Renter from "./renterModel.js";
 import Rent from "./rentModel.js";
 import Ticket from "./ticketModel.js";
 
 import mongoose from 'mongoose'
+var Schema = mongoose.Schema;
 
-const rentalCompanySchema = mongoose.Schema(
+const rentalCompanySchema = new Schema(
   {
     companyName:{
       type : String,
       required : true,
       unique : true
-    } ,
-    companyId: {
-      type : String,
-      required : true,
-      unique : true
-    },
-    
+    } ,    
     email : {
       type : String,
       required : true,
@@ -42,5 +37,5 @@ const rentalCompanySchema = mongoose.Schema(
     timestamps: true
   });
 
-const RentalCompany = mongoose.model('RentalCompany',rentalCompanySchema).schema
+const RentalCompany = mongoose.model('RentalCompany',rentalCompanySchema)
 export default RentalCompany;

@@ -1,0 +1,14 @@
+2021-03-26 17:38:46:3846 info: POST /api/v1/users/register 200 774.379 ms - 866
+2021-03-26 17:48:22:4822 info: POST /api/v1/users/login 200 465.552 ms - 656
+2021-03-26 17:48:42:4842 info: POST /api/v1/users/login 400 413.913 ms - 52
+2021-03-26 17:48:57:4857 info: POST /api/v1/users/login 200 418.689 ms - 656
+2021-03-26 17:50:13:5013 info: POST /api/v1/users/login 200 951.865 ms - 656
+2021-03-26 17:50:19:5019 info: POST /api/v1/users/login 400 316.011 ms - 52
+2021-03-26 17:50:26:5026 info: POST /api/v1/users/login 200 415.616 ms - 656
+2021-03-26 17:53:42:5342 info: GET /api/v1/users/get-profile 400 14.935 ms - 525
+2021-03-26 17:53:52:5352 info: GET /api/v1/users/get-profile 401 0.610 ms - 27
+2021-03-26 17:53:57:5357 info: GET /api/v1/users/get-profile 400 1.550 ms - 525
+2021-03-26 17:54:50:5450 info: POST /api/v1/users/login 200 3336.757 ms - 656
+2021-03-26 17:55:29:5529 info: GET /api/v1/users/get-profile 200 331.989 ms - 321
+2021-03-26 16:02:17:217 info: POST /api/v1/users/register 200 228.998 ms - 45
+2021-03-26 16:02:48:248 info: POST /api/v1/users/register 200 642.038 ms - 873
