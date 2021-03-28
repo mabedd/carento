@@ -1,14 +1,9 @@
-/* eslint-disable no-tabs */
-/* eslint-disable no-mixed-spaces-and-tabs */
 import BaseController from './base.controller';
 import RentalCompany from '../models/renatalCompanyModel';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import Constants from '../config/constants';
-// import { generateSixDigitCode } from '../helpers/index';
-// import { sendInquiryEmail } from '../lib/util';
-// const stripe = require('stripe')('sk_test_nhfdyw1ShOeXXEuZ9KoJzQXe');
-// import { v4 as uuidv4 } from 'uuid';
+
 
 class RentalCompanyController extends BaseController {
 	whitelist = [
@@ -25,7 +20,7 @@ class RentalCompanyController extends BaseController {
 	  try {
 	      // See if user exist
 	      const rentalCompany = await RentalCompany.findOne({ email: params['email'] });
-	      if (renter) {
+	      if (rentalCompany) {
 	        return res.status(200).json({ message: Constants.messages.userExist, success: 0 });
 		  }
 	    // Encrypt password
@@ -52,6 +47,7 @@ class RentalCompanyController extends BaseController {
 	        });
 	  } catch (err) {
 	    err.status = 200;
+		console.log('hi');
 	    next(err);
 	  }
 	};
@@ -66,7 +62,7 @@ class RentalCompanyController extends BaseController {
 		 } else {
 			rentalCompany = await RentalCompany.findOne({ username: req.body.companyName });
 		 }
-	    if (!renter) {
+	    if (!rentalCompany) {
 		  return res.status(400).json({ msg: 'Incorrect username or password', success: 0 });
 	    }
 

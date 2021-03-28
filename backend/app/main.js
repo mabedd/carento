@@ -4,7 +4,9 @@ import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import users from './routes/renter';
+import renter from './routes/renter';
+import rentalCompany from './routes/rentalCompany';
+import car from './routes/car'
 import Constants from './config/constants';
 const { httpLogger } = require('./logger-middlewares');
 
@@ -43,7 +45,11 @@ app.use(httpLogger);
 app.use('/public', express.static(`${__dirname}/public`));
 
 // Mount API routes
-app.use(`${Constants.apiPrefix}/users`, users);
+app.use(`${Constants.apiPrefix}/renter`, renter);
+app.use(`${Constants.apiPrefix}/rental-company`, rentalCompany);
+app.use(`${Constants.apiPrefix}/car`, car);
+
+
 
 app.listen(Constants.port, () => {
   // eslint-disable-next-line no-console

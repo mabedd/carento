@@ -1,17 +1,17 @@
 import Rent from "./rentModel.js";
 
 import mongoose from 'mongoose'
-
-const carSchema = mongoose.Schema(
+var Schema = mongoose.Schema;
+const carSchema = Schema(
   {
-    company : {
+    companyId : {
       type : mongoose.Schema.Types.ObjectId,
       required : true,
       ref : 'RentalCompany'
     },
     image : {
         type : String,
-        required: true
+        // required: true
     },
     carPlate:{
       type : String,
@@ -48,5 +48,5 @@ const carSchema = mongoose.Schema(
     timestamps: true
   });
 
-const Car = mongoose.model('Car',carSchema).schema
+const Car = mongoose.model('Car',carSchema)
 export default Car;

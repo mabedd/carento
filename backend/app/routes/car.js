@@ -5,19 +5,19 @@ import authenticate from '../middleware/authenticate';
 import errorHandler from '../middleware/error-handler';
 
 
-const users = new Router();
+const car = new Router();
 
 // Users Routes
-users.get('/test', (req, res) => {
+car.get('/test', (req, res) => {
   res.json({
     message: 'welcome in car rental way',
   });
 });
-users.post('/add-car', authenticate, CarController.addCar);
-users.get('/delete-car', authenticate, CarController.deleteCar);
-users.get('/find-company-cars', authenticate, CarController.findAll);
-users.get('/find-all-cars', CarController.findAllCars);
+car.post('/add-car', authenticate, CarController.addCar);
+car.get('/delete-car', authenticate, CarController.deleteCar);
+car.get('/find-company-cars', authenticate, CarController.findAll);
+car.get('/find-all-cars', CarController.findAllCars);
 
-users.use(errorHandler);
+car.use(errorHandler);
 
-export default users;
+export default car;
