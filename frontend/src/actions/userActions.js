@@ -23,7 +23,7 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         //make request
-        const { data } = await axios.post('/api/users/login', { email, password }, config)
+        const { data } = await axios.post('/api/renter/login', { email, password }, config)
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -44,6 +44,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 }
 
+//TODO: do backend
 export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo')
 
@@ -53,6 +54,7 @@ export const logout = () => (dispatch) => {
 
     document.location.href = '/login'
 }
+
 
 export const register = (name, nationalID, pnum, email, password, dob) => async (dispatch) => {
     try {
@@ -68,7 +70,7 @@ export const register = (name, nationalID, pnum, email, password, dob) => async 
         }
 
         //make request
-        const { data } = await axios.post('/api/users/', { name, nationalID, pnum, email, password, dob }, config)
+        const { data } = await axios.post('/api/renter/register', { name, nationalID, pnum, email, password, dob }, config)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -95,6 +97,7 @@ export const register = (name, nationalID, pnum, email, password, dob) => async 
     }
 }
 
+
 export const getUserDetails = (id) => async (dispatch, getState) => {
     try {
         dispatch({
@@ -114,7 +117,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         }
 
         //get request to user profile
-        const { data } = await axios.get(`/api/users/${id}`, config)
+        const { data } = await axios.get(`/api/renter/get-profile/${id}`, config)
 
         dispatch({
             type: USER_DETAILS_SUCCESS,
@@ -136,6 +139,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     }
 }
 
+//TODO: do backend
 export const updateUserProfile = (user) => async (dispatch, getState) => {
     try {
         dispatch({
@@ -188,6 +192,8 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 /**COMPANY ACTIONS */
 
 //!! after registeration, company will be inserted to DB with pending status awaitng for manual approval
+
+//TODO: add account status
 export const companyRegister = (name, email, contactnum, address, password) => async (dispatch) => {
     try {
         dispatch({
@@ -202,7 +208,7 @@ export const companyRegister = (name, email, contactnum, address, password) => a
         }
 
         //make request
-        const { data } = await axios.post('/api/companies/', { name, email, contactnum, address, password }, config)
+        const { data } = await axios.post('/api/rental-company/register', { name, email, contactnum, address, password }, config)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -229,6 +235,8 @@ export const companyRegister = (name, email, contactnum, address, password) => a
     }
 }
 
+//TODO: do backend for admin (easy)
+//TODO: do backend for company
 export const listUsers = () => async (dispatch, getState) => {
     try {
         dispatch({
@@ -266,6 +274,7 @@ export const listUsers = () => async (dispatch, getState) => {
     }
 }
 
+//TODO: do backend
 export const deleteUser = (id) => async (dispatch, getState) => {
     try {
         dispatch({
@@ -317,7 +326,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+        const { data } = await axios.put(`/api/change-profile/${user._id}`, user, config)
 
         dispatch({ type: USER_UPDATE_SUCCESS })
 

@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 import { Router } from 'express';
-import CarController from '../controllers/car.controller';
-import authenticate from '../middleware/authenticate';
-import errorHandler from '../middleware/error-handler';
+import CarController from '../controllers/car.controller.js';
+import authenticate from '../middleware/authenticate.js';
+import errorHandler from '../middleware/error-handler.js';
 
 
 const car = new Router();

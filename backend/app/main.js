@@ -4,11 +4,13 @@ import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import renter from './routes/renter';
-import rentalCompany from './routes/rentalCompany';
-import car from './routes/car'
-import Constants from './config/constants';
-const { httpLogger } = require('./logger-middlewares');
+import renter from './routes/renter.js';
+import rentalCompany from './routes/rentalCompany.js';
+import car from './routes/car.js'
+import rent from './routes/rent.js'
+import Constants from './config/constants.js';
+import httpLogger from './logger-middlewares/httpLogger.js'
+//const { httpLogger } = require('./logger-middlewares');
 
 const app = express();
 
@@ -18,7 +20,7 @@ app.use(helmet());
 
 // Enable CORS with various options
 // https://github.com/expressjs/cors
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Credentials', true);
@@ -42,10 +44,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 app.use(httpLogger);
 // Mount public routes
-app.use('/public', express.static(`${__dirname}/public`));
+//TODO: check this (cant be used with ES6 modules)
+//app.use('/public', express.static(`${__dirname}/public`));
 
 // Mount API routes
 app.use(`${Constants.apiPrefix}/renter`, renter);
+app.use(`${Constants.apiPrefix}/rent`, rent);
 app.use(`${Constants.apiPrefix}/rental-company`, rentalCompany);
 app.use(`${Constants.apiPrefix}/car`, car);
 

@@ -1,19 +1,21 @@
-const { createLogger, transports, format } = require('winston');
+//import { createLogger, transports, format } from 'winston';
+import * as winston from 'winston'
 
-const logger = createLogger({
-  format: format.combine(
-      format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
-      format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`),
+const logger = {}
+/*   winston.createLogger({
+  format: winston.format.combine(
+    winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
+    winston.format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`),
   ),
   transports: [
-    new transports.File({
+    new winston.transports.File({
       filename: './logs/car-rental-logs.log',
       json: false,
       maxsize: 5242880,
       maxFiles: 5,
     }),
-    new transports.Console(),
+    new winston.transports.Console(),
   ],
-});
+}); */
 
-module.exports = logger;
+export default logger

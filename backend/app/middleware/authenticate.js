@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 import jwt from 'jsonwebtoken';
-import constants from '../config/constants';
+import constants from '../config/constants.js';
 
 export default function authenticate(req, res, next) {
   // Get token from the header

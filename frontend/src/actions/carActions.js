@@ -17,7 +17,8 @@ export const listCars = (keyword = '', pageNumber = '') => async (
         dispatch({ type: CAR_LIST_REQUEST })
 
         const { data } = await axios.get(
-            `/api/cars?keyword=${keyword}&pageNumber=${pageNumber}`
+            //TODO: //`/api/cars?keyword=${keyword}&pageNumber=${pageNumber}`
+            `/api/car/find-all-cars`
         )
 
         dispatch({
@@ -35,6 +36,7 @@ export const listCars = (keyword = '', pageNumber = '') => async (
     }
 }
 
+//TODO: do backend
 export const listCarDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: CAR_DETAILS_REQUEST })
@@ -72,7 +74,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
             },
         }
 
-        await axios.delete(`/api/cars/${id}`, config)
+        await axios.delete(`/api/car/${id}/delete-car`, config)
 
         dispatch({
             type: CAR_DELETE_SUCCESS,
@@ -108,7 +110,7 @@ export const createCar = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.post(`/api/cars`, {}, config)
+        const { data } = await axios.post(`/api/car/add-car`, {}, config)
 
         dispatch({
             type: CAR_CREATE_SUCCESS,
@@ -129,6 +131,7 @@ export const createCar = () => async (dispatch, getState) => {
     }
 }
 
+//TODO: do backend
 export const updateCar = (car) => async (dispatch, getState) => {
     try {
         dispatch({

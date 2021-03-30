@@ -1,5 +1,5 @@
-import authenticate from './authenticate';
-import Constants from '../config/constants';
+import authenticate from './authenticate.js';
+import Constants from '../config/constants.js';
 
 export default function accessControl(role) {
   if (!role) {

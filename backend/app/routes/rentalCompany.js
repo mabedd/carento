@@ -1,9 +1,8 @@
 /* eslint-disable max-len */
 import { Router } from 'express';
-import RentalCompanyController from '../controllers/rentalCompany.controller';
-import authenticate from '../middleware/authenticate';
-import profile from '../middleware/profile-media';
-import errorHandler from '../middleware/error-handler';
+import RentalCompanyController from '../controllers/rentalCompany.controller.js';
+import authenticate from '../middleware/authenticate.js';
+import errorHandler from '../middleware/error-handler.js';
 
 
 const users = new Router();
@@ -17,7 +16,7 @@ users.get('/test', (req, res) => {
 users.post('/register', RentalCompanyController.register);
 users.post('/login', RentalCompanyController.login);
 
-users.post('/changeProfile', authenticate, RentalCompanyController.changeProfile);
+users.post('/change-profile', authenticate, RentalCompanyController.changeProfile);
 
 users.get('/get-profile', authenticate, RentalCompanyController.getProfile);
 

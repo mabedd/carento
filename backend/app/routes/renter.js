@@ -1,9 +1,8 @@
 /* eslint-disable max-len */
 import { Router } from 'express';
-import RenterController from '../controllers/renter.controller';
-import authenticate from '../middleware/authenticate';
-import profile from '../middleware/profile-media';
-import errorHandler from '../middleware/error-handler';
+import RenterController from '../controllers/renter.controller.js';
+import authenticate from '../middleware/authenticate.js';
+import errorHandler from '../middleware/error-handler.js';
 
 
 const renter = new Router();
@@ -17,6 +16,8 @@ renter.get('/test', (req, res) => {
 renter.post('/register', RenterController.register);
 renter.post('/login', RenterController.login);
 renter.get('/get-profile', authenticate, RenterController.getProfile);
+renter.post('/change-profile', authenticate, RenterController.changeProfile);
+
 
 renter.use(errorHandler);
 

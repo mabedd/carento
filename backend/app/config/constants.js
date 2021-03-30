@@ -1,5 +1,5 @@
 import path from 'path';
-import merge from 'lodash/merge';
+import merge from 'lodash/merge.js';
 
 // Default configuations applied to all environments
 const defaultConfig = {
@@ -18,11 +18,11 @@ const defaultConfig = {
     fromNumber: '',
 
   },
-  version: require('../../package.json').version,
-  root: path.normalize(__dirname + '/../../..'),
+  //version: require('../../package.json').version,
+  //root: path.normalize(__dirname + '/../../..'),
   port: process.env.PORT || 5000,
   ip: process.env.IP || '0.0.0.0',
-  apiPrefix: '/api/v1', // Could be /api/resource or /api/v2/resource
+  apiPrefix: '/api', // Could be /api/resource or /api/v2/resource
   userRoles: ['service_provider', 'service_seeker', 'admin', 'employee'],
 
   /**

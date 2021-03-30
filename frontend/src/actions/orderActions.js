@@ -24,7 +24,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.post(`/api/orders`, order, config)
+        const { data } = await axios.post(`/api/rent/add-rent`, order, config)
 
         dispatch({
             type: ORDER_CREATE_SUCCESS,
@@ -46,6 +46,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     }
 }
 
+//TODO: do backend
 export const getOrderDetails = (id) => async (dispatch, getState) => {
     try {
         dispatch({
@@ -83,6 +84,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     }
 }
 
+//TODO: do backend
 export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => {
     try {
         dispatch({
@@ -125,8 +127,6 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
     }
 }
 
-//TODO: add list renter orders
-
 export const listOrders = () => async (dispatch, getState) => {
     try {
         dispatch({
@@ -143,7 +143,7 @@ export const listOrders = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`/api/orders`, config)
+        const { data } = await axios.get(`/api/rent/find-all-rents`, config)
 
         dispatch({
             type: ORDER_LIST_SUCCESS,
@@ -163,3 +163,5 @@ export const listOrders = () => async (dispatch, getState) => {
         })
     }
 }
+
+//TODO: add list orders for renter and company

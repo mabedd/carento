@@ -78,7 +78,7 @@ const RegisterScreen = ({ location, history }) => {
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <label class="label">Phone Number</label>
-                                                <input class="input--style-4" type="email" placeholder="+966....." value={pnum} onChange={(e) => setPnum(e.target.value)}></input>
+                                                <input class="input--style-4" type="text" placeholder="+966....." value={pnum} onChange={(e) => setPnum(e.target.value)}></input>
                                             </div>
                                         </div>
                                         <div class="col-6">

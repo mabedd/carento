@@ -1,4 +1,4 @@
-import Constants from '../config/constants';
+import Constants from '../config/constants.js';
 
 export default function errorHandler(err, req, res, next) {
   if (!err) {
