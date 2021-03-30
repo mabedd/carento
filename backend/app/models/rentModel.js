@@ -3,8 +3,9 @@ import mongoose from 'mongoose'
 const rentSchema = mongoose.Schema(
   {
     carPlate:{
-      type : String,
-      required : true
+      type : mongoose.Schema.Types.ObjectId,
+      required : true,
+      ref : 'Car'
     } ,
     rentId: {
       type : Number,
@@ -12,8 +13,9 @@ const rentSchema = mongoose.Schema(
       unique : true
     },
     renterId: {
-        type : Number,
-        required : true
+      type : mongoose.Schema.Types.ObjectId,
+      required : true,
+      ref : 'renter'
     },
     mileage: {
       type : Number,
@@ -41,12 +43,14 @@ const rentSchema = mongoose.Schema(
     },
     rateByRenter: {
        type : Number,
-       required : true
     },
     rateByCompany: {
        type : Number,
-       required : true
     },
+    status:{
+      type : Boolean,
+      default : false
+    }
   },
   {
     timestamps: true

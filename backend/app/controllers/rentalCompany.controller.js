@@ -47,7 +47,6 @@ class RentalCompanyController extends BaseController {
 	        });
 	  } catch (err) {
 	    err.status = 200;
-		console.log('hi');
 	    next(err);
 	  }
 	};
@@ -60,7 +59,7 @@ class RentalCompanyController extends BaseController {
 		 if (req.body.email) {
 			rentalCompany = await RentalCompany.findOne({ email: req.body.email });
 		 } else {
-			rentalCompany = await RentalCompany.findOne({ username: req.body.companyName });
+			rentalCompany = await RentalCompany.findOne({ companyName: req.body.companyName });
 		 }
 	    if (!rentalCompany) {
 		  return res.status(400).json({ msg: 'Incorrect username or password', success: 0 });

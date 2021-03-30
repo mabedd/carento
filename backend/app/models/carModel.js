@@ -22,11 +22,6 @@ const carSchema = Schema(
       type : Number,
       required : true
     },
-    
-    ownedBy : {
-      type : String,
-      required : true
-    },
     color : {
         type : String,
         required : true

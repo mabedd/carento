@@ -40,3 +40,6 @@
 2021-03-27 17:45:58:4558 info: POST /api/v1/rentalCompany/login 404 3.179 ms - 166
 2021-03-27 17:46:12:4612 info: POST /api/v1/rental-company/login 400 244.161 ms - 1068
 2021-03-27 17:51:21:5121 info: POST /api/v1/rental-company/login 400 197.424 ms - 52
+2021-03-28 22:25:50:2550 info: POST /api/v1/renter/login 400 2985.903 ms - 52
+2021-03-28 22:26:09:269 info: GET /api/v1%0A/renter/login 404 2.710 ms - 161
+2021-03-28 22:31:08:318 info: POST /api/v1/rental-company/register 200 599.418 ms - 637

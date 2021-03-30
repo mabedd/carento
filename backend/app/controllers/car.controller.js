@@ -28,7 +28,7 @@ class CarsController extends BaseController {
           });
           const newCar = new Car({
             ...params,
-            companyId: req.user.companyId,
+            companyId: req.car.companyId,
           });
           const carSaved = await newCar.save();
           if (carSaved) {

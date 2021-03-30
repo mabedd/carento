@@ -30,7 +30,7 @@ const defaultConfig = {
    */
   mongo: {
     seed: true,
-    uri: 'mongodb+srv://salim1234:carento123@carento.e8qsc.mongodb.net/Carento',
+    uri: 'mongodb+srv://adilsikandar:adil1234@cluster0.c77nh.mongodb.net/carento',
     options: {
       db: {
         safe: true,
@@ -125,7 +125,7 @@ const defaultConfig = {
 const environmentConfigs = {
   development: {
     mongo: {
-      uri: process.env.MONGO_URI || 'mongodb+srv://salim1234:carento123@carento.e8qsc.mongodb.net/Carento',
+      uri: process.env.MONGO_URI || 'mongodb+srv://adilsikandar:adil1234@cluster0.c77nh.mongodb.net/carento',
     },
     security: {
       saltRounds: 4,
@@ -134,7 +134,7 @@ const environmentConfigs = {
   test: {
     port: 27017,
     mongo: {
-      uri: process.env.MONGO_URI || 'mongodb+srv://salim1234:carento123@carento.e8qsc.mongodb.net/Carento',
+      uri: process.env.MONGO_URI || 'mongodb+srv://adilsikandar:adil1234@cluster0.c77nh.mongodb.net/carento',
     },
     security: {
       saltRounds: 4,
@@ -142,7 +142,7 @@ const environmentConfigs = {
   },
   production: {
     mongo: {
-      uri: process.env.MONGO_URI || 'mongodb+srv://salim1234:carento123@carento.e8qsc.mongodb.net/Carento',
+      uri: process.env.MONGO_URI || 'mongodb+srv://adilsikandar:adil1234@cluster0.c77nh.mongodb.net/carento',
       seed: false,
     },
   },
