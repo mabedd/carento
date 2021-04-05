@@ -7,6 +7,7 @@ import {
     CAR_DELETE_FAIL, CAR_DELETE_SUCCESS, CAR_DELETE_REQUEST,
     CAR_CREATE_FAIL, CAR_CREATE_REQUEST, CAR_CREATE_RESET, CAR_CREATE_SUCCESS,
     CAR_UPDATE_REQUEST, CAR_UPDATE_SUCCESS, CAR_UPDATE_FAIL, CAR_UPDATE_RESET,
+    CAR_RATE_REQUEST, CAR_RATE_SUCCESS, CAR_RATE_FAIL, CAR_RATE_RESET,
 } from '../constants/carConstants'
 
 
@@ -171,6 +172,52 @@ export const updateCar = (car) => async (dispatch, getState) => {
         }
         dispatch({
             type: CAR_UPDATE_FAIL,
+            payload: message,
+        })
+    }
+}
+
+// TODO: do backend
+export const rateCar = (car, rate) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: CAR_RATE_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        //TODO: check
+        await axios.post(
+            `/api/cars/${car._id}/rate`,
+            rate,
+            config
+        )
+
+        dispatch({
+            type: CAR_RATE_SUCCESS,
+        })
+
+        dispatch({ type: CAR_RATE_SUCCESS })
+
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: CAR_RATE_FAIL,
             payload: message,
         })
     }

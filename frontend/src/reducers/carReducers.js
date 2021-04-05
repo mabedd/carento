@@ -3,7 +3,8 @@ import {
     CAR_DELETE_FAIL, CAR_DELETE_REQUEST, CAR_DELETE_SUCCESS,
     CAR_DETAILS_FAIL, CAR_DETAILS_REQUEST, CAR_DETAILS_SUCCESS,
     CAR_LIST_FAIL, CAR_LIST_REQUEST, CAR_LIST_SUCCESS,
-    CAR_UPDATE_FAIL, CAR_UPDATE_REQUEST, CAR_UPDATE_RESET, CAR_UPDATE_SUCCESS
+    CAR_UPDATE_FAIL, CAR_UPDATE_REQUEST, CAR_UPDATE_RESET, CAR_UPDATE_SUCCESS,
+    CAR_RATE_FAIL, CAR_RATE_REQUEST, CAR_RATE_RESET, CAR_RATE_SUCCESS
 } from '../constants/carConstants'
 
 
@@ -79,6 +80,21 @@ export const carUpdateReducer = (state = { car: {} }, action) => {
             return { loading: false, error: action.payload }
         case CAR_UPDATE_RESET:
             return { car: {} }
+        default:
+            return state
+    }
+}
+
+export const carRateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case CAR_RATE_REQUEST:
+            return { loading: true, }
+        case CAR_RATE_SUCCESS:
+            return { loading: false, success: true }
+        case CAR_RATE_FAIL:
+            return { loading: false, error: action.payload }
+        case CAR_RATE_RESET:
+            return {}
         default:
             return state
     }

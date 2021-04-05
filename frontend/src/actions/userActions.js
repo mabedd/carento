@@ -65,8 +65,8 @@ export const register = (name, nationalID, pnum, email, password, dob) => async 
         //config for sending requests
         const config = {
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
         }
 
         //make request
@@ -96,6 +96,8 @@ export const register = (name, nationalID, pnum, email, password, dob) => async 
         })
     }
 }
+
+
 
 
 export const getUserDetails = (id) => async (dispatch, getState) => {
