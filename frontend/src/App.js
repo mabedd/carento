@@ -25,6 +25,7 @@ import CompanyUserEditScreen from './screens/CompanyUserEditScreen'
 import CompanyCarListScreen from './screens/CompanyCarListScreen'
 import CompanyEditCarScreen from './screens/CompanyEditCarScreen'
 import CompanyOrderListScreen from './screens/CompanyOrderListScreen'
+import CompanyProfileScreen from './screens/CompanyProfileScreen'
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
       <Route path='/company/carslist' component={CompanyCarListScreen} />
       <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />{/**!! */}
       <Route path='/company/orders' component={CompanyOrderListScreen} />
+      <Route path='/company/profile' component={CompanyProfileScreen} />
       <Footer />
     </Router>
   );
