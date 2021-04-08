@@ -9,7 +9,7 @@ import rentalCompany from './routes/rentalCompany.js';
 import car from './routes/car.js'
 import rent from './routes/rent.js'
 import Constants from './config/constants.js';
-import httpLogger from './logger-middlewares/httpLogger.js'
+// import httpLogger from './logger-middlewares/httpLogger.js'
 //const { httpLogger } = require('./logger-middlewares');
 
 const app = express();
@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Lets you use HTTP verbs such as PUT or DELETE
 // https://github.com/expressjs/method-override
 app.use(methodOverride());
-app.use(httpLogger);
+// app.use(httpLogger);
 // Mount public routes
 //TODO: check this (cant be used with ES6 modules)
 //app.use('/public', express.static(`${__dirname}/public`));

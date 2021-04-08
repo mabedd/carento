@@ -36,7 +36,7 @@ class RentalCompanyController extends BaseController {
 				},
 			);
 			await newRentalCompany.save();
-			jwt.sign(params, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
+			jwt.sign({user:params}, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
 				(err, token) => {
 					if (err) throw err;
 					return res.status(200).json({
@@ -69,7 +69,7 @@ class RentalCompanyController extends BaseController {
 			if (!isMatch) {
 				return res.status(400).json({ msg: 'Incorrect username or password', success: 0 });
 			}
-			jwt.sign({ rentalCompany }, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
+			jwt.sign({user:rentalCompany }, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
 				(err, token) => {
 					if (err) throw err;
 					return res.status(200).json({ token, success: 1 });
@@ -104,9 +104,7 @@ class RentalCompanyController extends BaseController {
 
 	getProfile = async (req, res, next) => {
 		try {
-			// find user by its id
-			// find user by its id and update
-			const rentalCompany = await User.findById({ _id: req.rentalCompany._id });
+			const rentalCompany = await RentalCompany.findById({ _id: req.user._id });
 			if (!rentalCompany) {
 				return res.status(404).json({ msg: Constants.messages.userNotFound });
 			}

@@ -26,7 +26,7 @@ const carSchema = Schema(
         type : String,
         required : true
     },
-    totalMieage: {
+    totalMileage: {
         type : Number,
         required : true
     },

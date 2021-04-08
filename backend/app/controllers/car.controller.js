@@ -7,9 +7,8 @@ class CarsController extends BaseController {
     'image',
     'carPlate',
     'carModel',
-    'ownedBy',
     'color',
-    'totalMieage',
+    'totalMileage',
     'status',
     'benefits',
     'registrationDate',
@@ -22,13 +21,15 @@ class CarsController extends BaseController {
     try {
       const car = await Car.findOne({ carPlate: params['carPlate'] });
       if (car) {
+        console.log(req.body , car);
         res.status(200).json({
           message: 'car has been already added with this car plate number',
           success: 1,
         });
+      }
         const newCar = new Car({
           ...params,
-          companyId: req.car.companyId,
+          companyId: req.body.companyId,
         });
         const carSaved = await newCar.save();
         if (carSaved) {
@@ -37,8 +38,11 @@ class CarsController extends BaseController {
             success: 1,
             car: carSaved,
           });
+          
         }
-      }
+        else{
+        }
+      
     } catch (err) {
       next(err);
     }
@@ -81,6 +85,19 @@ class CarsController extends BaseController {
       next(error);
     }
   }
+  getProfile = async (req, res, next) => {
+		try {
+			const car = await Car.findById({ _id: req.user._id })
+			if (!car) {
+				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			}
+
+			return res.status(200).json({ msg: Constants.messages.success, car: car });
+		} catch (err) {
+			err.status = 400;
+			next(err);
+		}
+	};
 }
 
 export default new CarsController();

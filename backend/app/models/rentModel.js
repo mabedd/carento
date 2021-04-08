@@ -1,17 +1,12 @@
 import mongoose from 'mongoose'
-
-const rentSchema = mongoose.Schema(
+const Schema = mongoose.Schema;
+const rentSchema = new Schema(
   {
-    carPlate:{
+    carId:{
       type : mongoose.Schema.Types.ObjectId,
       required : true,
       ref : 'Car'
     } ,
-    rentId: {
-      type : Number,
-      required : true,
-      unique : true
-    },
     renterId: {
       type : mongoose.Schema.Types.ObjectId,
       required : true,
@@ -27,11 +22,11 @@ const rentSchema = mongoose.Schema(
     },
     startDate: {
       type : Date,
-      required : true
+      // required : true
     },
     endDate : {
       type : Date,
-      required : true
+      // required : true
     },
     price : {
       type : Number,
@@ -56,5 +51,5 @@ const rentSchema = mongoose.Schema(
     timestamps: true
   });
 
-const Rent = mongoose.model('Rent',rentSchema).Schema
+const Rent = mongoose.model('Rent',rentSchema)
 export default Rent;

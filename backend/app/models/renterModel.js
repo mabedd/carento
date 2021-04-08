@@ -22,11 +22,9 @@ const renterSchema = new Schema(
       },
       dateOfBirth: {
         type: Date,
-        required: true,
       },
       rating: {
         type: Number,
-        required: true,
       },
       phoneNumber: {
         type: String,

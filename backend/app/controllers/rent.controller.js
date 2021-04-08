@@ -3,8 +3,7 @@ import Rent from '../models/rentModel.js';
 
 class RentController extends BaseController {
   whitelist = [
-    'carId',
-    'rentId',
+    'carPlate',
     'renterId',
     'mileage',
     'duration',
@@ -22,16 +21,16 @@ class RentController extends BaseController {
   addRent = async (req, res, next) => {
     const params = this.filterParams(req.body, this.whitelist);
     try {
-      const rent = await Rent.findOne({ rentId: params['rentId'] });
-      if (rent) {
-        res.status(200).json({
-          message: 'rent has been already added with this rent number',
-          success: 1,
-        });
+      // const rent = await Rent.findOne({ rentId: params[''] });
+      // if (rent) {
+      //   res.status(200).json({
+      //     message: 'rent has been already added with this rent number',
+      //     success: 1,
+      //   });
         const newRent = new Rent({
           ...params,
-          renterId: req.rent.renterId,
-          carId: req.rent.carId
+          renterId: req.body.renterId,
+          carId: req.body.carId
         });
         const rentSaved = await newRent.save();
         if (rentSaved) {
@@ -41,7 +40,7 @@ class RentController extends BaseController {
             rent: rentSaved,
           });
         }
-      }
+      
     } catch (err) {
       next(err);
     }
