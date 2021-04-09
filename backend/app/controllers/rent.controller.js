@@ -1,9 +1,10 @@
 import BaseController from './base.controller.js';
 import Rent from '../models/rentModel.js';
+import Constants from '../config/constants.js';
 
 class RentController extends BaseController {
   whitelist = [
-    'carPlate',
+    'carId',
     'renterId',
     'mileage',
     'duration',
@@ -48,7 +49,7 @@ class RentController extends BaseController {
 
   findAllRentsByRenter = async (req, res, next) => {
     try {
-      const rentSaved = await Rent.find({ renterId: req.rent.renterId });
+      const rentSaved = await Rent.find({ renterId: req.user._id});
       res.status(200).json({
         success: 1,
         rent: rentSaved,
@@ -59,7 +60,7 @@ class RentController extends BaseController {
   }
   findAllRentsByCar = async (req, res, next) => {
     try {
-      const rentSaved = await Rent.find({ carId: req.rent.carId });
+      const rentSaved = await Rent.find({ carId: req.params.id });
       res.status(200).json({
         success: 1,
         rent: rentSaved,
@@ -82,6 +83,22 @@ class RentController extends BaseController {
       next(error);
     }
   }
+  getRentDetails = async (req, res, next) => {
+		try {
+			// find user by its id
+			// find user by its id and update
+			const user = await Rent.findById({ _id: req.params.id });
+
+			if (!user) {
+				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			}
+
+			return res.status(200).json({ msg: Constants.messages.success, user: user });
+		} catch (err) {
+			err.status = 400;
+			next(err);
+		}
+	};
 }
 
 export default new RentController();

@@ -17,6 +17,8 @@ renter.post('/register', RenterController.register);
 renter.post('/login', RenterController.login);
 renter.get('/get-profile', authenticate, RenterController.getProfile);
 renter.post('/change-profile', authenticate, RenterController.changeProfile);
+renter.get('/find-all-renters',authenticate, RenterController.findAllRenters);
+
 
 
 renter.use(errorHandler);

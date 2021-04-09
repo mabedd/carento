@@ -1,20 +1,23 @@
 import mongoose from 'mongoose'
+var Schema = mongoose.Schema;
 
-const ticketSchema = mongoose.Schema(
-  {
-    ticketId: {
-      type : String,
-      required : true,
-      unique : true
+const ticketSchema = new Schema(
+  {   
+    raisedByRenter : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : 'renter'
     },
-    
-    raisedBy : {
-      type : String,
-      required : true,
+    raisedOnRenter : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : 'renter'
     },
-    raisedOn : {
-      type : String,
-      required : true,
+    raisedByCompany : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : 'RentalCompany'
+    },
+    raisedOnCompany : {
+      type : mongoose.Schema.Types.ObjectId,
+      ref : 'RentalCompany'
     },
     rentId : {
       type : String,
@@ -22,6 +25,10 @@ const ticketSchema = mongoose.Schema(
     },
     isResolved : {
       type : Boolean,
+      default : false
+    },
+    ticketmessage : {
+      type : String,
       required : true
     }
     
@@ -30,5 +37,5 @@ const ticketSchema = mongoose.Schema(
     timestamps: true
   });
 
-const Ticket = mongoose.model('Ticket',ticketSchema).schema
+const Ticket = mongoose.model('Ticket',ticketSchema)
 export default Ticket;

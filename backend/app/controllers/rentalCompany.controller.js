@@ -115,6 +115,18 @@ class RentalCompanyController extends BaseController {
 			next(err);
 		}
 	};
+	findAllCompanies = async (req, res, next) => {
+		try {
+		  const companySaved = await RentalCompany.find({});
+		  res.status(200).json({
+			success: 1,
+			company: companySaved,
+			count: companySaved.length,
+		  });
+		} catch (error) {
+		  next(error);
+		}
+	}
 }
 
 export default new RentalCompanyController();

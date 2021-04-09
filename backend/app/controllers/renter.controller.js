@@ -128,6 +128,18 @@ class RenterController extends BaseController {
 			next(err);
 		}
 	};
+	findAllRenters = async (req, res, next) => {
+		try {
+		  const renterSaved = await Renter.find({});
+		  res.status(200).json({
+			success: 1,
+			renter: renterSaved,
+			count: renterSaved.length,
+		  });
+		} catch (error) {
+		  next(error);
+		}
+	  }
 }
 
 export default new RenterController();

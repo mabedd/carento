@@ -8,6 +8,7 @@ import renter from './routes/renter.js';
 import rentalCompany from './routes/rentalCompany.js';
 import car from './routes/car.js'
 import rent from './routes/rent.js'
+import ticket from './routes/ticket.js'
 import Constants from './config/constants.js';
 // import httpLogger from './logger-middlewares/httpLogger.js'
 //const { httpLogger } = require('./logger-middlewares');
@@ -52,6 +53,7 @@ app.use(`${Constants.apiPrefix}/renter`, renter);
 app.use(`${Constants.apiPrefix}/rent`, rent);
 app.use(`${Constants.apiPrefix}/rental-company`, rentalCompany);
 app.use(`${Constants.apiPrefix}/car`, car);
+app.use(`${Constants.apiPrefix}/ticket`, ticket);
 
 
 

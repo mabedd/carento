@@ -1,5 +1,7 @@
 import BaseController from './base.controller.js';
 import Car from '../models/carModel.js';
+import Constants from '../config/constants.js';
+
 
 class CarsController extends BaseController {
   whitelist = [
@@ -93,6 +95,22 @@ class CarsController extends BaseController {
 			}
 
 			return res.status(200).json({ msg: Constants.messages.success, car: car });
+		} catch (err) {
+			err.status = 400;
+			next(err);
+		}
+	};
+  getCarDetails = async (req, res, next) => {
+		try {
+			// find user by its id
+			// find user by its id and update
+			const user = await Car.findById({ _id: req.params.id });
+
+			if (!user) {
+				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			}
+
+			return res.status(200).json({ msg: Constants.messages.success, user: user });
 		} catch (err) {
 			err.status = 400;
 			next(err);

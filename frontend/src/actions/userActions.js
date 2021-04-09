@@ -237,7 +237,6 @@ export const companyRegister = (name, email, contactnum, address, password) => a
     }
 }
 
-//TODO: do backend for admin (easy)
 //TODO: do backend for company
 export const listUsers = () => async (dispatch, getState) => {
     try {

@@ -19,6 +19,8 @@ users.post('/login', RentalCompanyController.login);
 users.post('/change-profile', authenticate, RentalCompanyController.changeProfile);
 
 users.get('/get-profile', authenticate, RentalCompanyController.getProfile);
+users.get('/find-all-companies',authenticate, RentalCompanyController.findAllCompanies);
+
 
 
 users.use(errorHandler);
