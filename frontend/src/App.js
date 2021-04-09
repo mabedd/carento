@@ -27,11 +27,19 @@ import CompanyEditCarScreen from './screens/CompanyEditCarScreen'
 import CompanyOrderListScreen from './screens/CompanyOrderListScreen'
 import CompanyProfileScreen from './screens/CompanyProfileScreen'
 
+//Admin View
+import AdminListCarsScreen from './screens/AdminListCarsScreen'
+import AdminListRentersScreen from './screens/AdminListRentersScreen'
+import AdminListCompaniesScreen from './screens/AdminListCompaniesScreen'
+import AdminListOrdersScreen from './screens/AdminListOrdersScreen'
+
+
 
 function App() {
   return (
     <Router>
       <Header />
+
       <Route path='/' component={HomeScreen} exact />
       <Route path='/aboutus' component={AboutUsScreen} />
       <Route path='/offers' component={OffersScreen} />
@@ -52,6 +60,12 @@ function App() {
       <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />{/**!! */}
       <Route path='/company/orders' component={CompanyOrderListScreen} />
       <Route path='/company/profile' component={CompanyProfileScreen} />
+
+      <Route path='/admin/carslist' component={AdminListCarsScreen} />
+      <Route path='/admin/renterslist' component={AdminListRentersScreen} />
+      <Route path='/admin/companieslist' component={AdminListCompaniesScreen} />
+      <Route path='/admin/orderslist' component={AdminListOrdersScreen} />
+
       <Footer />
     </Router>
   );
