@@ -58,7 +58,7 @@ const LoginScreen = ({ location, history }) => {
                                         <div class="col-12">
                                             <div class="input-group">
                                                 <label class="label">Password</label>
-                                                <input class="input--style-4" type="email" placeholder="Your password" value={password} onChange={(e) => setPassword(e.target.value)} ></input>
+                                                <input class="input--style-4" type="password" placeholder="Your password" value={password} onChange={(e) => setPassword(e.target.value)} ></input>
                                             </div>
                                         </div>
                                     </div>

@@ -1,4 +1,5 @@
 {
+  "main": "main.js",
   "scripts": {
     "start": "node backend/app/main",
     "server": "nodemon backend/app/main",
