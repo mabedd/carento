@@ -56,7 +56,7 @@ export const logout = () => (dispatch) => {
 }
 
 
-export const register = (name, nationalID, pnum, email, password, dob) => async (dispatch) => {
+export const register = (username, nationalId, phoneNumber, email, password, dateOfBirth) => async (dispatch) => {
     try {
         dispatch({
             type: USER_REGISTER_REQUEST
@@ -70,7 +70,7 @@ export const register = (name, nationalID, pnum, email, password, dob) => async 
         }
 
         //make request
-        const { data } = await axios.post('/api/renter/register', { name, nationalID, pnum, email, password, dob }, config)
+        const { data } = await axios.post('http://localhost:5000/api/renter/register', { username, nationalId, phoneNumber, email, password, dateOfBirth }, config)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,

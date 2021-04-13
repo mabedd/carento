@@ -23,10 +23,13 @@ class RenterController extends BaseController {
 	];
 
 	register = async (req, res, next) => {
+
 		const params = this.filterParams(req.body, this.whitelist);
 		try {
 			// See if user exist
+			
 			const renter = await Renter.findOne({ email: params['email'] });
+			
 			if (renter) {
 				return res.status(200).json({ message: Constants.messages.userExist, success: 0 });
 			}
