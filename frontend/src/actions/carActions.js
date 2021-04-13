@@ -19,7 +19,7 @@ export const listCars = (keyword = '', pageNumber = '') => async (
 
         const { data } = await axios.get(
             //TODO: //`/api/cars?keyword=${keyword}&pageNumber=${pageNumber}`
-            `/api/car/find-all-cars`
+            `http://localhost:5000/api/car/find-all-cars`
         )
 
         dispatch({
@@ -42,7 +42,7 @@ export const listCarDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: CAR_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/cars/${id}`)
+        const { data } = await axios.get(`http://localhost:5000/api/cars/${id}`)
 
         dispatch({
             type: CAR_DETAILS_SUCCESS,
@@ -75,7 +75,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
             },
         }
 
-        await axios.delete(`/api/car/${id}/delete-car`, config)
+        await axios.delete(`http://localhost:5000/api/car/${id}/delete-car`, config)
 
         dispatch({
             type: CAR_DELETE_SUCCESS,
@@ -111,7 +111,7 @@ export const createCar = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.post(`/api/car/add-car`, {}, config)
+        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, {}, config)
 
         dispatch({
             type: CAR_CREATE_SUCCESS,
@@ -152,7 +152,7 @@ export const updateCar = (car) => async (dispatch, getState) => {
 
         //TODO: check
         const { data } = await axios.put(
-            `/api/cars/${car.plate}`,
+            `http://localhost:5000/api/cars/${car.plate}`,
             car,
             config
         )
@@ -197,7 +197,7 @@ export const rateCar = (car, rate) => async (dispatch, getState) => {
 
         //TODO: check
         await axios.post(
-            `/api/cars/${car._id}/rate`,
+            `http://localhost:5000/api/cars/${car._id}/rate`,
             rate,
             config
         )

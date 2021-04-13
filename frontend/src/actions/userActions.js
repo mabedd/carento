@@ -23,7 +23,7 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         //make request
-        const { data } = await axios.post('/api/renter/login', { email, password }, config)
+        const { data } = await axios.post('http://localhost:5000/api/renter/login', { email, password }, config)
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -119,7 +119,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         }
 
         //get request to user profile
-        const { data } = await axios.get(`/api/renter/get-profile/${id}`, config)
+        const { data } = await axios.get(`http://localhost:5000/api/renter/get-profile/${id}`, config)
 
         dispatch({
             type: USER_DETAILS_SUCCESS,
@@ -162,7 +162,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         }
 
         //put request to user profile
-        const { data } = await axios.put(`/api/users/profile`, user, config)
+        const { data } = await axios.put(`http://localhost:5000/api/users/profile`, user, config)
 
         dispatch({
             type: USER_UPDATE_PROFILE_SUCCESS,
@@ -210,7 +210,7 @@ export const companyRegister = (name, email, contactnum, address, password) => a
         }
 
         //make request
-        const { data } = await axios.post('/api/rental-company/register', { name, email, contactnum, address, password }, config)
+        const { data } = await axios.post('http://localhost:5000/api/rental-company/register', { name, email, contactnum, address, password }, config)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -254,7 +254,7 @@ export const listUsers = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`/api/users`, config)
+        const { data } = await axios.get(`http://localhost:5000/api/users`, config)
 
         dispatch({
             type: USER_LIST_SUCCESS,
@@ -292,7 +292,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
             },
         }
 
-        await axios.delete(`/api/users/${id}`, config)
+        await axios.delete(`http://localhost:5000/api/users/${id}`, config)
 
         dispatch({ type: USER_DELETE_SUCCESS })
     } catch (error) {
@@ -327,7 +327,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.put(`/api/change-profile/${user._id}`, user, config)
+        const { data } = await axios.put(`http://localhost:5000/api/change-profile/${user._id}`, user, config)
 
         dispatch({ type: USER_UPDATE_SUCCESS })
 

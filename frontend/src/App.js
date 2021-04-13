@@ -32,6 +32,8 @@ import AdminListCarsScreen from './screens/AdminListCarsScreen'
 import AdminListRentersScreen from './screens/AdminListRentersScreen'
 import AdminListCompaniesScreen from './screens/AdminListCompaniesScreen'
 import AdminListOrdersScreen from './screens/AdminListOrdersScreen'
+import AdminLogiScreen from './screens/AdminLoginScreen'
+import AdminHomeScreen from './screens/AdminHomeScreen'
 
 
 
@@ -61,10 +63,13 @@ function App() {
       <Route path='/company/orders' component={CompanyOrderListScreen} />
       <Route path='/company/profile' component={CompanyProfileScreen} />
 
+      <Route path='/admin/home' component={AdminHomeScreen} />
       <Route path='/admin/carslist' component={AdminListCarsScreen} />
       <Route path='/admin/renterslist' component={AdminListRentersScreen} />
       <Route path='/admin/companieslist' component={AdminListCompaniesScreen} />
       <Route path='/admin/orderslist' component={AdminListOrdersScreen} />
+      <Route path='/admin/login' component={AdminLogiScreen} />
+
 
       <Footer />
     </Router>

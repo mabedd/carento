@@ -24,7 +24,7 @@ const RegisterScreen = ({ location, history }) => {
     const dispatch = useDispatch()
 
     const userRegister = useSelector((state) => state.userRegister)
-    const { loading, error, userInfo } = userRegister
+    const { loading, error, userInfo, success } = userRegister
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -57,6 +57,7 @@ const RegisterScreen = ({ location, history }) => {
                                 {message && <Message variant='danger'>{message}</Message>}
                                 {error && <Message variant='danger'>{error}</Message>}
                                 {loading && <Loader />}
+                                {success && <Message>You have been registered successfully</Message>}
 
                                 <form onSubmit={submitHandler}>
                                     <div class="row row-space">

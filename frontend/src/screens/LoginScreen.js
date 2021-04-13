@@ -32,7 +32,7 @@ const LoginScreen = ({ location, history }) => {
         dispatch(login(email, password))
     }
 
-    return (//TODO: chagen design
+    return (
         <div style={{ backgroundImage: `url("/images/registerBG.jpg")` }}>
             <Container>
                 <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
