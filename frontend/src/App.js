@@ -16,6 +16,7 @@ import UserProfileScreen from './screens/UserProfileScreen'
 import RentSummaryScreen from './screens/RentSummaryScreen'
 import PaymentScreen from './screens/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
+import RenterFeedbackScreen from './screens/RenterFeedbackScreen'
 
 //Company View
 import CompanyHomeScreen from './screens/CompanyHomeScreen'
@@ -52,7 +53,8 @@ function App() {
       <Route path='/rentsummary' component={RentSummaryScreen} />
       <Route path='/payment' component={PaymentScreen} />
       <Route path='/placeorder' component={PlaceOrderScreen} />
-      <Route path='/profile' component={UserProfileScreen} />{/** !! */}
+      <Route path='/profile' component={UserProfileScreen} />
+      <Route path='/rent/feedback' component={RenterFeedbackScreen} /> {/** TODO: add rent id */}
 
       <Route path='/company/home' component={CompanyHomeScreen} />
       <Route path='/company/register' component={CompanyRegister} />
