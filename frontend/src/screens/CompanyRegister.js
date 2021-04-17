@@ -10,6 +10,8 @@ import './RegisterScreen.css'
 
 const CompanyRegister = ({ location, history }) => {
 
+    // TODO: remove auto login
+
     //state
     const [name, setName] = useState('')
     const [contactnum, setContactnum] = useState('')
@@ -39,7 +41,7 @@ const CompanyRegister = ({ location, history }) => {
         if (password !== confirmPassword) {
             setMessage('Passwords do not match')
         } else { //everything is fine just register the user
-            dispatch(companyRegister(name, email, contactnum, address, password))
+            dispatch(companyRegister(name, email, contactnum, password))
             //display a message for success registeration and pending status
             setMessage('Your request has been sent. We will contact you soon')
         }
@@ -70,7 +72,7 @@ const CompanyRegister = ({ location, history }) => {
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <label class="label">Email</label>
-                                                <input class="input--style-4" type="text" placeholder="Company email ..." value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                                                <input class="input--style-4" type="email" placeholder="Company email ..." value={email} onChange={(e) => setEmail(e.target.value)}></input>
                                             </div>
                                         </div>
                                     </div>
@@ -79,13 +81,13 @@ const CompanyRegister = ({ location, history }) => {
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <label class="label">Contact Number</label>
-                                                <input class="input--style-4" type="email" placeholder="+966....." value={contactnum} onChange={(e) => setContactnum(e.target.value)}></input>
+                                                <input class="input--style-4" type="text" placeholder="+966....." value={contactnum} onChange={(e) => setContactnum(e.target.value)}></input>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <label class="label">Address</label>
-                                                <input class="input--style-4" type="email" placeholder="Company address ..." value={address} onChange={(e) => setAddress(e.target.value)} ></input>
+                                                <input class="input--style-4" type="text" placeholder="Company address ..." value={address} onChange={(e) => setAddress(e.target.value)} ></input>
                                             </div>
                                         </div>
                                     </div>

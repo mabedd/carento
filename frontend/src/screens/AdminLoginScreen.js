@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { login } from '../actions/userActions'
 import './RegisterScreen.css'
+import { adminLogin } from '../actions/adminActions'
 
 
 const AdminLoginScreen = ({ location, history }) => {
@@ -31,7 +31,7 @@ const AdminLoginScreen = ({ location, history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(login(email, password))
+        dispatch(adminLogin(email, password))
     }
 
     return (

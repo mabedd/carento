@@ -9,6 +9,7 @@ import {
     USER_UPDATE_SUCCESS, USER_UPDATE_FAIL, USER_UPDATE_REQUEST
 } from '../constants/userConstants'
 
+// WORKS FINE 
 export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({
@@ -44,7 +45,7 @@ export const login = (email, password) => async (dispatch) => {
     }
 }
 
-//TODO: do backend
+// WORK FINE
 export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo')
 
@@ -55,7 +56,7 @@ export const logout = () => (dispatch) => {
     document.location.href = '/login'
 }
 
-
+// WORK FINE
 export const register = (username, nationalId, phoneNumber, email, password, dateOfBirth) => async (dispatch) => {
     try {
         dispatch({
@@ -97,9 +98,7 @@ export const register = (username, nationalId, phoneNumber, email, password, dat
     }
 }
 
-
-
-
+//TODO: frontend
 export const getUserDetails = (id) => async (dispatch, getState) => {
     try {
         dispatch({
@@ -141,7 +140,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     }
 }
 
-//TODO: do backend
+//TODO: check backend and do frontend
 export const updateUserProfile = (user) => async (dispatch, getState) => {
     try {
         dispatch({
@@ -196,7 +195,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 //!! after registeration, company will be inserted to DB with pending status awaitng for manual approval
 
 //TODO: add account status
-export const companyRegister = (name, email, contactnum, address, password) => async (dispatch) => {
+export const companyRegister = (companyName, email, phoneNumber, password) => async (dispatch) => {
     try {
         dispatch({
             type: USER_REGISTER_REQUEST
@@ -210,7 +209,7 @@ export const companyRegister = (name, email, contactnum, address, password) => a
         }
 
         //make request
-        const { data } = await axios.post('http://localhost:5000/api/rental-company/register', { name, email, contactnum, address, password }, config)
+        const { data } = await axios.post('http://localhost:5000/api/rental-company/register', { companyName, email, phoneNumber, password }, config)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -348,4 +347,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         })
     }
 }
+
+
+
 

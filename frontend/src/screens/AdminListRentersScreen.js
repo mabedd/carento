@@ -44,11 +44,6 @@ const AdminListRenterScreen = ({ history, match }) => {
                     <Col>
                         <h1>Renters</h1>
                     </Col>
-                    <Col className='text-right'>
-                        <Button className='my-3'>
-                            <i className='fas fa-plus'></i> Create Product
-          </Button>
-                    </Col>
                 </Row>
                 {loading ? (
                     <Loader />
@@ -59,17 +54,20 @@ const AdminListRenterScreen = ({ history, match }) => {
                         <Table striped bordered hover responsive className='table-sm'>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>PRICE</th>
-                                    <th>CATEGORY</th>
-                                    <th>BRAND</th>
+                                    <th>Name</th>
+                                    <th>National ID</th>
+                                    <th>Date of Birth</th>
+                                    <th>Rating</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>Blacklisted</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr>
+                                    {/**TODO: fetch from DB */}
                                     <td>Plate</td>
                                     <td>Model</td>
                                     <td>Price</td>

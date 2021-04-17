@@ -65,7 +65,7 @@ const CompanyCarListScreen = ({ history, match }) => {
                         <h1>CARS</h1>
                     </Col>
                     <Col className='text-right'>
-                        <Button className='my-3' onClick={createCarHandler}><i className='fas fa-plus'></i> Create Car</Button>
+                        <Button className='my-3' href='/company/car/create'><i className='fas fa-plus'></i> Create Car</Button>
                     </Col>
                 </Row>
 

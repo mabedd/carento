@@ -46,6 +46,7 @@ const Header = () => {
                     }
 
                     {/**TODO: add navbar dropdown for companies */}
+                    {/**TODO: add navbar dropdown for admins */}
 
                 </Navbar.Collapse>
             </Container>

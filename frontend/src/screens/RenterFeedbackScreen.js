@@ -31,16 +31,16 @@ const RenterFeedbackScreen = ({ location, match }) => {
     // redirect to thank you screen
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
-    useEffect(() => {
-        if (sucessCarReview) {
-            setRating(0)
-            setMessage('')
-        }
-        if (!rent._id || rent._id !== match.params.id) {
-            dispatch(getOrderDetails(match.params.id))
-            dispatch({ type: CAR_RATE_RESET })
-        }
-    }, [dispatch, match, sucessCarReview])
+    // useEffect(() => {
+    //     if (sucessCarReview) {
+    //         setRating(0)
+    //         setMessage('')
+    //     }
+    //     if (!rent._id || rent._id !== match.params.id) {
+    //         dispatch(getOrderDetails(match.params.id))
+    //         dispatch({ type: CAR_RATE_RESET })
+    //     }
+    // }, [dispatch, match, sucessCarReview])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -63,7 +63,6 @@ const RenterFeedbackScreen = ({ location, match }) => {
                                 <div class="card-body">
                                     <h2 class="title text-center">Your Opinion Matters</h2>
 
-                                    {error && <Message variant='danger'>{error}</Message>}
 
                                     <form onSubmit={submitHandler}>
 

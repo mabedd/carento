@@ -42,12 +42,7 @@ const AdminListCarsScreen = ({ history, match }) => {
             <Container>
                 <Row className='align-items-center'>
                     <Col>
-                        <h1>Products</h1>
-                    </Col>
-                    <Col className='text-right'>
-                        <Button className='my-3'>
-                            <i className='fas fa-plus'></i> Create Product
-          </Button>
+                        <h1>Cars</h1>
                     </Col>
                 </Row>
                 {loading ? (
@@ -59,17 +54,19 @@ const AdminListCarsScreen = ({ history, match }) => {
                         <Table striped bordered hover responsive className='table-sm'>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>PRICE</th>
-                                    <th>CATEGORY</th>
-                                    <th>BRAND</th>
-                                    <th></th>
+                                    <th>Company</th>
+                                    <th>Plate</th>
+                                    <th>Model</th>
+                                    <th>Color</th>
+                                    <th>Mileage</th>
+                                    <th>Status</th>
+                                    <th>Date Added</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr>
+                                    {/**TODO: fetch from DB */}
                                     <td>Plate</td>
                                     <td>Model</td>
                                     <td>Price</td>
