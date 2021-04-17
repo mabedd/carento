@@ -19,6 +19,9 @@ const CompanyUserEditScreen = ({ match, history }) => {
 
     const dispatch = useDispatch()
 
+    const companyLogin = useSelector(state => state.companyLogin)
+    const { companyInfo } = companyLogin
+
     const userDetails = useSelector((state) => state.userDetails)
     const { loading, error, user } = userDetails
 
@@ -62,32 +65,32 @@ const CompanyUserEditScreen = ({ match, history }) => {
                 ) : error ? (
                     <Message variant='danger'>{error}</Message>
                 ) : (
-                            <Form onSubmit={submitHandler}>
-                                <Form.Group controlId='name'>
-                                    <Form.Label>Name</Form.Label>
-                                    <Form.Control
-                                        type='name'
-                                        placeholder='Enter name'
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                    ></Form.Control>
-                                </Form.Group>
+                    <Form onSubmit={submitHandler}>
+                        <Form.Group controlId='name'>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                                type='name'
+                                placeholder='Enter name'
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            ></Form.Control>
+                        </Form.Group>
 
-                                <Form.Group controlId='email'>
-                                    <Form.Label>Email Address</Form.Label>
-                                    <Form.Control
-                                        type='email'
-                                        placeholder='Enter email'
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    ></Form.Control>
-                                </Form.Group>
+                        <Form.Group controlId='email'>
+                            <Form.Label>Email Address</Form.Label>
+                            <Form.Control
+                                type='email'
+                                placeholder='Enter email'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            ></Form.Control>
+                        </Form.Group>
 
-                                <Button type='submit' variant='primary'>
-                                    Update
+                        <Button type='submit' variant='primary'>
+                            Update
                                 </Button>
-                            </Form>
-                        )}
+                    </Form>
+                )}
             </Container>
         </>
     )

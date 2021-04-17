@@ -22,18 +22,18 @@ const AdminListCarsScreen = ({ history, match }) => {
 
     //TODO:
     // MUST be for admin
-    //const userLogin = useSelector((state) => state.userLogin)
-    //const { userInfo } = userLogin
+    //const adminLogin = useSelector((state) => state.adminLogin)
+    //const { adminInfo } = adminLogin
 
     // useEffect(() => {
     //     //TODO: should be for admin
-    //     if (!userInfo || !userInfo.isAdmin) {
+    //     if (!adminInfo || !adminInfo.isAdmin) {
     //       history.push('/login')
     //     }
     // }, [
     //     dispatch,
     //     history,
-    //     userInfo,
+    //     adminInfo,
     //     pageNumber,
     // ])
 

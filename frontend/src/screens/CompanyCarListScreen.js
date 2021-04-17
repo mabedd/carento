@@ -18,8 +18,11 @@ const CompanyCarListScreen = ({ history, match }) => {
     const { loading, error, cars } = carList
 
     //get user info 
-    const userLogin = useSelector(state => state.userList)
-    const { userInfo } = userLogin
+    // const userLogin = useSelector(state => state.userList)
+    // const { userInfo } = userLogin
+
+    const companyLogin = useSelector(state => state.companyLogin)
+    const { companyInfo } = companyLogin
 
     const carDelete = useSelector(state => state.carDelete)
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = carDelete
@@ -31,6 +34,9 @@ const CompanyCarListScreen = ({ history, match }) => {
         dispatch({ type: CAR_CREATE_RESET })
 
         //TODO: check if user is company or not and redirect to login if not
+        if (companyInfo) {
+            //TODO:
+        }
 
 
         //afet successfully creating a car redirect to car edit screen

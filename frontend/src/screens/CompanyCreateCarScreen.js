@@ -31,6 +31,10 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
     const carDetails = useSelector((state) => state.carDetails)
     const { loading, error, car } = carDetails
 
+    const companyLogin = useSelector(state => state.companyLogin)
+    const { companyInfo } = companyLogin
+
+
     useEffect(() => {
         if (successCreate) {
             dispatch({ type: CAR_UPDATE_RESET })

@@ -17,20 +17,21 @@ const AdminLoginScreen = ({ location, history }) => {
 
     const dispatch = useDispatch()
 
-    const userLogin = useSelector((state) => state.userLogin)
-    const { loading, error, userInfo } = userLogin
+    const adminLogin = useSelector((state) => state.adminLogin)
+    const { loading, error, adminInfo } = adminLogin
 
     // redirect to admin home panel in case of successful login
     const redirect = location.search ? location.search.split('=')[1] : '/admin/home'
 
     useEffect(() => {
-        if (userInfo) {
+        if (adminLogin) {
             history.push(redirect)
         }
-    }, [history, userInfo, redirect])
+    }, [history, adminLogin, redirect])
 
     const submitHandler = (e) => {
         e.preventDefault()
+        // !! Can names be same ?
         dispatch(adminLogin(email, password))
     }
 

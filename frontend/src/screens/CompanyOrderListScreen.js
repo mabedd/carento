@@ -13,8 +13,11 @@ const CompanyOrderListScreen = ({ history }) => {
     const orderList = useSelector((state) => state.orderList)
     const { loading, error, orders } = orderList
 
-    const userLogin = useSelector((state) => state.userLogin)
-    const { userInfo } = userLogin
+    // const userLogin = useSelector((state) => state.userLogin)
+    // const { userInfo } = userLogin
+
+    const companyLogin = useSelector(state => state.companyLogin)
+    const { companyInfo } = companyLogin
 
     useEffect(() => {
         dispatch(listOrders())

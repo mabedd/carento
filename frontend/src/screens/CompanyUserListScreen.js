@@ -16,8 +16,11 @@ const CompanyUserListScreen = () => {
     const { loading, error, users } = userList
 
     //get user info 
-    const userLogin = useSelector(state => state.userList)
-    const { userInfo } = userLogin
+    // const userLogin = useSelector(state => state.userList)
+    // const { userInfo } = userLogin
+
+    const companyLogin = useSelector(state => state.companyLogin)
+    const { companyInfo } = companyLogin
 
     useEffect(() => {
         //TODO: check if user is company or not and redirect to login if not

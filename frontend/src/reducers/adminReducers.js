@@ -8,7 +8,7 @@ export const adminLoginReducer = (state = {}, action) => {
         case ADMIN_LOGIN_REQUEST:
             return { loading: true }
         case ADMIN_LOGIN_SUCCESS:
-            return { loading: false, userInfo: action.payload }
+            return { loading: false, adminInfo: action.payload }
         case ADMIN_LOGIN_FAIL:
             return { loading: false, error: action.payload }
         case ADMIN_LOGOUT:
