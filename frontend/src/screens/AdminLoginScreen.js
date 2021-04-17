@@ -8,7 +8,7 @@ import Loader from '../components/Loader'
 import './RegisterScreen.css'
 import { adminLogin } from '../actions/adminActions'
 
-
+//TODO: add admin login reducer instead of regular user reducer
 const AdminLoginScreen = ({ location, history }) => {
 
     //component level state
