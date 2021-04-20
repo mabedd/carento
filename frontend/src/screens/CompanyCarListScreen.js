@@ -45,13 +45,13 @@ const CompanyCarListScreen = ({ history, match }) => {
         } else {
             dispatch(listCars())
         }
-    }, [dispatch, history, userInfo, successDelete, successCreate, createdCar])
+    }, [dispatch, history, companyInfo, successDelete, successCreate, createdCar])
 
     const createCarHandler = (car) => {
         dispatch(createCar())
     }
 
-    //TODO: add delete handler
+
     const deleteHandler = (id) => {
         //display a confirmation message before delete
         if (window.confirm('Are you sure ?')) {
@@ -59,7 +59,7 @@ const CompanyCarListScreen = ({ history, match }) => {
         }
     }
 
-    //TODO: add this to table
+
     /**                 {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message>
                     : (*/
 

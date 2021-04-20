@@ -28,7 +28,7 @@ const CompanyOrderListScreen = ({ history }) => {
                 } else {
                     history.push('/login')
                 } */
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, companyInfo])
 
     //TODO: add this inside return
     /*     {loading ? (

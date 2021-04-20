@@ -20,29 +20,31 @@ const AdminListCarsScreen = ({ history, match }) => {
     const carList = useSelector((state) => state.carList)
     const { loading, error, cars, page, pages } = carList
 
-    //TODO:
-    // MUST be for admin
-    //const adminLogin = useSelector((state) => state.adminLogin)
-    //const { adminInfo } = adminLogin
 
-    // useEffect(() => {
-    //     //TODO: should be for admin
-    //     if (!adminInfo || !adminInfo.isAdmin) {
-    //       history.push('/login')
-    //     }
-    // }, [
-    //     dispatch,
-    //     history,
-    //     adminInfo,
-    //     pageNumber,
-    // ])
+    // ONLY Admin can access
+    const adminLogin = useSelector((state) => state.adminLogin)
+    const { adminInfo } = adminLogin
+
+    useEffect(() => {
+        //should be for admin or redirect to admin login
+        if (!adminInfo || !adminInfo.isAdmin) {
+            history.push('admin/login')
+        }
+        // fetch cars from the backend
+        dispatch(listCars('', pageNumber))
+    }, [
+        dispatch,
+        history,
+        adminInfo,
+        pageNumber,
+    ])
 
     return (
         <>
             <Container>
                 <Row className='align-items-center'>
                     <Col>
-                        <h1>Cars</h1>
+                        <h1>Carento Cars</h1>
                     </Col>
                 </Row>
                 {loading ? (
@@ -64,19 +66,20 @@ const AdminListCarsScreen = ({ history, match }) => {
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <tr>
-                                    {/**TODO: fetch from DB */}
-                                    <td>Plate</td>
-                                    <td>Model</td>
-                                    <td>Price</td>
-                                    <td></td>
-                                    <td>Rating <Rating /></td>
-                                </tr>
-
+                                {cars.map((car) => (
+                                    <tr key={car._id}>
+                                        <td>{car.companyId}</td>
+                                        <td>{car.carPlate}</td>
+                                        <td>{car.carModel}</td>
+                                        <td>{car.color}</td>
+                                        <td>{car.totalMileage}</td>
+                                        <td>{car.status}</td>
+                                        <td>{car.registrationDate}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </Table>
-                        <Paginate pages={pages} page={page} isAdmin={true} />
+                        <Paginate pages={pages} page={page} />
                     </>
                 )}
 

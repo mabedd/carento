@@ -93,6 +93,7 @@ export const blacklistRenter = (renter) => async (dispatch, getState) => {
             type: ADMIN_BLACKLIST_RENTER_REQUEST,
         })
 
+        //! Mostly will be removed
         const {
             userLogin: { userInfo },
         } = getState()
@@ -124,7 +125,7 @@ export const blacklistRenter = (renter) => async (dispatch, getState) => {
             dispatch(logout())
         }
         dispatch({
-            type: ADMIN_BLACKLIST_RENTER_SUCCESS_FAIL,
+            type: ADMIN_BLACKLIST_RENTER_FAIL,
             payload: message,
         })
     }
@@ -136,6 +137,7 @@ export const blacklistCompany = (company) => async (dispatch, getState) => {
             type: ADMIN_BLACKLIST_RENTER_REQUEST,
         })
 
+        //! Mostly will be removed
         const {
             userLogin: { userInfo },
         } = getState()
@@ -149,7 +151,7 @@ export const blacklistCompany = (company) => async (dispatch, getState) => {
 
         const { data } = await axios.put(
             `http://localhost:5000/api/rental-company/${company._id}`,
-            renter,
+            company,
             config
         )
 
@@ -167,7 +169,7 @@ export const blacklistCompany = (company) => async (dispatch, getState) => {
             dispatch(logout())
         }
         dispatch({
-            type: ADMIN_BLACKLIST_RENTER_SUCCESS_FAIL,
+            type: ADMIN_BLACKLIST_RENTER_FAIL,
             payload: message,
         })
     }

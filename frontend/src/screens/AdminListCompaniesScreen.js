@@ -7,37 +7,43 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
 import Rating from '../components/Rating'
-import { listUsers } from '../actions/userActions'
+import { listCompanies } from '../actions/userActions'
 import { activateCompany } from '../actions/adminActions'
 
 const AdminListCompaniesScreen = ({ history, match }) => {
-
-    //TODO: add activate account functionality
 
     // pagination
     const pageNumber = match.params.pageNumber || 1
 
     const dispatch = useDispatch()
 
+    //! check if compay and renter be from the same reducer
     const userList = useSelector((state) => state.userList)
     const { loading, error, users, page, pages } = userList
 
-    //TODO:
-    // MUST be for admin
-    //const adminLogin = useSelector((state) => state.adminLogin)
-    //const { adminInfo } = adminLogin
 
-    // useEffect(() => {
-    //     //TODO: should be for admin
-    //     if (!adminInfo || !adminInfo.isAdmin) {
-    //       history.push('/login')
-    //     }
-    // }, [
-    //     dispatch,
-    //     history,
-    //     adminInfo,
-    //     pageNumber,
-    // ])
+    // MUST be for admin
+    const adminLogin = useSelector((state) => state.adminLogin)
+    const { adminInfo } = adminLogin
+
+    const activateHandler = (id) => {
+        //TODO: change company status from deactivated to activated
+        //dispatch(activateCompany)
+    }
+
+    useEffect(() => {
+        //should be for admin
+        if (!adminInfo || !adminInfo.isAdmin) {
+            history.push('/admin/login')
+        }
+
+        dispatch(listCompanies('', pageNumber))
+    }, [
+        dispatch,
+        history,
+        adminInfo,
+        pageNumber,
+    ])
 
     return (
         <>
@@ -66,18 +72,21 @@ const AdminListCompaniesScreen = ({ history, match }) => {
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    {/**TODO: fetch from DB */}
-                                    <td>Plate</td>
-                                    <td>Model</td>
-                                    <td>Price</td>
-                                    <td></td>
-                                    <td>Rating <Rating /></td>
-                                </tr>
+                                {users.map((user) => (
+                                    <tr>
+                                        <td>{user.companyName}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.phoneNumber}</td>
+                                        <td>{user.status}</td>
+                                        <td>{user.registrationDate}</td>
+                                        <td>{user.endOfRegistrationDate}</td>
+                                        <td>Rating <Rating /></td>
+                                    </tr>
+                                ))}
 
                             </tbody>
                         </Table>
-                        <Paginate pages={pages} page={page} isAdmin={true} />
+                        <Paginate pages={pages} page={page} />
                     </>
                 )}
 

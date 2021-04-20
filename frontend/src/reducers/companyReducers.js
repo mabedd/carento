@@ -1,4 +1,4 @@
-import { COMPANY_LOGIN_FAIL, COMPANY_LOGIN_REQUEST, COMPANY_LOGIN_SUCCESS } from '../constants/compnayConstants'
+import { COMPANY_LOGIN_FAIL, COMPANY_LOGIN_REQUEST, COMPANY_LOGIN_SUCCESS, COMPANY_LOGOUT } from '../constants/compnayConstants'
 
 export const companyLoginReducer = (state = {}, action) => {
     switch (action.type) {

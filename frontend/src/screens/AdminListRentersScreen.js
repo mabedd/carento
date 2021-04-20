@@ -20,22 +20,24 @@ const AdminListRenterScreen = ({ history, match }) => {
     const userList = useSelector((state) => state.userList)
     const { loading, error, users, page, pages } = userList
 
-    //TODO:
-    // MUST be for admin
-    //const adminLogin = useSelector((state) => state.adminLogin)
-    //const { adminInfo } = adminLogin
 
-    // useEffect(() => {
-    //     //TODO: should be for admin
-    //     if (!adminInfo || !adminInfo.isAdmin) {
-    //       history.push('/login')
-    //     }
-    // }, [
-    //     dispatch,
-    //     history,
-    //     adminInfo,
-    //     pageNumber,
-    // ])
+    // MUST be for admin
+    const adminLogin = useSelector((state) => state.adminLogin)
+    const { adminInfo } = adminLogin
+
+    useEffect(() => {
+        //should be for admin
+        if (!adminInfo || !adminInfo.isAdmin) {
+            history.push('/admin/login')
+        }
+
+        dispatch(listUsers('', pageNumber))
+    }, [
+        dispatch,
+        history,
+        adminInfo,
+        pageNumber,
+    ])
 
     return (
         <>
@@ -64,20 +66,22 @@ const AdminListRenterScreen = ({ history, match }) => {
                                     <th></th>
                                 </tr>
                             </thead>
+
                             <tbody>
-
-                                <tr>
-                                    {/**TODO: fetch from DB */}
-                                    <td>Plate</td>
-                                    <td>Model</td>
-                                    <td>Price</td>
-                                    <td></td>
-                                    <td>Rating <Rating /></td>
-                                </tr>
-
+                                {users.map((user) => (
+                                    <tr>
+                                        <td>{user.username}</td>
+                                        <td>{user.nationalId}</td>
+                                        <td>{user.dateOfBirth}</td>
+                                        <td>{user.phoneNumber}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.isBlackListed}</td>
+                                        <td><Rating value={user.rating} /></td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </Table>
-                        <Paginate pages={pages} page={page} isAdmin={true} />
+                        <Paginate pages={pages} page={page} />
                     </>
                 )}
 

@@ -236,7 +236,6 @@ export const companyRegister = (companyName, email, phoneNumber, password) => as
     }
 }
 
-//TODO: do backend for company
 export const listUsers = () => async (dispatch, getState) => {
     try {
         dispatch({
@@ -253,7 +252,44 @@ export const listUsers = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`http://localhost:5000/api/users`, config)
+        const { data } = await axios.get(`http://localhost:5000/api/find-all-renters`, config)
+
+        dispatch({
+            type: USER_LIST_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: USER_LIST_FAIL,
+            payload: message,
+        })
+    }
+}
+
+export const listCompanies = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: USER_LIST_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        const { data } = await axios.get(`http://localhost:5000/api/find-all-companies`, config)
 
         dispatch({
             type: USER_LIST_SUCCESS,

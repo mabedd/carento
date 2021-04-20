@@ -19,29 +19,31 @@ const AdminListOrderScreen = ({ history, match }) => {
     const orderList = useSelector((state) => state.orderList)
     const { loading, error, orders, page, pages } = orderList
 
-    //TODO:
-    // MUST be for admin
-    //const adminLogin = useSelector((state) => state.adminLogin)
-    //const { adminInfo } = adminLogin
 
-    // useEffect(() => {
-    //     //TODO: should be for admin
-    //     if (!adminInfo || !adminInfo.isAdmin) {
-    //       history.push('/login')
-    //     }
-    // }, [
-    //     dispatch,
-    //     history,
-    //     adminInfo,
-    //     pageNumber,
-    // ])
+    // MUST be for admin
+    const adminLogin = useSelector((state) => state.adminLogin)
+    const { adminInfo } = adminLogin
+
+    useEffect(() => {
+        //should be for admin
+        if (!adminInfo || !adminInfo.isAdmin) {
+            history.push('/admin/login')
+        }
+
+        dispatch(listOrders('', pageNumber))
+    }, [
+        dispatch,
+        history,
+        adminInfo,
+        pageNumber,
+    ])
 
     return (
         <>
             <Container>
                 <Row className='align-items-center'>
                     <Col>
-                        <h1>Orders</h1>
+                        <h1>Rents</h1>
                     </Col>
                 </Row>
                 {loading ? (
@@ -67,19 +69,24 @@ const AdminListOrderScreen = ({ history, match }) => {
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <tr>
-                                    {/**TODO: fetch from DB */}
-                                    <td>Plate</td>
-                                    <td>Model</td>
-                                    <td>Price</td>
-                                    <td></td>
-                                    <td>Rating <Rating /></td>
-                                </tr>
-
+                                {orders.map((order) => (
+                                    <tr>
+                                        <td>{order.carId}</td>
+                                        <td>{order.renterId}</td>
+                                        <td>{order.mileage}</td>
+                                        <td>{order.duration}</td>
+                                        <td>{order.startDate}</td>
+                                        <td>{order.endDate}</td>
+                                        <td>{order.price}</td>
+                                        <td>{order.isPaid}</td>
+                                        <td><Rating value={order.rateByRenter} /></td>
+                                        <td><Rating value={order.rateByCompany} /></td>
+                                        <td>{order.status}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </Table>
-                        <Paginate pages={pages} page={page} isAdmin={true} />
+                        <Paginate pages={pages} page={page} />
                     </>
                 )}
 
