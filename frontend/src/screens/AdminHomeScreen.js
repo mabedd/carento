@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Container, Row } from 'react-bootstrap'
 
-const AdminHomeScreen = () => {
+const AdminHomeScreen = ({ history }) => {
+
+    // ONLY Admin can access
+    const adminLogin = useSelector((state) => state.adminLogin)
+    const { adminInfo } = adminLogin
+
+    useEffect(() => {
+        //should be for admin or redirect to admin login
+        if (!adminInfo) {
+            history.push('/admin/login')
+        }
+    }, [
+        history,
+        adminInfo,
+    ])
+
     return (
         <>
             <Container>

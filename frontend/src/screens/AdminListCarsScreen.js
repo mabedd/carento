@@ -20,14 +20,13 @@ const AdminListCarsScreen = ({ history, match }) => {
     const carList = useSelector((state) => state.carList)
     const { loading, error, cars, page, pages } = carList
 
-
     // ONLY Admin can access
     const adminLogin = useSelector((state) => state.adminLogin)
     const { adminInfo } = adminLogin
 
     useEffect(() => {
         //should be for admin or redirect to admin login
-        if (!adminInfo || !adminInfo.isAdmin) {
+        if (!adminInfo) {
             history.push('admin/login')
         }
         // fetch cars from the backend

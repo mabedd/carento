@@ -28,6 +28,7 @@ import CompanyCreateCarScreen from './screens/CompanyCreateCarScreen'
 import CompanyEditCarScreen from './screens/CompanyEditCarScreen'
 import CompanyOrderListScreen from './screens/CompanyOrderListScreen'
 import CompanyProfileScreen from './screens/CompanyProfileScreen'
+import CompanyLoginScreen from './screens/CompanyLoginScreen'
 
 //Admin View
 import AdminListCarsScreen from './screens/AdminListCarsScreen'
@@ -46,9 +47,9 @@ function App() {
 
       <Route path='/' component={HomeScreen} exact />
       <Route path='/aboutus' component={AboutUsScreen} />
-      <Route path='/offers' component={OffersScreen} />
-      <Route path='/contactus' component={ContactScreen} />
-      <Route path='/browse' component={BrowseCarsScreen} />{/**!! */}
+      <Route path='/offers' component={OffersScreen} /> {/** fetch from DB */}
+      <Route path='/contactus' component={ContactScreen} /> {/** Send by email */}
+      <Route path='/browse' component={BrowseCarsScreen} />{/** fetch from DB*/}
       <Route path='/login' component={LoginScreen} />
       <Route path='/register' component={RegisterScreen} />
       <Route path='/rentsummary' component={RentSummaryScreen} />
@@ -59,19 +60,20 @@ function App() {
 
       <Route path='/company/home' component={CompanyHomeScreen} />
       <Route path='/company/register' component={CompanyRegister} />
-      <Route path='/company/userlist' component={CompanyUserListScreen} />
+      <Route path='/company/login' component={CompanyLoginScreen} />
+      <Route path='/company/userlist' component={CompanyUserListScreen} />{/** TypeError: Cannot read property 'map' of undefined */}
       <Route path='/company/user/:id/edit' component={CompanyUserEditScreen} />{/**!! */}
-      <Route path='/company/carslist' component={CompanyCarListScreen} />
-      <Route path='/company/car/create' component={CompanyCreateCarScreen} />
+      <Route path='/company/carslist' component={CompanyCarListScreen} />{/** TypeError: Cannot read property 'map' of undefined */}
+      <Route path='/company/car/create' component={CompanyCreateCarScreen} />{/** Problem in creatCar action in auth */}
       <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />{/**!! */}
-      <Route path='/company/orders' component={CompanyOrderListScreen} />
+      <Route path='/company/orders' component={CompanyOrderListScreen} />{/** TypeError: Cannot read property 'map' of undefined*/}
       <Route path='/company/profile' component={CompanyProfileScreen} />
 
       <Route path='/admin/home' component={AdminHomeScreen} />
-      <Route path='/admin/carslist' component={AdminListCarsScreen} />
-      <Route path='/admin/renterslist' component={AdminListRentersScreen} />
-      <Route path='/admin/companieslist' component={AdminListCompaniesScreen} />
-      <Route path='/admin/orderslist' component={AdminListOrdersScreen} />
+      <Route path='/admin/carslist' component={AdminListCarsScreen} /> {/** Error: Element type is invalid: */}
+      <Route path='/admin/renterslist' component={AdminListRentersScreen} />{/** Error: Element type is invalid: */}
+      <Route path='/admin/companieslist' component={AdminListCompaniesScreen} />{/** Error: Element type is invalid: */}
+      <Route path='/admin/orderslist' component={AdminListOrdersScreen} />{/** Error: Element type is invalid: */}
       <Route path='/admin/login' component={AdminLoginScreen} />
 
 

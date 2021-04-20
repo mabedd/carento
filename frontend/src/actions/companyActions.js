@@ -5,7 +5,7 @@ import {
     COMPANY_LOGIN_FAIL, COMPANY_LOGIN_REQUEST, COMPANY_LOGIN_SUCCESS, COMPANY_LOGOUT
 } from '../constants/compnayConstants'
 
-export const companyLogin = (email, password) => async (dispatch) => {
+export const loginCompany = (email, password) => async (dispatch) => {
     try {
         dispatch({
             type: COMPANY_LOGIN_REQUEST

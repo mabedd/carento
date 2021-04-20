@@ -9,8 +9,6 @@ import { CAR_UPDATE_RESET } from '../constants/carConstants'
 
 const CompanyCreateCarScreen = ({ location, history, match }) => {
 
-    //! 401 error (authorization problem)
-
     //retrieve car ID from url
     const carId = match.params.id
 

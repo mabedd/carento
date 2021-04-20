@@ -13,13 +13,8 @@ const CompanyCarListScreen = ({ history, match }) => {
 
     const dispatch = useDispatch()
 
-    //get car info
     const carList = useSelector(state => state.carList)
     const { loading, error, cars } = carList
-
-    //get user info 
-    // const userLogin = useSelector(state => state.userList)
-    // const { userInfo } = userLogin
 
     const companyLogin = useSelector(state => state.companyLogin)
     const { companyInfo } = companyLogin
@@ -59,10 +54,6 @@ const CompanyCarListScreen = ({ history, match }) => {
         }
     }
 
-
-    /**                 {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message>
-                    : (*/
-
     return (
         <>
             <Container>
@@ -95,9 +86,18 @@ const CompanyCarListScreen = ({ history, match }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/**TODO: loop throguh cars and display their info */}
+
+                            {cars.map((car) => (
+                                <tr key={car.companyId}>
+                                    <td>{car.carPlate}</td>
+                                    <td>{car.carModel}</td>
+                                    <td>{car.color}</td>
+                                    <td>{car.totalMileage}</td>
+                                    <td>{car.price}</td>
+                                    <td>{car.status}</td>
+                                </tr>
+                            ))}
                         </tbody>
-                        {/**TODO: add delete button and view car details */}
                     </Table>
                 </Container>
             </Container>

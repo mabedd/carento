@@ -6,9 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import './RegisterScreen.css'
-import { adminLogin } from '../actions/adminActions'
+import { loginAdmin } from '../actions/adminActions'
 
-//TODO: add admin login reducer instead of regular user reducer
 const AdminLoginScreen = ({ location, history }) => {
 
     //component level state
@@ -24,15 +23,15 @@ const AdminLoginScreen = ({ location, history }) => {
     const redirect = location.search ? location.search.split('=')[1] : '/admin/home'
 
     useEffect(() => {
-        if (adminLogin) {
-            history.push(redirect)
-        }
-    }, [history, adminLogin, redirect])
+        // if (adminLogin) {
+        //     history.push(redirect)
+        // }
+    }, [history, adminInfo, redirect])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        // !! Can names be same ?
-        dispatch(adminLogin(email, password))
+        // ! TypeError: adminLogin is not a function
+        dispatch(loginAdmin(email, password))
     }
 
     return (

@@ -102,12 +102,13 @@ export const createCar = () => async (dispatch, getState) => {
         })
 
         const {
-            userLogin: { userInfo },
+            companyLogin: { companyInfo },
         } = getState()
 
+        //!! Here is the auth problem
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `Bearer ${companyInfo.token}`,
             },
         }
 

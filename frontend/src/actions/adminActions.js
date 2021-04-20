@@ -8,7 +8,7 @@ import {
     ADMIN_BLACKLIST_RENTER_FAIL, ADMIN_BLACKLIST_RENTER_REQUEST, ADMIN_BLACKLIST_RENTER_SUCCESS
 } from '../constants/adminConstants'
 
-export const adminLogin = (email, password) => async (dispatch) => {
+export const loginAdmin = (email, password) => async (dispatch) => {
     try {
         dispatch({
             type: ADMIN_LOGIN_REQUEST
