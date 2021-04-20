@@ -15,6 +15,8 @@ admin.get('/test', (req, res) => {
 });
 
 admin.post('/login', AdminController.login);
+admin.post('/register', AdminController.register);
+
 
 
 

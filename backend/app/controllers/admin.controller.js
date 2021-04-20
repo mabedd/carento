@@ -12,6 +12,44 @@ class AdminController extends BaseController {
 		'phoneNumber',
 		'email',
 	];
+	register = async (req, res, next) => {
+
+		const params = this.filterParams(req.body, this.whitelist);
+		try {
+			// See if user exist
+			
+			const admin = await Admin.findOne({ email: params['email'] });
+			
+			if (admin) {
+				return res.status(200).json({ message: Constants.messages.userExist, success: 0 });
+			}
+			// Encrypt password
+			if (params['password']) {
+				const salt = await bcrypt.genSalt(10);
+				const hash = await bcrypt.hash(params['password'], salt);
+				params['password'] = hash;
+			}
+
+			const newAdmin = new Admin(
+				{
+					...params,
+				},
+			);
+			await newAdmin.save();
+			jwt.sign({user :params}, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
+				(err, token) => {
+					if (err) throw err;
+					return res.status(200).json({
+						token,
+						newAdmin,
+						success: 1,
+					});
+				});
+		} catch (err) {
+			err.status = 200;
+			next(err);
+		}
+	};
 
 	
 
