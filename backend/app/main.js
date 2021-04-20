@@ -54,6 +54,8 @@ app.use(`${Constants.apiPrefix}/rent`, rent);
 app.use(`${Constants.apiPrefix}/rental-company`, rentalCompany);
 app.use(`${Constants.apiPrefix}/car`, car);
 app.use(`${Constants.apiPrefix}/ticket`, ticket);
+app.use(`${Constants.apiPrefix}/admin`, ticket);
+
 
 
 

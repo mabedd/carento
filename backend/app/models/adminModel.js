@@ -1,19 +1,15 @@
 import Ticket from "./ticketModel.js";
 
 import mongoose from 'mongoose'
+var Schema = mongoose.Schema;
 
-const adminSchema = mongoose.Schema(
+const adminSchema = new Schema(
   {
     username:{
       type : String,
       required : true,
       unique : true
     } ,
-    adminId: {
-      type : String,
-      required : true,
-      unique : true
-    },
     password: {
       type : String,
       required : true
@@ -33,5 +29,5 @@ const adminSchema = mongoose.Schema(
     timestamps: true
   });
 
-const Admin = mongoose.model('Admin',adminSchema).schema
+const Admin = mongoose.model('Admin',adminSchema)
 export default Admin;

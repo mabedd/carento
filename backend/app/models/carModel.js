@@ -2,7 +2,7 @@ import Rent from "./rentModel.js";
 
 import mongoose from 'mongoose'
 var Schema = mongoose.Schema;
-const carSchema = Schema(
+const carSchema = new Schema(
   {
     companyId : {
       type : mongoose.Schema.Types.ObjectId,
@@ -29,6 +29,10 @@ const carSchema = Schema(
     totalMileage: {
         type : Number,
         required : true
+    },
+    price: {
+      type : Number,
+      required : true
     },
     status: {
         type : Boolean,

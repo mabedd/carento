@@ -12,6 +12,7 @@ class CarsController extends BaseController {
     'color',
     'totalMileage',
     'status',
+    'price',
     'benefits',
     'registrationDate',
     'endOfRegistrationDate',
