@@ -9,7 +9,7 @@ import {
 } from '../constants/carConstants'
 
 
-export const carListReducer = (state = { cars: [] }, action) => {
+export const carListReducer = (state = { loading: true, cars: [] }, action) => {
     switch (action.type) {
         case CAR_LIST_REQUEST:
             return { loading: true, cars: [] }

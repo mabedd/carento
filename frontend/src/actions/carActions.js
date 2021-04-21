@@ -21,9 +21,11 @@ export const listCars = (keyword = '', pageNumber = '') => async (
             `http://localhost:5000/api/car/find-all-cars`
         )
 
+        console.log(data)
+
         dispatch({
             type: CAR_LIST_SUCCESS,
-            payload: data,
+            payload: data.car,
         })
     } catch (error) {
         dispatch({

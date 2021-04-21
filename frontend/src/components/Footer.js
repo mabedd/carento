@@ -53,7 +53,7 @@ const Footer = () => {
 
                 </div>
 
-                <div className="row pb-3 ">
+                <div className="row pb-3 mt-4 ">
 
                     <div className="col-md-12">
 

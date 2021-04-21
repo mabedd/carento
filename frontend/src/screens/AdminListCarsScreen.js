@@ -60,7 +60,7 @@ const AdminListCarsScreen = ({ history, match }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cars.map((car) => (
+                                {cars ? cars.map((car) => (
                                     <tr key={car._id}>
                                         <td>{car.companyId}</td>
                                         <td>{car.carPlate}</td>
@@ -70,7 +70,7 @@ const AdminListCarsScreen = ({ history, match }) => {
                                         <td>{car.status}</td>
                                         <td>{car.registrationDate}</td>
                                     </tr>
-                                ))}
+                                )) : ''}
                             </tbody>
                         </Table>
                         <Paginate pages={pages} page={page} />

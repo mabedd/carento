@@ -143,11 +143,14 @@ export const listOrders = () => async (dispatch, getState) => {
             },
         }
 
+
         const { data } = await axios.get(`http://localhost:5000/api/rent/find-all-rents`, config)
+
+        console.log(data)
 
         dispatch({
             type: ORDER_LIST_SUCCESS,
-            payload: data,
+            payload: data.order,
         })
     } catch (error) {
         const message =
