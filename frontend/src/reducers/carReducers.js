@@ -9,14 +9,14 @@ import {
 } from '../constants/carConstants'
 
 
-export const carListReducer = (state = { loading: true, cars: [] }, action) => {
+export const carListReducer = (state = { cars: [] }, action) => {
     switch (action.type) {
         case CAR_LIST_REQUEST:
             return { loading: true, cars: [] }
         case CAR_LIST_SUCCESS:
             return {
                 loading: false,
-                cars: action.payload.cars,
+                cars: action.payload,
                 pages: action.payload.pages,
                 page: action.payload.page,
             }

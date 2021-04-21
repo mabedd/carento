@@ -36,7 +36,7 @@ class RentalCompanyController extends BaseController {
 				},
 			);
 			await newRentalCompany.save();
-			jwt.sign({user:params}, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
+			jwt.sign({ user: params }, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
 				(err, token) => {
 					if (err) throw err;
 					return res.status(200).json({
@@ -69,10 +69,13 @@ class RentalCompanyController extends BaseController {
 			if (!isMatch) {
 				return res.status(400).json({ msg: 'Incorrect username or password', success: 0 });
 			}
-			jwt.sign({user:rentalCompany }, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
+
+			let id = rentalCompany._id
+
+			jwt.sign({ user: rentalCompany }, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
 				(err, token) => {
 					if (err) throw err;
-					return res.status(200).json({ token, success: 1 });
+					return res.status(200).json({ token, success: 1, id });
 				});
 		} catch (error) {
 			error.status = 400;
@@ -117,14 +120,14 @@ class RentalCompanyController extends BaseController {
 	};
 	findAllCompanies = async (req, res, next) => {
 		try {
-		  const companySaved = await RentalCompany.find({});
-		  res.status(200).json({
-			success: 1,
-			company: companySaved,
-			count: companySaved.length,
-		  });
+			const companySaved = await RentalCompany.find({});
+			res.status(200).json({
+				success: 1,
+				company: companySaved,
+				count: companySaved.length,
+			});
 		} catch (error) {
-		  next(error);
+			next(error);
 		}
 	}
 	activate = async (req, res, next) => {

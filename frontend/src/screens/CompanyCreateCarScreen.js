@@ -18,9 +18,9 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
     // car intial state
     const [image, setImage] = useState('')
     const [plate, setPlate] = useState('')
-    const [model, setModel] = useState('')
+    const [model, setModel] = useState(0)
     const [color, setColor] = useState('')
-    const [mileage, setMileage] = useState('')
+    const [mileage, setMileage] = useState(0)
     const [status, setStatus] = useState('')
     const [price, setPrice] = useState(0)
 
@@ -32,6 +32,10 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
     const companyLogin = useSelector(state => state.companyLogin)
     const { companyInfo } = companyLogin
 
+    // get company ID from state to be sent with the create car request
+    //const companyId = companyInfo._id
+
+    console.log(companyInfo)
 
     useEffect(() => {
         if (successCreate) {
@@ -41,13 +45,13 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
             if (car._id !== carId) {
                 dispatch(listCarDetails(carId))
             } else {
-                setImage(car.image)
-                setPlate(car.plate)
-                setModel(car.model)
+                //setImage(car.image)
+                setPlate(car.carPlate)
+                setModel(car.carModel)
                 setColor(car.color)
-                setMileage(car.mileage)
+                setMileage(car.totalMileage)
                 setStatus(car.status)
-                //setPrice(car.description)
+                setPrice(car.price)
             }
         }
     }, [dispatch, history, carId, car, successCreate])
@@ -55,15 +59,14 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(
+            //companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits
             createCar({
-                _id: carId,
                 plate,
-                image,
                 model,
                 color,
                 mileage,
-                status,
-                price
+                price,
+                //status,
             })
         )
     }
@@ -86,7 +89,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                                     <Form.Group controlId='plate'>
                                         <Form.Label>Plate</Form.Label>
                                         <Form.Control
-                                            type='plate'
+                                            type='text'
                                             placeholder='Enter plate'
                                             value={plate}
                                             onChange={(e) => setPlate(e.target.value)}
@@ -96,7 +99,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                                     <Form.Group controlId='model'>
                                         <Form.Label>Model</Form.Label>
                                         <Form.Control
-                                            type='model'
+                                            type='text'
                                             placeholder='Enter model'
                                             value={model}
                                             onChange={(e) => setModel(e.target.value)}
@@ -118,7 +121,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                                     <Form.Group controlId='mileage'>
                                         <Form.Label>Mileage</Form.Label>
                                         <Form.Control
-                                            type='mileage'
+                                            type='text'
                                             placeholder='Enter mileage'
                                             value={mileage}
                                             onChange={(e) => setMileage(e.target.value)}
@@ -128,7 +131,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                                     <Form.Group controlId='status'>
                                         <Form.Label>Status</Form.Label>
                                         <Form.Control
-                                            type='status'
+                                            type='text'
                                             placeholder='Enter status'
                                             value={status}
                                             onChange={(e) => setStatus(e.target.value)}
@@ -138,7 +141,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                                     <Form.Group controlId='price'>
                                         <Form.Label>Price / day</Form.Label>
                                         <Form.Control
-                                            type='price'
+                                            type='text'
                                             placeholder='Enter price'
                                             value={price}
                                             onChange={(e) => setPrice(e.target.value)}

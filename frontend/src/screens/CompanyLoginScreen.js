@@ -10,6 +10,8 @@ import { loginCompany } from '../actions/companyActions'
 
 const CompanyLoginScreen = ({ location, history }) => {
 
+    //TODO: fix get ID from backend to be sent with the request
+
     //component level state
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -19,13 +21,16 @@ const CompanyLoginScreen = ({ location, history }) => {
     const companyLogin = useSelector((state) => state.companyLogin)
     const { loading, error, companyInfo } = companyLogin
 
+    //console.log(companyInfo)
+
     // redirect to admin home panel in case of successful login
     //const redirect = location.search ? location.search.split('=')[1] : '/company/profile'
 
     useEffect(() => {
         //TODO: redirect after login to home
         if (companyLogin) {
-            //history.push(redirect)
+            //const id = companyInfo.id
+            //console.log(companyInfo.id)
         }
     }, [history, companyInfo])
 

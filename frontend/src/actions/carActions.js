@@ -21,12 +21,13 @@ export const listCars = (keyword = '', pageNumber = '') => async (
             `http://localhost:5000/api/car/find-all-cars`
         )
 
-        console.log(data)
+        console.log(data.car)
 
         dispatch({
             type: CAR_LIST_SUCCESS,
             payload: data.car,
         })
+
     } catch (error) {
         dispatch({
             type: CAR_LIST_FAIL,
@@ -37,6 +38,8 @@ export const listCars = (keyword = '', pageNumber = '') => async (
         })
     }
 }
+
+//TODO: list company cars
 
 //TODO: do backend
 export const listCarDetails = (id) => async (dispatch) => {
@@ -96,7 +99,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
     }
 }
 
-export const createCar = () => async (dispatch, getState) => {
+export const createCar = (companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CAR_CREATE_REQUEST,
@@ -107,18 +110,19 @@ export const createCar = () => async (dispatch, getState) => {
         } = getState()
 
         //!! Here is the auth problem
-        const config = {
-            headers: {
-                Authorization: `Bearer ${companyInfo.token}`,
-            },
-        }
+        // const config = {
+        //     headers: {
+        //         Authorization: `Bearer ${companyInfo.token}`,
+        //     },
+        // }
 
-        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, {}, config)
+        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits })
 
         dispatch({
             type: CAR_CREATE_SUCCESS,
             payload: data,
         })
+
     } catch (error) {
         const message =
             error.response && error.response.data.message

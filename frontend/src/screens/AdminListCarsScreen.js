@@ -42,7 +42,7 @@ const AdminListCarsScreen = ({ history, match }) => {
             <Container>
                 <Row className='align-items-center'>
                     <Col>
-                        <h1>Carento Cars</h1>
+                        <h1 className='text-center mt-5'>Carento Cars</h1>
                     </Col>
                 </Row>
                 {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) : (
@@ -67,8 +67,14 @@ const AdminListCarsScreen = ({ history, match }) => {
                                         <td>{car.carModel}</td>
                                         <td>{car.color}</td>
                                         <td>{car.totalMileage}</td>
-                                        <td>{car.status}</td>
-                                        <td>{car.registrationDate}</td>
+
+                                        <td>{car.status ? (
+                                            <i className='fas fa-check' style={{ color: 'green' }}></i>
+                                        ) : (
+                                            <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                        )}</td>
+
+                                        <td>{car.createdAt}</td>
                                     </tr>
                                 )) : ''}
                             </tbody>

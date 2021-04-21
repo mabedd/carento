@@ -33,16 +33,16 @@ const UserProfileScreen = ({ location, history }) => {
     //TODO: uncomment to make it protected route
     //TODO: fetch details from DB
     useEffect(() => {
-        if (!userInfo) {
-            history.push('/login')
-        } else {
-            if (!user.username) { //check for user name
-                dispatch(getUserDetails('profile'))
-            } else {//set form fields
-                setName(user.username)
-                setEmail(user.email)
-            }
-        }
+        // if (!userInfo) {
+        //     history.push('/login')
+        // } else {
+        //     if (!user.username) { //check for user name
+        //         dispatch(getUserDetails('profile'))
+        //     } else {//set form fields
+        //         setName(user.username)
+        //         setEmail(user.email)
+        //     }
+        // }
     }, [dispatch, history, userInfo, user])
 
     const submitHandler = (e) => {

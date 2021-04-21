@@ -18,6 +18,9 @@ const Header = () => {
     const adminLogin = useSelector(state => state.adminLogin)
     const { adminInfo } = adminLogin
 
+    const userList = useSelector((state) => state.userList)
+    const { loading, error, users, page, pages } = userList
+
     const logoutHandler = () => {
         dispatch(logout())
     }

@@ -13,7 +13,7 @@ car.get('/test', (req, res) => {
     message: 'welcome in car rental way',
   });
 });
-car.post('/add-car', authenticate, CarController.addCar);
+car.post('/add-car', CarController.addCar);
 car.get('/delete-car', authenticate, CarController.deleteCar);
 car.get('/find-company-cars', authenticate, CarController.findAll);
 car.get('/find-all-cars', CarController.findAllCars);

@@ -60,9 +60,8 @@ export const activateCompany = (company) => async (dispatch, getState) => {
             },
         }
 
-        //TODO: change route similar to backend
         const { data } = await axios.put(
-            `http://localhost:5000/api/rental-company`,
+            `http://localhost:5000/api/rental-company/activate/${rentalCompany._id}`,
             company,
             config
         )
@@ -71,7 +70,9 @@ export const activateCompany = (company) => async (dispatch, getState) => {
             type: ADMIN_ACTIVATE_COMPANY_SUCCESS,
             payload: data,
         })
+
         dispatch({ type: ADMIN_ACTIVATE_COMPANY_SUCCESS, payload: data })
+
     } catch (error) {
         const message =
             error.response && error.response.data.message
@@ -106,7 +107,7 @@ export const blacklistRenter = (renter) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `http://localhost:5000/api/renter/${renter._id}`,
+            `http://localhost:5000/api/renter/blacklist/${renter._id}`,
             renter,
             config
         )
@@ -131,47 +132,4 @@ export const blacklistRenter = (renter) => async (dispatch, getState) => {
     }
 }
 
-export const blacklistCompany = (company) => async (dispatch, getState) => {
-    try {
-        dispatch({
-            type: ADMIN_BLACKLIST_RENTER_REQUEST,
-        })
-
-        //! Mostly will be removed
-        const {
-            userLogin: { userInfo },
-        } = getState()
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`,
-            },
-        }
-
-        const { data } = await axios.put(
-            `http://localhost:5000/api/rental-company/${company._id}`,
-            company,
-            config
-        )
-
-        dispatch({
-            type: ADMIN_BLACKLIST_RENTER_SUCCESS,
-            payload: data,
-        })
-        dispatch({ type: ADMIN_BLACKLIST_RENTER_SUCCESS, payload: data })
-    } catch (error) {
-        const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
-        if (message === 'Not authorized, token failed') {
-            dispatch(logout())
-        }
-        dispatch({
-            type: ADMIN_BLACKLIST_RENTER_FAIL,
-            payload: message,
-        })
-    }
-}
 

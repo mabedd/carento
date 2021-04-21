@@ -24,6 +24,8 @@ const AdminListRenterScreen = ({ history, match }) => {
     const adminLogin = useSelector((state) => state.adminLogin)
     const { adminInfo } = adminLogin
 
+    console.log(users)
+
     useEffect(() => {
         //should be for admin
         // if (!adminInfo || !adminInfo.isAdmin) {
