@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { Container } from 'react-router-bootstrap'
-import { Table, Button, Row, Col } from 'react-bootstrap'
+import { Table, Button, Row, Col, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Message from '../components/Message'
@@ -33,9 +32,9 @@ const AdminListCompaniesScreen = ({ history, match }) => {
 
     useEffect(() => {
         //should be for admin
-        if (!adminInfo || !adminInfo.isAdmin) {
-            history.push('/admin/login')
-        }
+        // if (!adminInfo || !adminInfo.isAdmin) {
+        //     history.push('/admin/login')
+        // }
 
         dispatch(listCompanies('', pageNumber))
     }, [
@@ -48,16 +47,13 @@ const AdminListCompaniesScreen = ({ history, match }) => {
     return (
         <>
             <Container>
-                <Row className='align-items-center'>
+                <Row className=' align-items-center'>
                     <Col>
                         <h1>Carento Rental Companies</h1>
                     </Col>
                 </Row>
-                {loading ? (
-                    <Loader />
-                ) : error ? (
-                    <Message variant='danger'>{error}</Message>
-                ) : (
+
+                {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) : (
                     <>
                         <Table striped bordered hover responsive className='table-sm'>
                             <thead>
@@ -73,7 +69,7 @@ const AdminListCompaniesScreen = ({ history, match }) => {
                             <tbody>
 
                                 {users.map((user) => (
-                                    <tr>
+                                    <tr key={user._id}>
                                         <td>{user.companyName}</td>
                                         <td>{user.email}</td>
                                         <td>{user.phoneNumber}</td>
@@ -89,7 +85,6 @@ const AdminListCompaniesScreen = ({ history, match }) => {
                         <Paginate pages={pages} page={page} />
                     </>
                 )}
-
             </Container>
         </>
     )

@@ -243,21 +243,22 @@ export const listUsers = () => async (dispatch, getState) => {
         })
 
         const {
-            userLogin: { userInfo },
+            userLogin: { adminInfo },
         } = getState()
 
-        const config = {
-            headers: {
-                Authorization: `Bearer ${userInfo.token}`,
-            },
-        }
+        // const config = {
+        //     headers: {
+        //         Authorization: `Bearer ${adminInfo.token}`,
+        //     },
+        // }
 
-        const { data } = await axios.get(`http://localhost:5000/api/find-all-renters`, config)
+        const { data } = await axios.get(`http://localhost:5000/api/renter/find-all-renters`,)
 
         dispatch({
             type: USER_LIST_SUCCESS,
             payload: data,
         })
+
     } catch (error) {
         const message =
             error.response && error.response.data.message

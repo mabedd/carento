@@ -64,18 +64,17 @@ function App() {
       <Route path='/company/userlist' component={CompanyUserListScreen} />{/** TypeError: Cannot read property 'map' of undefined */}
       <Route path='/company/user/:id/edit' component={CompanyUserEditScreen} />{/**!! */}
       <Route path='/company/carslist' component={CompanyCarListScreen} />{/** TypeError: Cannot read property 'map' of undefined */}
-      <Route path='/company/car/create' component={CompanyCreateCarScreen} />{/** Problem in creatCar action in auth */}
-      <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />{/**!! */}
+      <Route path='/company/car/create' component={CompanyCreateCarScreen} />{/** Cannot read property 'token' of undefined */}
+      <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />
       <Route path='/company/orders' component={CompanyOrderListScreen} />{/** TypeError: Cannot read property 'map' of undefined*/}
-      <Route path='/company/profile' component={CompanyProfileScreen} />
+      <Route path='/company/profile' component={CompanyProfileScreen} />{/** Not fetching from DB */}
 
       <Route path='/admin/home' component={AdminHomeScreen} />
-      <Route path='/admin/carslist' component={AdminListCarsScreen} /> {/** Error: Element type is invalid: */}
-      <Route path='/admin/renterslist' component={AdminListRentersScreen} />{/** Error: Element type is invalid: */}
-      <Route path='/admin/companieslist' component={AdminListCompaniesScreen} />{/** Error: Element type is invalid: */}
-      <Route path='/admin/orderslist' component={AdminListOrdersScreen} />{/** Error: Element type is invalid: */}
+      <Route path='/admin/carslist' component={AdminListCarsScreen} /> {/** TypeError: Cannot read property 'map' of undefined */}
+      <Route path='/admin/renterslist' component={AdminListRentersScreen} />{/** 404 */}
+      <Route path='/admin/companieslist' component={AdminListCompaniesScreen} />{/** 404: */}
+      <Route path='/admin/orderslist' component={AdminListOrdersScreen} />{/** 404 */}
       <Route path='/admin/login' component={AdminLoginScreen} />
-
 
       <Footer />
     </Router>

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { Container } from 'react-router-bootstrap'
-import { Table, Button, Row, Col } from 'react-bootstrap'
+import { Table, Button, Row, Col, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Message from '../components/Message'
@@ -26,9 +25,9 @@ const AdminListCarsScreen = ({ history, match }) => {
 
     useEffect(() => {
         //should be for admin or redirect to admin login
-        if (!adminInfo) {
-            history.push('admin/login')
-        }
+        // if (!adminInfo) {
+        //     history.push('/admin/login')
+        // }
         // fetch cars from the backend
         dispatch(listCars('', pageNumber))
     }, [
@@ -46,11 +45,7 @@ const AdminListCarsScreen = ({ history, match }) => {
                         <h1>Carento Cars</h1>
                     </Col>
                 </Row>
-                {loading ? (
-                    <Loader />
-                ) : error ? (
-                    <Message variant='danger'>{error}</Message>
-                ) : (
+                {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) : (
                     <>
                         <Table striped bordered hover responsive className='table-sm'>
                             <thead>
@@ -81,7 +76,6 @@ const AdminListCarsScreen = ({ history, match }) => {
                         <Paginate pages={pages} page={page} />
                     </>
                 )}
-
             </Container>
         </>
     )

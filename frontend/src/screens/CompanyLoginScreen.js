@@ -20,14 +20,14 @@ const CompanyLoginScreen = ({ location, history }) => {
     const { loading, error, companyInfo } = companyLogin
 
     // redirect to admin home panel in case of successful login
-    const redirect = location.search ? location.search.split('=')[1] : '/company/car/create'
+    //const redirect = location.search ? location.search.split('=')[1] : '/company/profile'
 
     useEffect(() => {
         //TODO: redirect after login to home
         if (companyLogin) {
-            history.push(redirect)
+            //history.push(redirect)
         }
-    }, [history, companyInfo, redirect])
+    }, [history, companyInfo])
 
     const submitHandler = (e) => {
         e.preventDefault()

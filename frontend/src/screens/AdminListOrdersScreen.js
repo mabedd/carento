@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { Container } from 'react-router-bootstrap'
-import { Table, Button, Row, Col } from 'react-bootstrap'
+import { Table, Button, Row, Col, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Message from '../components/Message'
@@ -26,9 +25,9 @@ const AdminListOrderScreen = ({ history, match }) => {
 
     useEffect(() => {
         //should be for admin
-        if (!adminInfo || !adminInfo.isAdmin) {
-            history.push('/admin/login')
-        }
+        // if (!adminInfo || !adminInfo.isAdmin) {
+        //     history.push('/admin/login')
+        // }
 
         dispatch(listOrders('', pageNumber))
     }, [
@@ -46,11 +45,7 @@ const AdminListOrderScreen = ({ history, match }) => {
                         <h1>Rents</h1>
                     </Col>
                 </Row>
-                {loading ? (
-                    <Loader />
-                ) : error ? (
-                    <Message variant='danger'>{error}</Message>
-                ) : (
+                {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) : (
                     <>
                         <Table striped bordered hover responsive className='table-sm'>
                             <thead>
@@ -89,7 +84,6 @@ const AdminListOrderScreen = ({ history, match }) => {
                         <Paginate pages={pages} page={page} />
                     </>
                 )}
-
             </Container>
         </>
     )

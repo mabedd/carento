@@ -18,7 +18,6 @@ export const listCars = (keyword = '', pageNumber = '') => async (
         dispatch({ type: CAR_LIST_REQUEST })
 
         const { data } = await axios.get(
-            //TODO: //`/api/cars?keyword=${keyword}&pageNumber=${pageNumber}`
             `http://localhost:5000/api/car/find-all-cars`
         )
 
