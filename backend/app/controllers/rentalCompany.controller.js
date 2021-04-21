@@ -84,14 +84,14 @@ class RentalCompanyController extends BaseController {
 		const params = this.filterParams(req.body, this.whitelist);
 		try {
 			// find user by its id and update
-			const rentalCompany = await Renter.findByIdAndUpdate({ _id: req.rentalCompany._id }, { $set: params }, { new: true });
+			const rentalCompany = await RentalCompany.findByIdAndUpdate({ _id: req.rentalCompany._id }, { $set: params }, { new: true });
 			if (!rentalCompany) {
 				return res.status(404).json({ msg: Constants.messages.userNotFound });
 			}
 			const data = {
 				id: rentalCompany._id,
 				email: rentalCompany.email,
-				username: rentalCompany.companyName,
+				companyName: rentalCompany.companyName,
 				password: rentalCompany.password,
 				phoneNumber: rentalCompany.phoneNumber,
 			};
@@ -127,6 +127,23 @@ class RentalCompanyController extends BaseController {
 		  next(error);
 		}
 	}
+	activate = async (req, res, next) => {
+		try {
+			// find user by its id
+			// find user by its id and update
+			const user = await RentalCompany.findById({ _id: req.params.id });
+
+			if (!user) {
+				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			}
+			console.log(user);
+			user.status = true
+			return res.status(200).json({ msg: Constants.messages.success, user: user });
+		} catch (err) {
+			err.status = 400;
+			next(err);
+		}
+	};
 }
 
 export default new RentalCompanyController();

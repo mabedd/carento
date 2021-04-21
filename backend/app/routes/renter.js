@@ -18,6 +18,8 @@ renter.post('/login', RenterController.login);
 renter.get('/get-profile', authenticate, RenterController.getProfile);
 renter.post('/change-profile', authenticate, RenterController.changeProfile);
 renter.get('/find-all-renters', RenterController.findAllRenters);
+renter.put('/blacklist/:id', RenterController.blackList);
+
 
 
 

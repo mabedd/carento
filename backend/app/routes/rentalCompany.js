@@ -20,6 +20,8 @@ users.post('/change-profile', authenticate, RentalCompanyController.changeProfil
 
 users.get('/get-profile', authenticate, RentalCompanyController.getProfile);
 users.get('/find-all-companies',authenticate, RentalCompanyController.findAllCompanies);
+users.put('/activate/:id', RentalCompanyController.activate);
+
 
 
 

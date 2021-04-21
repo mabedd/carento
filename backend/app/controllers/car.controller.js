@@ -88,19 +88,7 @@ class CarsController extends BaseController {
       next(error);
     }
   }
-  getProfile = async (req, res, next) => {
-		try {
-			const car = await Car.findById({ _id: req.user._id })
-			if (!car) {
-				return res.status(404).json({ msg: Constants.messages.userNotFound });
-			}
 
-			return res.status(200).json({ msg: Constants.messages.success, car: car });
-		} catch (err) {
-			err.status = 400;
-			next(err);
-		}
-	};
   getCarDetails = async (req, res, next) => {
 		try {
 			// find user by its id

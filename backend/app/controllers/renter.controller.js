@@ -142,7 +142,24 @@ class RenterController extends BaseController {
 		} catch (error) {
 		  next(error);
 		}
-	  }
+	}
+	blackList = async (req, res, next) => {
+		try {
+			// find user by its id
+			// find user by its id and update
+			const user = await Renter.findById({ _id: req.params.id });
+
+			if (!user) {
+				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			}
+			console.log(user);
+			user.isBlackListed = true
+			return res.status(200).json({ msg: Constants.messages.success, user: user });
+		} catch (err) {
+			err.status = 400;
+			next(err);
+		}
+	};
 }
 
 export default new RenterController();
