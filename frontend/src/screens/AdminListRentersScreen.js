@@ -16,7 +16,7 @@ const AdminListRenterScreen = ({ history, match }) => {
 
     const dispatch = useDispatch()
 
-    const userList = useSelector((state) => state.userList)
+    const userList = useSelector((state) => console.log(state))
     const { loading, error, users, page, pages } = userList
 
 
@@ -63,7 +63,7 @@ const AdminListRenterScreen = ({ history, match }) => {
                             </thead>
 
                             <tbody>
-                                {users.map((user) => (
+                                {users && users.length > 0 && users.map((user) => (
                                     <tr>
                                         <td>{user.username}</td>
                                         <td>{user.nationalId}</td>

@@ -87,7 +87,7 @@ const CompanyCarListScreen = ({ history, match }) => {
                         </thead>
                         <tbody>
 
-                            {cars.map((car) => (
+                            {cars && cars.length > 0 && cars.map((car) => (
                                 <tr key={car.companyId}>
                                     <td>{car.carPlate}</td>
                                     <td>{car.carModel}</td>

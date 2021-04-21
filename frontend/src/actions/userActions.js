@@ -253,10 +253,10 @@ export const listUsers = () => async (dispatch, getState) => {
         // }
 
         const { data } = await axios.get(`http://localhost:5000/api/renter/find-all-renters`,)
-
+        console.log(data);
         dispatch({
             type: USER_LIST_SUCCESS,
-            payload: data,
+            payload: data.renter,
         })
 
     } catch (error) {
