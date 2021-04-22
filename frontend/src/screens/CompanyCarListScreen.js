@@ -30,22 +30,19 @@ const CompanyCarListScreen = ({ history, match }) => {
         dispatch({ type: CAR_CREATE_RESET })
 
         //TODO: check if user is company or not and redirect to login if not
-        if (companyInfo) {
-            //TODO:
-        }
-
-
-        //afet successfully creating a car redirect to car edit screen
-        if (successCreate) {
-            history.push(`/company/car/${createdCar._id}/edit`)
+        if (!companyInfo) {
+            history.push('/company/login')
         } else {
             dispatch(listCars())
         }
-    }, [dispatch, history, companyInfo, successDelete, successCreate, createdCar])
 
-    const createCarHandler = (car) => {
-        dispatch(createCar())
-    }
+        //afet successfully creating a car redirect to car edit screen
+        // if (successCreate) {
+        //     history.push(`/company/car/${createdCar._id}/edit`)
+        // } else {
+        //     dispatch(listCars())
+        // }
+    }, [dispatch, history, companyInfo, successDelete, successCreate, createdCar])
 
 
     const deleteHandler = (id) => {
@@ -55,12 +52,20 @@ const CompanyCarListScreen = ({ history, match }) => {
         }
     }
 
+    const markRentHandler = () => {
+        //TODO:
+    }
+
+    const markReturnHandler = () => {
+        //TODO:
+    }
+
     return (
         <>
             <Container>
                 <Row className='align-items-center mt-3'>
                     <Col>
-                        <h1>CARS</h1>
+                        <h1 className='mt-5'>CARS</h1>
                     </Col>
                     <Col className='text-right'>
                         <Link className='my-3' to='/company/car/create'><i className='fas fa-plus'></i> Create Car</Link>
@@ -79,11 +84,15 @@ const CompanyCarListScreen = ({ history, match }) => {
                             <tr>
                                 <th>PLATE</th>
                                 <th>MODEL</th>
-                                <th>TOTAL MILEAGE</th>
-                                <th>STATUS</th>
                                 <th>COLOR</th>
-                                <th>BENEFITS</th>
+                                <th>PRICE</th>
+                                <th>VENDOR</th>
+                                <th>GASOLINE</th>
+                                <th>SIZE</th>
                                 <th>RATING</th>
+                                <th>STATUS</th>
+                                <th>RENTED ?</th>
+                                <th>DELETE</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,9 +102,27 @@ const CompanyCarListScreen = ({ history, match }) => {
                                     <td>{car.carPlate}</td>
                                     <td>{car.carModel}</td>
                                     <td>{car.color}</td>
-                                    <td>{car.totalMileage}</td>
                                     <td>{car.price}</td>
-                                    <td>{car.status}</td>
+                                    <td>{car.vendor}</td>
+                                    <td>{car.gasoline}</td>
+                                    <td>{car.size}</td>
+                                    <td><Rating value={car.rating} /></td>
+
+                                    <td>
+                                        {car.status ? (
+                                            <i className='fas fa-check' style={{ color: 'green' }}></i>
+                                        ) : (
+                                            <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                        )}
+                                    </td>
+
+                                    <td>{car.status ? (
+                                        <Button>Mark as returned</Button>
+                                    ) : (
+                                        <Button>Mark as rented</Button>
+                                    )}</td>
+
+                                    <td><Button variant='danger' onClick={deleteHandler}>Delete</Button></td>
                                 </tr>
                             ))}
                         </tbody>

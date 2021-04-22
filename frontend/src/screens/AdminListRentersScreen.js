@@ -28,9 +28,9 @@ const AdminListRenterScreen = ({ history, match }) => {
 
     useEffect(() => {
         //should be for admin
-        // if (!adminInfo || !adminInfo.isAdmin) {
-        //     history.push('/admin/login')
-        // }
+        if (!adminInfo || !adminInfo.isAdmin) {
+            history.push('/admin/login')
+        }
 
         dispatch(listUsers('', pageNumber))
     }, [
@@ -43,6 +43,10 @@ const AdminListRenterScreen = ({ history, match }) => {
     //     loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) : (
     //     )
     // }
+
+    const blacklistHandler = () => {
+        //TODO:
+    }
     return (
         <>
             <Container>
@@ -74,7 +78,13 @@ const AdminListRenterScreen = ({ history, match }) => {
                                     <td>{user.dateOfBirth}</td>
                                     <td>{user.phoneNumber}</td>
                                     <td>{user.email}</td>
-                                    <td>{user.isBlackListed}</td>
+
+                                    <td>{user.isBlacklisted ? (
+                                        <p>User is blacklisted</p>
+                                    ) : (
+                                        <Button variant='danger' onClick={blacklistHandler}><i className='fas fa-times' style={{ color: 'white' }}></i></Button>
+                                    )}</td>
+
                                     <td><Rating value={user.rating} /></td>
                                 </tr>
                             ))}

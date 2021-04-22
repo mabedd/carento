@@ -99,7 +99,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
     }
 }
 
-export const createCar = (companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits) => async (dispatch, getState) => {
+export const createCar = (companyId, image, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price, status, benefits) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CAR_CREATE_REQUEST,
@@ -109,14 +109,13 @@ export const createCar = (companyId, image, carPlate, carModel, color, totalMile
             companyLogin: { companyInfo },
         } = getState()
 
-        //!! Here is the auth problem
         const config = {
             headers: {
                 Authorization: `${companyInfo.token}`,
             },
         }
 
-        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits }, config)
+        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, image, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price, status, benefits }, config)
 
         dispatch({
             type: CAR_CREATE_SUCCESS,

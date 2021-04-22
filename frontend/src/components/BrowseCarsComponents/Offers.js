@@ -52,18 +52,19 @@ const Offers = ({ history, match }) => {
                             </div>
 
                             <div className="col-md-6 mt-1">
-                                <h5>{car.carModel}</h5>
+                                <h5>{car.vendor}   {car.carModel}</h5>
                                 <div className="d-flex flex-row">
                                     <div className="ratings mr-2">
-                                        <Rating />
+                                        <Rating value={car.rating} />
                                     </div>
-                                    <span>3.5</span>
+                                    <span>{car.rating}</span>
                                 </div>
                                 <div className="mt-1 mb-1 spec-1">
-                                    <span className='p-1'><MDBIcon className='amber-text' icon="user-alt" size='lg' /> 4</span>
+                                    <span className='p-1'><MDBIcon className='amber-text' icon="user-alt" size='lg' /> {car.size}</span>
                                     <span className="p-3"><MDBIcon className='amber-text' icon="road" size='lg' /> {car.totalMileage} km</span>
-                                    <span className='p-3'><MDBIcon className='amber-text' icon="gas-pump" size='lg' /> 91</span>
+                                    <span className='p-3'><MDBIcon className='amber-text' icon="gas-pump" size='lg' /> {car.gasoline}</span>
                                     <span className='p-3'><i className='fas fa-calendar amber-text'></i> {car.carModel}</span>
+                                    <span className='p-3'><i className='fas fa-palette amber-text'></i> {car.color}</span>
                                 </div>
                                 <p className="text-justify text-truncate para mb-0">
                                     There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
