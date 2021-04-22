@@ -39,6 +39,14 @@ const renterSchema = new Schema(
       required: true,
       unique: true,
     },
+    numberOfRents: {
+      type: Number,
+      default: 0
+    },
+    rating: {
+      type: Number,
+      default: 10
+    },
   },
   {
     timestamps: true,

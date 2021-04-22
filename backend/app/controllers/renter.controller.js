@@ -20,6 +20,8 @@ class RenterController extends BaseController {
 		'phoneNumber',
 		'isBlackListed',
 		'email',
+		'numberOfRents',
+    	'rating'
 	];
 
 	register = async (req, res, next) => {
@@ -156,6 +158,28 @@ class RenterController extends BaseController {
 			user.save();
 
 			// console.log(user);
+			return res.status(200).json({ msg: Constants.messages.success, user: user });
+		} catch (err) {
+			err.status = 400;
+			next(err);
+		}
+	};
+	rateRenter = async (req, res, next) => {
+		try {
+			const user = await Renter.findById({ _id: req.params.id });
+
+			if (!user) {
+				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			}
+			if(user.numberOfRents == 0){
+				user.rating = req.body.rating,
+				user.numberOfRents++
+			}else{
+				let newNumberOfRents = (user.numberOfRents) + 1;
+				user.rating = ((user.numberOfRents * user.rating)+(req.body.rating))/newNumberOfRents;
+				user.numberOfRents++;
+			}
+			user.save()
 			return res.status(200).json({ msg: Constants.messages.success, user: user });
 		} catch (err) {
 			err.status = 400;
