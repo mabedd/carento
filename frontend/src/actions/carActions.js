@@ -110,13 +110,13 @@ export const createCar = (companyId, image, carPlate, carModel, color, totalMile
         } = getState()
 
         //!! Here is the auth problem
-        // const config = {
-        //     headers: {
-        //         Authorization: `Bearer ${companyInfo.token}`,
-        //     },
-        // }
+        const config = {
+            headers: {
+                Authorization: `${companyInfo.token}`,
+            },
+        }
 
-        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits })
+        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits }, config)
 
         dispatch({
             type: CAR_CREATE_SUCCESS,

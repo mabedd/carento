@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Container, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -62,7 +63,7 @@ const CompanyCarListScreen = ({ history, match }) => {
                         <h1>CARS</h1>
                     </Col>
                     <Col className='text-right'>
-                        <Button className='my-3' href='/company/car/create'><i className='fas fa-plus'></i> Create Car</Button>
+                        <Link className='my-3' to='/company/car/create'><i className='fas fa-plus'></i> Create Car</Link>
                     </Col>
                 </Row>
 

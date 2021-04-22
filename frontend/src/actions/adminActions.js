@@ -43,7 +43,7 @@ export const loginAdmin = (email, password) => async (dispatch) => {
     }
 }
 
-export const activateCompany = (company) => async (dispatch, getState) => {
+export const activateCompany = (rentalCompany) => async (dispatch, getState) => {
     try {
         dispatch({
             type: ADMIN_ACTIVATE_COMPANY_REQUEST,
@@ -62,7 +62,7 @@ export const activateCompany = (company) => async (dispatch, getState) => {
 
         const { data } = await axios.put(
             `http://localhost:5000/api/rental-company/activate/${rentalCompany._id}`,
-            company,
+            rentalCompany,
             config
         )
 
