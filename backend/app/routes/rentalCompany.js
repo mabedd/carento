@@ -19,13 +19,10 @@ users.post('/login', RentalCompanyController.login);
 users.post('/change-profile', authenticate, RentalCompanyController.changeProfile);
 
 users.get('/get-profile', authenticate, RentalCompanyController.getProfile);
-<<<<<<< Updated upstream
 users.get('/find-all-companies',authenticate, RentalCompanyController.findAllCompanies);
 users.put('/activate/:id', RentalCompanyController.activate);
 
-=======
-users.get('/find-all-companies', RentalCompanyController.findAllCompanies);
->>>>>>> Stashed changes
+
 
 
 

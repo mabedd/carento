@@ -71,7 +71,7 @@ class RentalCompanyController extends BaseController {
 			}
 
 			let id = rentalCompany._id
-
+			console.log(rentalCompany);
 			jwt.sign({ user: rentalCompany }, Constants.security.sessionSecret, { expiresIn: Constants.security.sessionExpiration },
 				(err, token) => {
 					if (err) throw err;

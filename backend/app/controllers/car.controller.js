@@ -16,6 +16,11 @@ class CarsController extends BaseController {
     'benefits',
     'registrationDate',
     'endOfRegistrationDate',
+    'vendor',
+    'size',
+    'gasoline',
+    'numberOfRents',
+    'rating'
   ];
 
 
@@ -30,21 +35,22 @@ class CarsController extends BaseController {
           success: 1,
         });
       }
-        const newCar = new Car({
-          ...params,
-          companyId: req.body.companyId,
+      console.log(req.user);
+      const newCar = new Car({
+        ...params,
+        companyId: req.user._id,
+      });
+      const carSaved = await newCar.save();
+      if (carSaved) {
+        res.status(200).json({
+          message: 'car has been saved',
+          success: 1,
+          car: carSaved,
         });
-        const carSaved = await newCar.save();
-        if (carSaved) {
-          res.status(200).json({
-            message: 'car has been saved',
-            success: 1,
-            car: carSaved,
-          });
-          
-        }
-        else{
-        }
+        
+      }
+      else{
+      }
       
     } catch (err) {
       next(err);
@@ -99,6 +105,30 @@ class CarsController extends BaseController {
 				return res.status(404).json({ msg: Constants.messages.userNotFound });
 			}
 
+			return res.status(200).json({ msg: Constants.messages.success, user: user });
+		} catch (err) {
+			err.status = 400;
+			next(err);
+		}
+	};
+  rateCar = async (req, res, next) => {
+		try {
+			// find user by its id
+			// find user by its id and update
+			const user = await Car.findById({ _id: req.params.id });
+
+			if (!user) {
+				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			}
+      if(user.numberOfRents == 0){
+        user.rating = req.body.rating,
+        user.numberOfRents++
+      }else{
+        let newNumberOfRents = (user.numberOfRents) + 1;
+        user.rating = ((user.numberOfRents * user.rating)+(req.body.rating))/newNumberOfRents;
+        user.numberOfRents++;
+      }
+      user.save()
 			return res.status(200).json({ msg: Constants.messages.success, user: user });
 		} catch (err) {
 			err.status = 400;
