@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap'
+import { Nav, Navbar, Container, NavDropdown, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { logout } from '../actions/userActions'
@@ -37,6 +37,7 @@ const Header = () => {
                         <Nav.Link href="/browse">Browse Cars</Nav.Link>
                         <Nav.Link href="/aboutus">About Us</Nav.Link>
                         <Nav.Link href="/contactus">Contact Us</Nav.Link>
+                        <Nav.Link href="/company/home">Profit with Carento</Nav.Link>
                     </Nav>
 
                     {userInfo ? (

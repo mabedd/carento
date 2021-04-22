@@ -6,12 +6,14 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Rating from '../components/Rating'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
+import { getCompanyDetails } from '../actions/companyActions'
 
 const CompanyProfileScreen = ({ history, match }) => {
 
     //state
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState(null)
@@ -19,8 +21,11 @@ const CompanyProfileScreen = ({ history, match }) => {
     const dispatch = useDispatch()
 
     //get user details from state
-    const userDetails = useSelector((state) => state.userDetails)
-    const { loading, error, user } = userDetails
+    // const userDetails = useSelector((state) => state.userDetails)
+    // const { loading, error, user } = userDetails
+
+    const companyDetails = useSelector((state) => state.companyDetails)
+    const { loading, error, company } = companyDetails
 
     //for checking that user is logged in
     const companyLogin = useSelector((state) => state.companyLogin)
@@ -33,14 +38,16 @@ const CompanyProfileScreen = ({ history, match }) => {
         if (!companyInfo) {
             //history.push('/company/login')
         } else {
-            if (!user.companyName) { //check for user name
-                dispatch(getUserDetails('profile'))
+            if (!company.companyName) { //check for company name
+                dispatch(getCompanyDetails('profile'))
             } else {//set form fields
-                setName(user.companyName)
-                setEmail(user.email)
+                setName(company.companyName)
+                setEmail(company.email)
+                setPhoneNumber(company.phoneNumber)
             }
         }
-    }, [dispatch, history, companyInfo, user])
+        //dispatch(getCompanyDetails('profile'))
+    }, [dispatch, history, companyInfo, company])
 
 
     const submitHandler = (e) => {
@@ -48,7 +55,7 @@ const CompanyProfileScreen = ({ history, match }) => {
         if (password !== confirmPassword) {
             setMessage('Passwords do not match')
         } else {
-            dispatch(updateUserProfile({ id: user._id, name, email, password }))
+            //dispatch(updateUserProfile({ id: user._id, name, email, password }))
         }
     }
 
@@ -62,7 +69,6 @@ const CompanyProfileScreen = ({ history, match }) => {
                         {message && <Message variant='danger'>{message}</Message>}
                         {error && <Message variant='danger'>{error}</Message>}
                         {success && <Message variant='success'>Profile Updated</Message>}
-                        {loading && <Loader />}
 
                         <Form onSubmit={submitHandler}>
                             <Form.Group controlId='name'>
@@ -82,6 +88,17 @@ const CompanyProfileScreen = ({ history, match }) => {
                                     placeholder='Enter email'
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
+
+
+                            <Form.Group controlId='pnum'>
+                                <Form.Label>Contact Number</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    placeholder='Enter contact num'
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
 

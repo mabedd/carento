@@ -33,16 +33,19 @@ const UserProfileScreen = ({ location, history }) => {
     //TODO: uncomment to make it protected route
     //TODO: fetch details from DB
     useEffect(() => {
-        // if (!userInfo) {
-        //     history.push('/login')
-        // } else {
-        //     if (!user.username) { //check for user name
-        //         dispatch(getUserDetails('profile'))
-        //     } else {//set form fields
-        //         setName(user.username)
-        //         setEmail(user.email)
-        //     }
-        // }
+        if (!userInfo) {
+            //history.push('/login')
+        } else {
+            if (!user.name) {
+                //dispatch({ type: USER_UPDATE_PROFILE_RESET })
+                dispatch(getUserDetails('profile'))
+                //dispatch(listMyOrders())
+            } else {
+                setName(user.username)
+                setEmail(user.email)
+            }
+        }
+        //dispatch(getUserDetails('profile'))
     }, [dispatch, history, userInfo, user])
 
     const submitHandler = (e) => {
@@ -50,7 +53,7 @@ const UserProfileScreen = ({ location, history }) => {
         if (password !== confirmPassword) {
             setMessage('Passwords do not match')
         } else {
-            dispatch(updateUserProfile({ id: user._id, name, email, password }))
+            //dispatch(updateUserProfile({ id: user._id, name, email, password }))
         }
     }
 
@@ -63,8 +66,6 @@ const UserProfileScreen = ({ location, history }) => {
                     {message && <Message variant='danger'>{message}</Message>}
                     {error && <Message variant='danger'>{error}</Message>}
                     {success && <Message variant='success'>Profile Updated</Message>}
-                    {loading && <Loader />}
-
                     <Form onSubmit={submitHandler}>
                         <Form.Group controlId='name'>
                             <Form.Label>Name</Form.Label>

@@ -3,7 +3,8 @@ import axios from 'axios'
 import { logout } from '../actions/userActions'
 import {
     COMPANY_LOGIN_FAIL, COMPANY_LOGIN_REQUEST, COMPANY_LOGIN_SUCCESS, COMPANY_LOGOUT,
-    COMPANY_LIST_FAIL, COMPANY_LIST_REQUEST, COMPANY_LIST_RESET, COMPANY_LIST_SUCCESS
+    COMPANY_LIST_FAIL, COMPANY_LIST_REQUEST, COMPANY_LIST_RESET, COMPANY_LIST_SUCCESS,
+    COMPANY_DETAILS_FAIL, COMPANY_DETAILS_REQUEST, COMPANY_DETAILS_SUCCESS
 } from '../constants/compnayConstants'
 
 export const loginCompany = (email, password) => async (dispatch) => {
@@ -76,6 +77,48 @@ export const listCompanies = () => async (dispatch, getState) => {
         }
         dispatch({
             type: COMPANY_LIST_FAIL,
+            payload: message,
+        })
+    }
+}
+
+export const getCompanyDetails = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: COMPANY_DETAILS_REQUEST,
+        })
+
+        //access logged in user
+        const {
+            companyLogin: { companyInfo },
+        } = getState()
+
+        //pass auth token
+        const config = {
+            headers: {
+                Authorization: `${companyInfo.token}`,
+            },
+        }
+
+        //get request to user profile
+        const { data } = await axios.get(`http://localhost:5000/api/rental-company/get-profile`, config)
+        //console.log(data)
+
+        dispatch({
+            type: COMPANY_DETAILS_SUCCESS,
+            payload: data.rentalCompany,
+        })
+
+    } catch (error) { //send error message and logout user
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: COMPANY_DETAILS_FAIL,
             payload: message,
         })
     }
