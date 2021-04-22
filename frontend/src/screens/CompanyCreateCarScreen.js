@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-import { listCarDetails, createCar } from '../actions/carActions'
+import { listCarDetails, createCar, addCar } from '../actions/carActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { CAR_UPDATE_RESET } from '../constants/carConstants'
@@ -66,11 +66,24 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
         }
     }, [dispatch, history, carId, car, successCreate])
 
+    //!
+    const form = new FormData()
+    form.append('image', image)
+    form.append('carPlate', plate)
+    form.append('carModel', model)
+    form.append('color', color)
+    form.append('size', size)
+    form.append('gasoline', gasoline)
+    form.append('vendor', vendor)
+
+
+
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(
             //companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits
             createCar({
+                image,
                 plate,
                 model,
                 color,
@@ -80,8 +93,12 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                 mileage,
                 price,
             })
+
+            //addCar(form)
         )
     }
+
+
 
     //for image uploading
     const uploadFileHandler = async (e) => {

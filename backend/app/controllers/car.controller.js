@@ -26,10 +26,11 @@ class CarsController extends BaseController {
 
   addCar = async (req, res, next) => {
     const params = this.filterParams(req.body, this.whitelist);
+    console.log(params)
     try {
       const car = await Car.findOne({ carPlate: params['carPlate'] });
       if (car) {
-        console.log(req.body , car);
+        console.log(req.body, car);
         res.status(200).json({
           message: 'car has been already added with this car plate number',
           success: 1,
@@ -47,11 +48,11 @@ class CarsController extends BaseController {
           success: 1,
           car: carSaved,
         });
-        
+
       }
-      else{
+      else {
       }
-      
+
     } catch (err) {
       next(err);
     }
@@ -96,45 +97,45 @@ class CarsController extends BaseController {
   }
 
   getCarDetails = async (req, res, next) => {
-		try {
-			// find user by its id
-			// find user by its id and update
-			const user = await Car.findById({ _id: req.params.id });
+    try {
+      // find user by its id
+      // find user by its id and update
+      const user = await Car.findById({ _id: req.params.id });
 
-			if (!user) {
-				return res.status(404).json({ msg: Constants.messages.userNotFound });
-			}
+      if (!user) {
+        return res.status(404).json({ msg: Constants.messages.userNotFound });
+      }
 
-			return res.status(200).json({ msg: Constants.messages.success, user: user });
-		} catch (err) {
-			err.status = 400;
-			next(err);
-		}
-	};
+      return res.status(200).json({ msg: Constants.messages.success, user: user });
+    } catch (err) {
+      err.status = 400;
+      next(err);
+    }
+  };
   rateCar = async (req, res, next) => {
-		try {
-			// find user by its id
-			// find user by its id and update
-			const user = await Car.findById({ _id: req.params.id });
+    try {
+      // find user by its id
+      // find user by its id and update
+      const user = await Car.findById({ _id: req.params.id });
 
-			if (!user) {
-				return res.status(404).json({ msg: Constants.messages.userNotFound });
-			}
-      if(user.numberOfRents == 0){
+      if (!user) {
+        return res.status(404).json({ msg: Constants.messages.userNotFound });
+      }
+      if (user.numberOfRents == 0) {
         user.rating = req.body.rating,
-        user.numberOfRents++
-      }else{
+          user.numberOfRents++
+      } else {
         let newNumberOfRents = (user.numberOfRents) + 1;
-        user.rating = ((user.numberOfRents * user.rating)+(req.body.rating))/newNumberOfRents;
+        user.rating = ((user.numberOfRents * user.rating) + (req.body.rating)) / newNumberOfRents;
         user.numberOfRents++;
       }
       user.save()
-			return res.status(200).json({ msg: Constants.messages.success, user: user });
-		} catch (err) {
-			err.status = 400;
-			next(err);
-		}
-	};
+      return res.status(200).json({ msg: Constants.messages.success, user: user });
+    } catch (err) {
+      err.status = 400;
+      next(err);
+    }
+  };
 }
 
 export default new CarsController();

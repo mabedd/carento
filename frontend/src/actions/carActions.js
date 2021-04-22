@@ -39,6 +39,34 @@ export const listCars = (keyword = '', pageNumber = '') => async (
     }
 }
 
+export const listCompanyCars = (keyword = '', pageNumber = '') => async (
+    dispatch
+) => {
+    try {
+        dispatch({ type: CAR_LIST_REQUEST })
+
+        const { data } = await axios.get(
+            `http://localhost:5000/api/car/find-all-cars`
+        )
+
+        console.log(data.car)
+
+        dispatch({
+            type: CAR_LIST_SUCCESS,
+            payload: data.car,
+        })
+
+    } catch (error) {
+        dispatch({
+            type: CAR_LIST_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
 //TODO: list company cars
 
 //TODO: do backend
@@ -99,7 +127,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
     }
 }
 
-export const createCar = (companyId, image, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price, status, benefits) => async (dispatch, getState) => {
+export const createCar = (companyId, image, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CAR_CREATE_REQUEST,
@@ -115,8 +143,8 @@ export const createCar = (companyId, image, carPlate, carModel, color, size, gas
             },
         }
 
-        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, image, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price, status, benefits }, config)
-
+        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, image, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
+        console.log(data)
         dispatch({
             type: CAR_CREATE_SUCCESS,
             payload: data,
@@ -134,6 +162,28 @@ export const createCar = (companyId, image, carPlate, carModel, color, size, gas
             type: CAR_CREATE_FAIL,
             payload: message,
         })
+    }
+}
+
+export const addCar = form => {
+
+    return async (dispatch, getState) => {
+        dispatch({
+            type: CAR_CREATE_REQUEST,
+        })
+
+
+        const {
+            companyLogin: { companyInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `${companyInfo.token}`,
+            },
+        }
+        const res = await axios.post(`http://localhost:5000/api/car/add-car`, form, config)
+        console.log(res)
     }
 }
 

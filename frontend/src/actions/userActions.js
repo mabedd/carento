@@ -98,7 +98,6 @@ export const register = (username, nationalId, phoneNumber, email, password, dat
     }
 }
 
-//TODO: frontend
 export const getUserDetails = (id) => async (dispatch, getState) => {
     try {
         dispatch({
@@ -113,16 +112,17 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         //pass auth token
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${userInfo.token}`,
             },
         }
 
         //get request to user profile
-        const { data } = await axios.get(`http://localhost:5000/api/renter/get-profile/${id}`, config)
+        const { data } = await axios.get(`http://localhost:5000/api/renter/get-profile`, config)
+        //console.log(data)
 
         dispatch({
             type: USER_DETAILS_SUCCESS,
-            payload: data,
+            payload: data.user,
         })
 
     } catch (error) { //send error message and logout user
