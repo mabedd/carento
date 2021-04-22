@@ -136,8 +136,8 @@ class RentalCompanyController extends BaseController {
 			if (!user) {
 				return res.status(404).json({ msg: Constants.messages.userNotFound });
 			}
-			console.log(user);
 			user.status = true
+			user.save()
 			return res.status(200).json({ msg: Constants.messages.success, user: user });
 		} catch (err) {
 			err.status = 400;
