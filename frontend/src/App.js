@@ -52,7 +52,7 @@ function App() {
       <Route path='/browse' component={BrowseCarsScreen} />{/** fetch from DB*/}
       <Route path='/login' component={LoginScreen} />
       <Route path='/register' component={RegisterScreen} />
-      <Route path='/rentsummary' component={RentSummaryScreen} />
+      <Route path='/rentsummary/:id' component={RentSummaryScreen} />
       <Route path='/payment' component={PaymentScreen} />
       <Route path='/placeorder' component={PlaceOrderScreen} />
       <Route path='/profile' component={UserProfileScreen} />

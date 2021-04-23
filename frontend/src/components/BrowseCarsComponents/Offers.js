@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Table, Button, Row, Col, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { LinkContainer } from 'react-router-bootstrap'
 import { MDBIcon, MDBBtn } from 'mdbreact'
 
 import './Offers.css'
@@ -25,6 +26,8 @@ const Offers = ({ history, match }) => {
 
     const carList = useSelector((state) => state.carList)
     const { loading, error, cars, page, pages } = carList
+
+    console.log(cars)
 
     useEffect(() => {
         //should be for admin or redirect to admin login
@@ -84,7 +87,9 @@ const Offers = ({ history, match }) => {
                                     ) : (
                                         <MDBBtn rounded color='danger text-white' disabled><i className='fas fa-times' style={{ color: 'red' }}></i>  Not Available</MDBBtn>
                                     )}
-                                    <MDBBtn rounded gradient='blue-gradient text-white'>Rent Now</MDBBtn>
+                                    <LinkContainer to={`/rentsummary/${car._id}`}>
+                                        <MDBBtn rounded gradient='blue-gradient text-white'>Rent Now</MDBBtn>
+                                    </LinkContainer>
                                 </div>
                             </div>
                         </div>

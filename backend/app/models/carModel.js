@@ -6,12 +6,12 @@ const carSchema = new Schema(
   {
     companyId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      //required: true,
       ref: 'RentalCompany'
     },
     image: {
       type: String,
-      required: true
+      //required: true
     },
     carPlate: {
       type: String,
@@ -28,11 +28,11 @@ const carSchema = new Schema(
     },
     size: {
       type: Number,
-      required: true
+      //required: true
     },
     gasoline: {
       type: Number,
-      required: true
+      //required: true
     },
     vendor: {
       type: String,

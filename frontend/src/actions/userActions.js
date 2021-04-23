@@ -246,13 +246,13 @@ export const listUsers = () => async (dispatch, getState) => {
             adminLogin: { adminInfo },
         } = getState()
 
-        // const config = {
-        //     headers: {
-        //         Authorization: `Bearer ${adminInfo.token}`,
-        //     },
-        // }
+        const config = {
+            headers: {
+                Authorization: `${adminInfo.token}`,
+            },
+        }
 
-        const { data } = await axios.get(`http://localhost:5000/api/renter/find-all-renters`,)
+        const { data } = await axios.get(`http://localhost:5000/api/renter/find-all-renters`, config)
         //console.log(data);
         dispatch({
             type: USER_LIST_SUCCESS,
@@ -289,7 +289,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${userInfo.token}`,
             },
         }
 
@@ -324,7 +324,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${userInfo.token}`,
             },
         }
 

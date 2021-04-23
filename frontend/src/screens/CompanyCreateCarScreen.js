@@ -42,7 +42,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
     // get company ID from state to be sent with the create car request
     //const companyId = companyInfo._id
 
-    console.log(companyInfo)
+    //console.log(companyInfo)
 
     useEffect(() => {
         if (successCreate) {
@@ -119,10 +119,11 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
             setImage(data)
             setUploading(false)
         } catch (error) {
-            console.error(error)
+            //console.error(error)
             setUploading(false)
         }
     }
+
 
     return (
         <div>

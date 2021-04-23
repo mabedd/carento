@@ -25,21 +25,22 @@ class CarsController extends BaseController {
 
 
   addCar = async (req, res, next) => {
+    console.log(req.body)
     const params = this.filterParams(req.body, this.whitelist);
-    console.log(params)
+    console.log('line29' + params)
     try {
       const car = await Car.findOne({ carPlate: params['carPlate'] });
       if (car) {
-        console.log(req.body, car);
+        console.log('line33' + req.body, car);
         res.status(200).json({
           message: 'car has been already added with this car plate number',
           success: 1,
         });
       }
-      console.log(req.user);
+      console.log('line39' + req);
       const newCar = new Car({
         ...params,
-        companyId: req.user._id,
+        //companyId: req.user._id,
       });
       const carSaved = await newCar.save();
       if (carSaved) {
@@ -51,6 +52,7 @@ class CarsController extends BaseController {
 
       }
       else {
+        res.status(404)
       }
 
     } catch (err) {

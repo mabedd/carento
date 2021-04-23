@@ -145,6 +145,7 @@ export const createCar = (companyId, image, carPlate, carModel, color, size, gas
 
         const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, image, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
         console.log(data)
+        //console.log(size)
         dispatch({
             type: CAR_CREATE_SUCCESS,
             payload: data,
