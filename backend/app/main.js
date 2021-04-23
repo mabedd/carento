@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path'
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
@@ -10,6 +11,7 @@ import car from './routes/car.js'
 import rent from './routes/rent.js'
 import admin from './routes/admin.js'
 import ticket from './routes/ticket.js'
+import upload from './routes/upload.js'
 import Constants from './config/constants.js';
 // import httpLogger from './logger-middlewares/httpLogger.js'
 //const { httpLogger } = require('./logger-middlewares');
@@ -56,6 +58,10 @@ app.use(`${Constants.apiPrefix}/rental-company`, rentalCompany);
 app.use(`${Constants.apiPrefix}/car`, car);
 app.use(`${Constants.apiPrefix}/ticket`, ticket);
 app.use(`${Constants.apiPrefix}/admin`, admin);
+app.use(`${Constants.apiPrefix}/upload`, upload);
+
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 
 

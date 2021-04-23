@@ -54,13 +54,13 @@ export const listCompanies = () => async (dispatch, getState) => {
             adminLogin: { adminInfo },
         } = getState()
 
-        // const config = {
-        //     headers: {
-        //         Authorization: `Bearer ${userInfo.token}`,
-        //     },
-        // }
+        const config = {
+            headers: {
+                Authorization: `${adminInfo.token}`,
+            },
+        }
 
-        const { data } = await axios.get(`http://localhost:5000/api/rental-company/find-all-companies`)
+        const { data } = await axios.get(`http://localhost:5000/api/rental-company/find-all-companies`, config)
         //console.log(data)
         dispatch({
             type: COMPANY_LIST_SUCCESS,

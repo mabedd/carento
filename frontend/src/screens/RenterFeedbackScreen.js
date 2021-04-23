@@ -25,8 +25,8 @@ const RenterFeedbackScreen = ({ location, match }) => {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
-    const carReviewCreate = useSelector((state) => state.carReviewCreate)
-    const { success: sucessCarReview, error: errorCarReview } = carReviewCreate
+    const carRate = useSelector((state) => state.carRate)
+    const { success: sucessRate, error: errorRate } = carRate
 
     // redirect to thank you screen
     const redirect = location.search ? location.search.split('=')[1] : '/'
