@@ -1,16 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
 import { Container } from 'react-bootstrap'
+import DatePicker from "react-datepicker"
+import 'react-datepicker/dist/react-datepicker.css'
 
+import Message from '../components/Message'
+import Loader from '../components/Loader'
+import Paginate from '../components/Paginate'
 import CheckoutSteps from '../components/CheckoutSteps'
 import Rating from '../components/Rating'
+import { listCarDetails } from '../actions/carActions'
+import { createOrder } from '../actions/orderActions'
 
-const RentSummaryScreen = ({ history }) => {
+const RentSummaryScreen = ({ history, match }) => {
 
-    //TODO: add state and submit handler
+    const dispatch = useDispatch()
 
+    const carDetails = useSelector((state) => state.carDetails)
+    const { loading, error, car } = carDetails
 
-    //TODO: calculate price
+    const userLogin = useSelector((state) => state.userLogin)
+    const { userInfo } = userLogin
 
+    // rent duration
+    const [startDate, setStartDate] = useState(new Date())
+    const [endDate, setEndDate] = useState(new Date())
+    // calculate number of day
+    const diffTime = Math.abs(endDate - startDate)
+    const rentDuration = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+    // price calculation
+    const initialPrice = car.price * rentDuration
+    const rentPrice = initialPrice + (initialPrice * 0.15) // price with VAT
+
+    useEffect(() => {
+        if (!car._id || car._id !== match.params.id) {
+            dispatch(listCarDetails(match.params.id))
+        }
+    }, [dispatch, match])
+
+    //TODO:
+    //carId, renterId, mileage, duration, startDate, endDate, price
+    const rentHandler = () => {
+        dispatch(createOrder())
+    }
 
     return (
         <Container className='p-5'>
@@ -39,13 +74,13 @@ const RentSummaryScreen = ({ history }) => {
                                         <div>
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <h5>Toyta Yaris 2020</h5>
-                                                    <p class="mb-3 text-muted text-uppercase small">500 km</p>
-                                                    <p class="mb-2 text-muted text-uppercase small">4 passengers</p>
-                                                    <p class="mb-3 text-muted text-uppercase small">91 gasoline</p>
+                                                    <h5>{car.carModel}</h5>
+                                                    <p class="mb-3 text-muted text-uppercase small">{car.totalMileage}</p>
+                                                    <p class="mb-2 text-muted text-uppercase small">{car.size}</p>
+                                                    <p class="mb-3 text-muted text-uppercase small">{car.gasoline}</p>
                                                 </div>
                                                 <div>
-                                                    <span>Offerd by: Avis</span>
+                                                    <span>Offerd by: {car.companyId}</span>
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-between align-items-center">
@@ -68,22 +103,17 @@ const RentSummaryScreen = ({ history }) => {
 
                         <div class="card mb-3">
                             <div class="card-body">
-
                                 <h5 class="mb-4">Rent Duration</h5>
-
-                                <p class="mb-0"> Sun 1/1/2020 - Mon 1/2/2020</p>
+                                from: <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+                                to: <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
+                                <h5 className='mt-2'>Number of days: {rentDuration}</h5>
                             </div>
                         </div>
 
                         <div class="card mb-3">
                             <div class="card-body">
-
-                                <h5 class="mb-4">We accept</h5>
-
-                                <i class="fab fa-paypal fa-2x mr-2" style={{ color: '#3B7BBF' }}></i>
-                                <i class="fab fa-cc-visa fa-2x mr-2" style={{ color: '#172274' }}></i>
-                                <i class="fas fa-money-bill-wave fa-2x mr-2" style={{ color: '#008000' }}></i>
-
+                                <h5 class="mb-4">Payment Type</h5>
+                                <p>Right now Carento supports only cash payment at the point of sale</p>
                             </div>
                         </div>
 
@@ -99,7 +129,7 @@ const RentSummaryScreen = ({ history }) => {
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                         Toyta Yaris 2020
-                                    <span>99 SR</span>
+                                    <span>{car.price} SR</span>
                                     </li>
 
                                     <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
@@ -109,13 +139,12 @@ const RentSummaryScreen = ({ history }) => {
                                                 <p class="mb-0">(including VAT)</p>
                                             </strong>
                                         </div>
-                                        <span><strong>115 SR</strong></span>
+                                        <span><strong>{rentPrice} SR</strong></span>
                                     </li>
                                 </ul>
-
-                                <a href='/payment'><button type="button" class="btn btn-primary btn-block waves-effect waves-light" type='submit'>go to payment</button></a>
-
-
+                                <LinkContainer className='btn btn-primary btn-block waves-effect waves-light' to='/placeorder'>
+                                    <button type="button" class="btn btn-primary btn-block waves-effect waves-light" type='submit' onClick={rentHandler}>Rent Now</button>
+                                </LinkContainer>
                             </div>
                         </div>
 

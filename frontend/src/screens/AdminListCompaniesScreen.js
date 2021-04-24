@@ -22,22 +22,19 @@ const AdminListCompaniesScreen = ({ history, match }) => {
     const companyList = useSelector((state) => state.companyList)
     const { loading, error, companies, page, pages } = companyList
 
-
-
     // MUST be for admin
     const adminLogin = useSelector((state) => state.adminLogin)
     const { adminInfo } = adminLogin
 
     const activateHandler = (id) => {
-        //TODO: change company status from deactivated to activated
-        //dispatch(activateCompany)
+        dispatch(activateCompany(id))
     }
 
     useEffect(() => {
         //should be for admin
-        // if (!adminInfo || !adminInfo.isAdmin) {
-        //     history.push('/admin/login')
-        // }
+        if (!adminInfo) {
+            history.push('/admin/login')
+        }
 
         dispatch(listCompanies('', pageNumber))
     }, [
@@ -81,7 +78,7 @@ const AdminListCompaniesScreen = ({ history, match }) => {
                                         <td>{company.status ? (
                                             <i className='fas fa-check' style={{ color: 'green' }}></i>
                                         ) : (
-                                            <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                            <Button onClick={() => activateHandler(company._id)}>Activate</Button>
                                         )}</td>
 
                                         <td>{company.createdAt}</td>

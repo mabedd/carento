@@ -67,18 +67,18 @@ export const listCompanyCars = (keyword = '', pageNumber = '') => async (
     }
 }
 
-//TODO: list company cars
 
-//TODO: do backend
 export const listCarDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: CAR_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`http://localhost:5000/api/cars/${id}`)
+        const { data } = await axios.get(`http://localhost:5000/api/car/get-car-details/${id}`)
+
+        //console.log(data)
 
         dispatch({
             type: CAR_DETAILS_SUCCESS,
-            payload: data,
+            payload: data.user,
         })
     } catch (error) {
         dispatch({

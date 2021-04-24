@@ -8,6 +8,7 @@ import Paginate from '../components/Paginate'
 import Rating from '../components/Rating'
 
 import { listUsers } from '../actions/userActions'
+import { blacklistRenter } from '../actions/adminActions'
 
 const AdminListRenterScreen = ({ history, match }) => {
 
@@ -19,10 +20,12 @@ const AdminListRenterScreen = ({ history, match }) => {
     const userList = useSelector((state) => state.userList)
     const { loading, error, users, page, pages } = userList
 
-
     // MUST be for admin
     const adminLogin = useSelector((state) => state.adminLogin)
     const { adminInfo } = adminLogin
+
+    const adminBlacklistCompany = useSelector((state) => state.adminBlacklistCompany)
+    const { success: successBlacklist, loading: loadingDelete } = adminBlacklistCompany
 
     //console.log(users)
 
@@ -44,8 +47,10 @@ const AdminListRenterScreen = ({ history, match }) => {
     //     )
     // }
 
-    const blacklistHandler = () => {
-        //TODO:
+    const blacklistHandler = (id) => {
+        if (window.confirm('Are you sure ? This user will not gain access anymore')) {
+            dispatch(blacklistRenter(id))
+        }
     }
     return (
         <>
@@ -79,10 +84,10 @@ const AdminListRenterScreen = ({ history, match }) => {
                                     <td>{user.phoneNumber}</td>
                                     <td>{user.email}</td>
 
-                                    <td>{user.isBlacklisted ? (
+                                    <td>{user.isBlackListed ? (
                                         <p>User is blacklisted</p>
                                     ) : (
-                                        <Button variant='danger' onClick={blacklistHandler}><i className='fas fa-times' style={{ color: 'white' }}></i></Button>
+                                        <Button variant='danger' onClick={() => blacklistHandler(user._id)}><i className='fas fa-times' style={{ color: 'white' }}></i></Button>
                                     )}</td>
 
                                     <td><Rating value={user.rating} /></td>

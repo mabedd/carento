@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Rating from '../components/Rating'
-import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { getCompanyDetails } from '../actions/companyActions'
 
 const CompanyProfileScreen = ({ history, match }) => {

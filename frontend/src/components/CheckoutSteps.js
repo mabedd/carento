@@ -11,8 +11,8 @@ const CheckoutSteps = ({ step1, step2, step3, step4, step5 }) => {
                         <Nav.Link>Sign In</Nav.Link>
                     </LinkContainer>
                 ) : (
-                        <Nav.Link disabled>Sign In</Nav.Link>
-                    )}
+                    <Nav.Link disabled>Sign In</Nav.Link>
+                )}
             </Nav.Item>
 
             <Nav.Item>
@@ -21,8 +21,8 @@ const CheckoutSteps = ({ step1, step2, step3, step4, step5 }) => {
                         <Nav.Link>Choose Car</Nav.Link>
                     </LinkContainer>
                 ) : (
-                        <Nav.Link disabled>Choose Car</Nav.Link>
-                    )}
+                    <Nav.Link disabled>Choose Car</Nav.Link>
+                )}
             </Nav.Item>
 
             <Nav.Item>
@@ -31,28 +31,18 @@ const CheckoutSteps = ({ step1, step2, step3, step4, step5 }) => {
                         <Nav.Link>Review Rent</Nav.Link>
                     </LinkContainer>
                 ) : (
-                        <Nav.Link disabled>Review Rent</Nav.Link>
-                    )}
+                    <Nav.Link disabled>Review Rent</Nav.Link>
+                )}
             </Nav.Item>
 
             <Nav.Item>
                 {step4 ? (
                     <LinkContainer to='/payment'>
-                        <Nav.Link>Payment</Nav.Link>
+                        <Nav.Link>Place Rent</Nav.Link>
                     </LinkContainer>
                 ) : (
-                        <Nav.Link disabled>Payment</Nav.Link>
-                    )}
-            </Nav.Item>
-
-            <Nav.Item>
-                {step5 ? (
-                    <LinkContainer to='/placeorder'>
-                        <Nav.Link>Place Order</Nav.Link>
-                    </LinkContainer>
-                ) : (
-                        <Nav.Link disabled>Place Order</Nav.Link>
-                    )}
+                    <Nav.Link disabled>Place Rent</Nav.Link>
+                )}
             </Nav.Item>
         </Nav>
     )

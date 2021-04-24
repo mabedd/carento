@@ -30,7 +30,7 @@ export const loginAdmin = (email, password) => async (dispatch) => {
         })
 
         //users local storage
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('adminInfo', JSON.stringify(data))
 
     } catch (error) {
         dispatch({//send error message in case of failuer
@@ -43,35 +43,32 @@ export const loginAdmin = (email, password) => async (dispatch) => {
     }
 }
 
-export const activateCompany = (rentalCompany) => async (dispatch, getState) => {
+export const activateCompany = (id) => async (dispatch, getState) => {
     try {
         dispatch({
             type: ADMIN_ACTIVATE_COMPANY_REQUEST,
         })
 
         const {
-            userLogin: { userInfo },
+            userLogin: { adminInfo },
         } = getState()
 
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${adminInfo.token}`,
             },
         }
 
-        const { data } = await axios.put(
-            `http://localhost:5000/api/rental-company/activate/${rentalCompany._id}`,
-            rentalCompany,
+        await axios.put(
+            `http://localhost:5000/api/rental-company/activate/${id}`,
             config
         )
 
         dispatch({
             type: ADMIN_ACTIVATE_COMPANY_SUCCESS,
-            payload: data,
         })
 
-        dispatch({ type: ADMIN_ACTIVATE_COMPANY_SUCCESS, payload: data })
 
     } catch (error) {
         const message =
@@ -88,35 +85,32 @@ export const activateCompany = (rentalCompany) => async (dispatch, getState) => 
     }
 }
 
-export const blacklistRenter = (renter) => async (dispatch, getState) => {
+export const blacklistRenter = (id) => async (dispatch, getState) => {
     try {
         dispatch({
             type: ADMIN_BLACKLIST_RENTER_REQUEST,
         })
 
-        //! Mostly will be removed
         const {
-            userLogin: { userInfo },
+            userLogin: { adminInfo },
         } = getState()
 
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${adminInfo.token}`,
             },
         }
 
-        const { data } = await axios.put(
-            `http://localhost:5000/api/renter/blacklist/${renter._id}`,
-            renter,
+        await axios.put(
+            `http://localhost:5000/api/renter/blacklist/${id}`,
             config
         )
 
         dispatch({
             type: ADMIN_BLACKLIST_RENTER_SUCCESS,
-            payload: data,
         })
-        dispatch({ type: ADMIN_BLACKLIST_RENTER_SUCCESS, payload: data })
+
     } catch (error) {
         const message =
             error.response && error.response.data.message

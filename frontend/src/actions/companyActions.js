@@ -31,7 +31,7 @@ export const loginCompany = (email, password) => async (dispatch) => {
         })
 
         //users local storage
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('companyInfo', JSON.stringify(data))
 
     } catch (error) {
         dispatch({//send error message in case of failuer
