@@ -44,7 +44,7 @@ const RentSummaryScreen = ({ history, match }) => {
     //TODO:
     //carId, renterId, mileage, duration, startDate, endDate, price
     const rentHandler = () => {
-        dispatch(createOrder())
+        dispatch(createOrder(rentDuration, rentPrice, car._id))
         history.push('/placeorder')
     }
 
@@ -143,9 +143,7 @@ const RentSummaryScreen = ({ history, match }) => {
                                         <span><strong>{rentPrice} SR</strong></span>
                                     </li>
                                 </ul>
-                                <LinkContainer className='btn btn-primary btn-block waves-effect waves-light' to='/placeorder'>
-                                    <button type="button" class="btn btn-primary btn-block waves-effect waves-light" type='submit' onClick={rentHandler}>Rent Now</button>
-                                </LinkContainer>
+                                <button type="button" class="btn btn-primary btn-block waves-effect waves-light" type='submit' onClick={rentHandler}>Rent Now</button>
                             </div>
                         </div>
 

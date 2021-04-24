@@ -37,10 +37,10 @@ class CarsController extends BaseController {
           success: 1,
         });
       }
-      console.log('line39' + req);
+      console.log('line39' + req.user);
       const newCar = new Car({
         ...params,
-        //companyId: req.user._id,
+        companyId: req.user._id,
       });
       const carSaved = await newCar.save();
       if (carSaved) {

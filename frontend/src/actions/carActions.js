@@ -138,7 +138,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
     }
 }
 
-export const createCar = (companyId, image, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price) => async (dispatch, getState) => {
+export const createCar = (companyId, carPlate, carModel, color, totalMileage, price, vendor, size, gasoline) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CAR_CREATE_REQUEST,
@@ -154,7 +154,7 @@ export const createCar = (companyId, image, carPlate, carModel, color, size, gas
             },
         }
 
-        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, image, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
+        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { companyId, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
         console.log(data)
         //console.log(size)
         dispatch({

@@ -6,7 +6,7 @@ const carSchema = new Schema(
   {
     companyId: {
       type: mongoose.Schema.Types.ObjectId,
-      //required: true,
+      required: true,
       ref: 'RentalCompany'
     },
     image: {

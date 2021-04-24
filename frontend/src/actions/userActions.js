@@ -118,7 +118,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
         //get request to user profile
         const { data } = await axios.get(`http://localhost:5000/api/renter/get-profile`, config)
-        //console.log(data)
+        console.log(data)
 
         dispatch({
             type: USER_DETAILS_SUCCESS,

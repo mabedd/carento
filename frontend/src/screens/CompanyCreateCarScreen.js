@@ -67,14 +67,14 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
     }, [dispatch, history, carId, car, successCreate])
 
     //!
-    const form = new FormData()
-    form.append('image', image)
-    form.append('carPlate', plate)
-    form.append('carModel', model)
-    form.append('color', color)
-    form.append('size', size)
-    form.append('gasoline', gasoline)
-    form.append('vendor', vendor)
+    // const form = new FormData()
+    // form.append('image', image)
+    // form.append('carPlate', plate)
+    // form.append('carModel', model)
+    // form.append('color', color)
+    // form.append('size', size)
+    // form.append('gasoline', gasoline)
+    // form.append('vendor', vendor)
 
 
 
@@ -82,17 +82,17 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
         e.preventDefault()
         dispatch(
             //companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits
-            createCar({
+            createCar(
                 image,
                 plate,
                 model,
                 color,
-                size,
-                gasoline,
-                vendor,
                 mileage,
                 price,
-            })
+                vendor,
+                size,
+                gasoline
+            )
 
             //addCar(form)
         )

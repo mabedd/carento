@@ -46,7 +46,6 @@ export const createOrder = (order) => async (dispatch, getState) => {
     }
 }
 
-//TODO: do backend
 export const getOrderDetails = (id) => async (dispatch, getState) => {
     try {
         dispatch({

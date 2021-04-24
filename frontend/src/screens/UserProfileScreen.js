@@ -30,11 +30,9 @@ const UserProfileScreen = ({ location, history }) => {
     const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
     const { success } = userUpdateProfile
 
-    //TODO: uncomment to make it protected route
-    //TODO: fetch details from DB
     useEffect(() => {
         if (!userInfo) {
-            //history.push('/login')
+            history.push('/login')
         } else {
             if (!user.name) {
                 //dispatch({ type: USER_UPDATE_PROFILE_RESET })
@@ -46,7 +44,7 @@ const UserProfileScreen = ({ location, history }) => {
             }
         }
         //dispatch(getUserDetails('profile'))
-    }, [dispatch, history, userInfo, user])
+    }, [dispatch, history, userInfo])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -70,9 +68,9 @@ const UserProfileScreen = ({ location, history }) => {
                         <Form.Group controlId='name'>
                             <Form.Label>Name</Form.Label>
                             <Form.Control
-                                type='name'
+                                type='text'
                                 placeholder='Enter name'
-                                value={name}
+                                value={user.username}
                                 onChange={(e) => setName(e.target.value)}
                             ></Form.Control>
                         </Form.Group>
@@ -82,7 +80,7 @@ const UserProfileScreen = ({ location, history }) => {
                             <Form.Control
                                 type='email'
                                 placeholder='Enter email'
-                                value={email}
+                                value={user.email}
                                 onChange={(e) => setEmail(e.target.value)}
                             ></Form.Control>
                         </Form.Group>
