@@ -1,6 +1,7 @@
 import BaseController from './base.controller.js';
 import Rent from '../models/rentModel.js';
 import Constants from '../config/constants.js';
+import Car from '../models/carModel.js'
 
 class RentController extends BaseController {
   whitelist = [
@@ -22,25 +23,27 @@ class RentController extends BaseController {
   addRent = async (req, res, next) => {
     const params = this.filterParams(req.body, this.whitelist);
     try {
-      // const rent = await Rent.findOne({ rentId: params[''] });
-      // if (rent) {
-      //   res.status(200).json({
-      //     message: 'rent has been already added with this rent number',
-      //     success: 1,
-      //   });
-        const newRent = new Rent({
-          ...params,
-          renterId: req.body.renterId,
-          carId: req.body.carId
+      const car = await Car.findOne({ _id: req.params.id });
+      console.log(car);
+      if (!car || !car.status){
+				return res.status(200).json({ message: 'car is not available or not found', success: 0 });
+      }
+      car.status = false ;
+      car.save();
+      console.log(car);
+      const newRent = new Rent({
+        ...params,
+        renterId: req.user._id,
+        carId: req.params.id
+      });
+      const rentSaved = await newRent.save();
+      if (rentSaved) {
+        res.status(200).json({
+        message: 'rent has been saved',
+        success: 1,
+        rent: rentSaved,
         });
-        const rentSaved = await newRent.save();
-        if (rentSaved) {
-          res.status(200).json({
-            message: 'rent has been saved',
-            success: 1,
-            rent: rentSaved,
-          });
-        }
+      }
       
     } catch (err) {
       next(err);

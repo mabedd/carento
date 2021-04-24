@@ -14,7 +14,7 @@ const rentSchema = new Schema(
     },
     mileage: {
       type : Number,
-      required : true
+      //required : true
     },
     duration: {
       type : Number,
@@ -44,7 +44,7 @@ const rentSchema = new Schema(
     },
     status:{
       type : Boolean,
-      default : false
+      default : true
     }
   },
   {

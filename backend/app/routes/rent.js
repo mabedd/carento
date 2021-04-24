@@ -13,7 +13,7 @@ rent.get('/test', (req, res) => {
     message: 'welcome in car rental way',
   });
 });
-rent.post('/add-rent', authenticate, RentController.addRent);
+rent.post('/add-rent/:id', authenticate, RentController.addRent);
 rent.get('/find-renter-rents', authenticate, RentController.findAllRentsByRenter);
 rent.get('/find-car-rents/:id', authenticate, RentController.findAllRentsByCar);
 rent.get('/find-all-rents', RentController.findAllRents);
