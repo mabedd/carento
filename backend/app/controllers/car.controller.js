@@ -74,7 +74,7 @@ class CarsController extends BaseController {
 
   findAll = async (req, res, next) => {
     try {
-      const carSaved = await Car.find({ companyId: req.car.companyId });
+      const carSaved = await Car.find({ companyId: req.user._id });
       res.status(200).json({
         success: 1,
         car: carSaved,
