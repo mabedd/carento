@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Container, Row, Col } from 'react-bootstrap'
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listCars, deleteCar, createCar } from '../actions/carActions'
+import { listCompanyCars, deleteCar, createCar } from '../actions/carActions'
 import { CAR_CREATE_RESET } from '../constants/carConstants'
 
 const CompanyCarListScreen = ({ history, match }) => {
@@ -29,19 +29,18 @@ const CompanyCarListScreen = ({ history, match }) => {
     useEffect(() => {
         dispatch({ type: CAR_CREATE_RESET })
 
-        //TODO: check if user is company or not and redirect to login if not
         if (!companyInfo) {
             history.push('/company/login')
         } else {
-            dispatch(listCars())
+            dispatch(listCompanyCars())
         }
 
         //afet successfully creating a car redirect to car edit screen
-        // if (successCreate) {
-        //     history.push(`/company/car/${createdCar._id}/edit`)
-        // } else {
-        //     dispatch(listCars())
-        // }
+        if (successCreate) {
+            history.push(`/company/car/${createdCar._id}/edit`)
+        } else {
+            dispatch(listCompanyCars())
+        }
     }, [dispatch, history, companyInfo, successDelete, successCreate, createdCar])
 
 

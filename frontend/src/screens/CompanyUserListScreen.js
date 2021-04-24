@@ -15,10 +15,6 @@ const CompanyUserListScreen = () => {
     const userList = useSelector(state => state.userList)
     const { loading, error, users } = userList
 
-    //get user info 
-    // const userLogin = useSelector(state => state.userList)
-    // const { userInfo } = userLogin
-
     const companyLogin = useSelector(state => state.companyLogin)
     const { companyInfo } = companyLogin
 

@@ -45,6 +45,7 @@ const RentSummaryScreen = ({ history, match }) => {
     //carId, renterId, mileage, duration, startDate, endDate, price
     const rentHandler = () => {
         dispatch(createOrder())
+        history.push('/placeorder')
     }
 
     return (

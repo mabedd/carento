@@ -40,13 +40,24 @@ export const listCars = (keyword = '', pageNumber = '') => async (
 }
 
 export const listCompanyCars = (keyword = '', pageNumber = '') => async (
-    dispatch
+    dispatch, getState
 ) => {
     try {
         dispatch({ type: CAR_LIST_REQUEST })
 
+        const {
+            companyLogin: { companyInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `${companyInfo.token}`,
+            },
+        }
+
         const { data } = await axios.get(
-            `http://localhost:5000/api/car/find-all-cars`
+            `http://localhost:5000/api/car/find-company-cars`,
+            config
         )
 
         console.log(data.car)
@@ -98,12 +109,12 @@ export const deleteCar = (id) => async (dispatch, getState) => {
         })
 
         const {
-            userLogin: { userInfo },
+            companyLogin: { companyInfo },
         } = getState()
 
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${companyInfo.token}`,
             },
         }
 

@@ -11,7 +11,6 @@ import CheckoutSteps from '../components/CheckoutSteps'
 import { getOrderDetails } from '../actions/orderActions'
 import { listCarDetails } from '../actions/carActions'
 
-
 const PlaceOrderScreen = ({ match }) => {
 
     //get order id from url

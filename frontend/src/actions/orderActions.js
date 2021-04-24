@@ -134,12 +134,12 @@ export const listOrders = () => async (dispatch, getState) => {
         })
 
         const {
-            userLogin: { userInfo },
+            adminLogin: { adminInfo },
         } = getState()
 
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${adminInfo.token}`,
             },
         }
 
@@ -150,8 +150,9 @@ export const listOrders = () => async (dispatch, getState) => {
 
         dispatch({
             type: ORDER_LIST_SUCCESS,
-            payload: data.order,
+            payload: data.car,
         })
+
     } catch (error) {
         const message =
             error.response && error.response.data.message

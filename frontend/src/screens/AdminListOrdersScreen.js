@@ -18,16 +18,15 @@ const AdminListOrderScreen = ({ history, match }) => {
     const orderList = useSelector((state) => state.orderList)
     const { loading, error, orders, page, pages } = orderList
 
-
     // MUST be for admin
     const adminLogin = useSelector((state) => state.adminLogin)
     const { adminInfo } = adminLogin
 
     useEffect(() => {
         //should be for admin
-        // if (!adminInfo || !adminInfo.isAdmin) {
-        //     history.push('/admin/login')
-        // }
+        if (!adminInfo) {
+            history.push('/admin/login')
+        }
 
         dispatch(listOrders('', pageNumber))
     }, [
@@ -42,7 +41,7 @@ const AdminListOrderScreen = ({ history, match }) => {
             <Container>
                 <Row className='align-items-center'>
                     <Col>
-                        <h1>Rents</h1>
+                        <h1 className='className text-center mt-5'>Rents</h1>
                     </Col>
                 </Row>
                 {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) : (
@@ -64,7 +63,7 @@ const AdminListOrderScreen = ({ history, match }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {orders.map((order) => (
+                                {orders ? orders.map((order) => (
                                     <tr>
                                         <td>{order.carId}</td>
                                         <td>{order.renterId}</td>
@@ -78,7 +77,7 @@ const AdminListOrderScreen = ({ history, match }) => {
                                         <td><Rating value={order.rateByCompany} /></td>
                                         <td>{order.status}</td>
                                     </tr>
-                                ))}
+                                )) : ''}
                             </tbody>
                         </Table>
                         <Paginate pages={pages} page={page} />

@@ -243,6 +243,45 @@ export const listUsers = () => async (dispatch, getState) => {
         })
 
         const {
+            companyLogin: { companyInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `${companyInfo.token}`,
+            },
+        }
+
+        const { data } = await axios.get(`http://localhost:5000/api/renter/find-all-renters`, config)
+        //console.log(data);
+        dispatch({
+            type: USER_LIST_SUCCESS,
+            payload: data.renter,
+        })
+
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: USER_LIST_FAIL,
+            payload: message,
+        })
+    }
+}
+
+//TODO:
+export const listCompanyUsers = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: USER_LIST_REQUEST,
+        })
+
+        const {
             adminLogin: { adminInfo },
         } = getState()
 
