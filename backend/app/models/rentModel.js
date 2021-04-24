@@ -2,54 +2,55 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema;
 const rentSchema = new Schema(
   {
-    carId:{
-      type : mongoose.Schema.Types.ObjectId,
-      required : true,
-      ref : 'Car'
-    } ,
+    carId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'Car'
+    },
     renterId: {
-      type : mongoose.Schema.Types.ObjectId,
-      required : true,
-      ref : 'renter'
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'renter'
     },
     mileage: {
-      type : Number,
+      type: Number,
       //required : true
     },
     duration: {
-      type : Number,
-      required : true
+      type: Number,
+      required: true
     },
     startDate: {
-      type : Date,
+      type: Date,
       // required : true
     },
-    endDate : {
-      type : Date,
+    endDate: {
+      type: Date,
       // required : true
     },
-    price : {
-      type : Number,
-      required : true
+    price: {
+      type: Number,
+      required: true
     },
-    isPaid : {
-      type : Boolean,
-      required : true
+    isPaid: {
+      type: Boolean,
+      //required : true
+      default: false
     },
     rateByRenter: {
-       type : Number,
+      type: Number,
     },
     rateByCompany: {
-       type : Number,
+      type: Number,
     },
-    status:{
-      type : Boolean,
-      default : true
+    status: {
+      type: Boolean,
+      default: true
     }
   },
   {
     timestamps: true
   });
 
-const Rent = mongoose.model('Rent',rentSchema)
+const Rent = mongoose.model('Rent', rentSchema)
 export default Rent;

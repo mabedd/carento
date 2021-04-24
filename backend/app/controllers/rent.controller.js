@@ -23,28 +23,28 @@ class RentController extends BaseController {
   addRent = async (req, res, next) => {
     const params = this.filterParams(req.body, this.whitelist);
     try {
-      const car = await Car.findOne({ _id: req.params.id });
+      const car = await Car.findOne({ _id: req.body.carId });
       console.log(car);
-      if (!car || !car.status){
-				return res.status(200).json({ message: 'car is not available or not found', success: 0 });
+      if (!car || !car.status) {
+        return res.status(200).json({ message: 'car is not available or not found', success: 0 });
       }
-      car.status = false ;
+      car.status = false;
       car.save();
       console.log(car);
       const newRent = new Rent({
         ...params,
         renterId: req.user._id,
-        carId: req.params.id
+        //carId: req.params.id
       });
       const rentSaved = await newRent.save();
       if (rentSaved) {
         res.status(200).json({
-        message: 'rent has been saved',
-        success: 1,
-        rent: rentSaved,
+          message: 'rent has been saved',
+          success: 1,
+          rent: rentSaved,
         });
       }
-      
+
     } catch (err) {
       next(err);
     }
@@ -52,7 +52,7 @@ class RentController extends BaseController {
 
   findAllRentsByRenter = async (req, res, next) => {
     try {
-      const rentSaved = await Rent.find({ renterId: req.user._id});
+      const rentSaved = await Rent.find({ renterId: req.user._id });
       res.status(200).json({
         success: 1,
         rent: rentSaved,
@@ -87,21 +87,21 @@ class RentController extends BaseController {
     }
   }
   getRentDetails = async (req, res, next) => {
-		try {
-			// find user by its id
-			// find user by its id and update
-			const user = await Rent.findById({ _id: req.params.id });
+    try {
+      // find user by its id
+      // find user by its id and update
+      const user = await Rent.findById({ _id: req.params.id });
 
-			if (!user) {
-				return res.status(404).json({ msg: Constants.messages.userNotFound });
-			}
+      if (!user) {
+        return res.status(404).json({ msg: Constants.messages.userNotFound });
+      }
 
-			return res.status(200).json({ msg: Constants.messages.success, user: user });
-		} catch (err) {
-			err.status = 400;
-			next(err);
-		}
-	};
+      return res.status(200).json({ msg: Constants.messages.success, user: user });
+    } catch (err) {
+      err.status = 400;
+      next(err);
+    }
+  };
 }
 
 export default new RentController();

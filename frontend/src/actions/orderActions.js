@@ -7,7 +7,10 @@ import {
 import { logout } from './userActions'
 import axios from 'axios'
 
-export const createOrder = (order) => async (dispatch, getState) => {
+export const createOrder = (duration, price, carId) => async (dispatch, getState) => {
+    console.log(duration)
+    console.log(price)
+    console.log(carId)
     try {
         dispatch({
             type: ORDER_CREATE_REQUEST,
@@ -24,7 +27,8 @@ export const createOrder = (order) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.post(`http://localhost:5000/api/rent/add-rent`, order, config)
+        const { data } = await axios.post(`http://localhost:5000/api/rent/add-rent`, { duration, price, carId }, config)
+        console.log(data)
 
         dispatch({
             type: ORDER_CREATE_SUCCESS,
@@ -58,9 +62,11 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 
         const config = {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${userInfo.token}`,
             },
         }
+
+        console.log(data)
 
         const { data } = await axios.get(`http://localhost:5000/api/orders/${id}`, config)
 

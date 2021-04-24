@@ -24,16 +24,25 @@ const RentSummaryScreen = ({ history, match }) => {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
+    const orderDetails = useSelector((state) => state.orderDetails)
+    const { loading: loadingDetails, error: errorDetails, order } = orderDetails
+
     // rent duration
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
     // calculate number of day
-    const diffTime = Math.abs(endDate - startDate)
-    const rentDuration = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    const [rentDuration, setRentDuration] = useState(0)
+    const [rentPrice, setRentPirce] = useState(0)
 
-    // price calculation
-    const initialPrice = car.price * rentDuration
-    const rentPrice = initialPrice + (initialPrice * 0.15) // price with VAT
+    useEffect(() => {
+        const diffTime = Math.abs(endDate - startDate)
+        setRentDuration(Math.ceil(diffTime / (1000 * 60 * 60 * 24)))
+    }, [endDate, startDate])
+
+    useEffect(() => {
+        const initialPrice = car.price * rentDuration
+        setRentPirce(initialPrice + (initialPrice * 0.15))
+    }, [rentDuration])
 
     useEffect(() => {
         if (!car._id || car._id !== match.params.id) {
@@ -45,7 +54,7 @@ const RentSummaryScreen = ({ history, match }) => {
     //carId, renterId, mileage, duration, startDate, endDate, price
     const rentHandler = () => {
         dispatch(createOrder(rentDuration, rentPrice, car._id))
-        history.push('/placeorder')
+        history.push(`/placeorder/${order._id}`)
     }
 
     return (
