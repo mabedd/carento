@@ -34,11 +34,13 @@ const RentSummaryScreen = ({ history, match }) => {
     const [rentDuration, setRentDuration] = useState(0)
     const [rentPrice, setRentPirce] = useState(0)
 
+    // calculate rent duration based on dates
     useEffect(() => {
         const diffTime = Math.abs(endDate - startDate)
         setRentDuration(Math.ceil(diffTime / (1000 * 60 * 60 * 24)))
     }, [endDate, startDate])
 
+    // calculate rent price with VAT
     useEffect(() => {
         const initialPrice = car.price * rentDuration
         setRentPirce(initialPrice + (initialPrice * 0.15))
@@ -50,11 +52,10 @@ const RentSummaryScreen = ({ history, match }) => {
         }
     }, [dispatch, match])
 
-    //TODO:
     //carId, renterId, mileage, duration, startDate, endDate, price
     const rentHandler = () => {
         dispatch(createOrder(rentDuration, rentPrice, car._id))
-        history.push(`/placeorder/${order._id}`)
+        history.push('/placeorder')
     }
 
     return (

@@ -243,17 +243,18 @@ export const listUsers = () => async (dispatch, getState) => {
         })
 
         const {
-            companyLogin: { companyInfo },
+            adminLogin: { adminInfo },
         } = getState()
 
         const config = {
             headers: {
-                Authorization: `${companyInfo.token}`,
+                Authorization: `${adminInfo.token}`,
             },
         }
 
         const { data } = await axios.get(`http://localhost:5000/api/renter/find-all-renters`, config)
-        //console.log(data);
+        console.log(data);
+
         dispatch({
             type: USER_LIST_SUCCESS,
             payload: data.renter,

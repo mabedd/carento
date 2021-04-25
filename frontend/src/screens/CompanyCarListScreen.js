@@ -121,7 +121,7 @@ const CompanyCarListScreen = ({ history, match }) => {
                                         <Button>Mark as rented</Button>
                                     )}</td>
 
-                                    <td><Button variant='danger' onClick={deleteHandler}>Delete</Button></td>
+                                    <td><Button variant='danger' onClick={() => deleteHandler(car._id)}>Delete</Button></td>
                                 </tr>
                             ))}
                         </tbody>

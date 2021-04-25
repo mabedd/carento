@@ -1,7 +1,7 @@
 import {
     ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS,
     ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS,
-    ORDER_LIST_FAIL, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS,
+    ORDER_LIST_FAIL, ORDER_LIST_RENTER_FAIL, ORDER_LIST_RENTER_REQUEST, ORDER_LIST_RENTER_SUCCESS, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS,
     ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS
 } from '../constants/orderConstants'
 import { logout } from './userActions'
@@ -68,7 +68,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 
         console.log(data)
 
-        const { data } = await axios.get(`http://localhost:5000/api/orders/${id}`, config)
+        const { data } = await axios.get(`http://localhost:5000/api/rents/${id}`, config)
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -173,4 +173,42 @@ export const listOrders = () => async (dispatch, getState) => {
     }
 }
 
-//TODO: add list orders for renter and company
+export const listRenterOrders = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: ORDER_LIST_RENTER_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `${userInfo.token}`,
+            },
+        }
+
+        const { data } = await axios.get(`http://localhost:5000/api/rent/find-renter-rents`, config)
+
+        console.log(data)
+
+        dispatch({
+            type: ORDER_LIST_RENTER_SUCCESS,
+            payload: data.rent,
+        })
+
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: ORDER_LIST_RENTER_FAIL,
+            payload: message,
+        })
+    }
+}

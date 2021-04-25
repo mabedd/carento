@@ -50,7 +50,7 @@ export const activateCompany = (id) => async (dispatch, getState) => {
         })
 
         const {
-            userLogin: { adminInfo },
+            adminLogin: { adminInfo },
         } = getState()
 
         const config = {
@@ -92,7 +92,7 @@ export const blacklistRenter = (id) => async (dispatch, getState) => {
         })
 
         const {
-            userLogin: { adminInfo },
+            adminLogin: { adminInfo },
         } = getState()
 
         const config = {
