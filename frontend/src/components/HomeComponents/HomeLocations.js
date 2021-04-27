@@ -24,9 +24,9 @@ const HomeLocations = () => {
                                     Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit
                                     officia accusamus minus error nisi architecto nulla ipsum
                                     dignissimos. Odit sed qui, dolorum!
-                            </p>
+                                </p>
                                 <MDBBtn gradient='blue'>
-                                    <MDBIcon icon='clone left' /> More Info
+                                    <MDBIcon icon='clone left' disabled /> Available
                             </MDBBtn>
                             </div>
                         </div>
@@ -51,9 +51,9 @@ const HomeLocations = () => {
                                     Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit
                                     officia accusamus minus error nisi architecto nulla ipsum
                                     dignissimos. Odit sed qui, dolorum!
-                            </p>
+                                </p>
                                 <MDBBtn gradient='blue'>
-                                    <MDBIcon icon='clone left' /> More Info
+                                    <MDBIcon icon='clone left' /> Coming soon
                             </MDBBtn>
                             </div>
                         </div>

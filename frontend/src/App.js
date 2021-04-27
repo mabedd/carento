@@ -14,7 +14,6 @@ import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import UserProfileScreen from './screens/UserProfileScreen'
 import RentSummaryScreen from './screens/RentSummaryScreen'
-import PaymentScreen from './screens/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import RenterFeedbackScreen from './screens/RenterFeedbackScreen'
 
@@ -22,7 +21,6 @@ import RenterFeedbackScreen from './screens/RenterFeedbackScreen'
 import CompanyHomeScreen from './screens/CompanyHomeScreen'
 import CompanyRegister from './screens/CompanyRegister'
 import CompanyUserListScreen from './screens/CompanyUserListScreen'
-import CompanyUserEditScreen from './screens/CompanyUserEditScreen'
 import CompanyCarListScreen from './screens/CompanyCarListScreen'
 import CompanyCreateCarScreen from './screens/CompanyCreateCarScreen'
 import CompanyEditCarScreen from './screens/CompanyEditCarScreen'
@@ -47,13 +45,12 @@ function App() {
 
       <Route path='/' component={HomeScreen} exact />
       <Route path='/aboutus' component={AboutUsScreen} />
-      <Route path='/offers' component={OffersScreen} /> {/** fetch from DB */}
-      <Route path='/contactus' component={ContactScreen} /> {/** Send by email */}
-      <Route path='/browse' component={BrowseCarsScreen} />{/** fetch from DB*/}
+      <Route path='/offers' component={OffersScreen} />
+      <Route path='/contactus' component={ContactScreen} />
+      <Route path='/browse' component={BrowseCarsScreen} />
       <Route path='/login' component={LoginScreen} />
       <Route path='/register' component={RegisterScreen} />
       <Route path='/rentsummary/:id' component={RentSummaryScreen} />
-      <Route path='/payment' component={PaymentScreen} />
       <Route path='/placeorder' component={PlaceOrderScreen} />
       <Route path='/profile' component={UserProfileScreen} />
       <Route path='/rent/feedback' component={RenterFeedbackScreen} /> {/** TODO: add rent id */}
@@ -61,19 +58,18 @@ function App() {
       <Route path='/company/home' component={CompanyHomeScreen} />
       <Route path='/company/register' component={CompanyRegister} />
       <Route path='/company/login' component={CompanyLoginScreen} />
-      <Route path='/company/userlist' component={CompanyUserListScreen} />{/** TypeError: Cannot read property 'map' of undefined */}
-      <Route path='/company/user/:id/edit' component={CompanyUserEditScreen} />{/**!! */}
-      <Route path='/company/carslist' component={CompanyCarListScreen} />{/** TypeError: Cannot read property 'map' of undefined */}
-      <Route path='/company/car/create' component={CompanyCreateCarScreen} />{/** Cannot read property 'token' of undefined */}
+      <Route path='/company/userlist' component={CompanyUserListScreen} />
+      <Route path='/company/carslist' component={CompanyCarListScreen} />
+      <Route path='/company/car/create' component={CompanyCreateCarScreen} />
       <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />
-      <Route path='/company/orders' component={CompanyOrderListScreen} />{/** TypeError: Cannot read property 'map' of undefined*/}
-      <Route path='/company/profile' component={CompanyProfileScreen} />{/** Not fetching from DB */}
+      <Route path='/company/orders' component={CompanyOrderListScreen} />
+      <Route path='/company/profile' component={CompanyProfileScreen} />
 
       <Route path='/admin/home' component={AdminHomeScreen} />
-      <Route path='/admin/carslist' component={AdminListCarsScreen} /> {/** TypeError: Cannot read property 'map' of undefined */}
-      <Route path='/admin/renterslist' component={AdminListRentersScreen} />{/** 404 */}
-      <Route path='/admin/companieslist' component={AdminListCompaniesScreen} />{/** 404: */}
-      <Route path='/admin/orderslist' component={AdminListOrdersScreen} />{/** 404 */}
+      <Route path='/admin/carslist' component={AdminListCarsScreen} />
+      <Route path='/admin/renterslist' component={AdminListRentersScreen} />
+      <Route path='/admin/companieslist' component={AdminListCompaniesScreen} />
+      <Route path='/admin/orderslist' component={AdminListOrdersScreen} />
       <Route path='/admin/login' component={AdminLoginScreen} />
 
       <Footer />

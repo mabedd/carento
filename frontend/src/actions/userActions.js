@@ -283,12 +283,12 @@ export const listCompanyUsers = () => async (dispatch, getState) => {
         })
 
         const {
-            adminLogin: { adminInfo },
+            companyLogin: { companyInfo },
         } = getState()
 
         const config = {
             headers: {
-                Authorization: `${adminInfo.token}`,
+                Authorization: `${companyInfo.token}`,
             },
         }
 

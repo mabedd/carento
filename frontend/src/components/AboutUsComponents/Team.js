@@ -37,7 +37,7 @@ const Team = () => {
                     </div>
                     <div className="col-lg-4">
                         <div className="card">
-                            <div className="card-body text-center"> <img src="/images/salim.jpg" className="rounded-circle" width="200" height="200"></img>
+                            <div className="card-body text-center"> <img src="/images/salim.jpeg" className="rounded-circle" width="200" height="200"></img>
                                 <h5 className="card-title mt-2 mb-1">Salim Hijazi</h5> <span className="fs-2 mb-3 font-weight-bold">Software Engineering Student</span>
                                 <p className="mb-3 mt-3">.NET and Node JS Developer. Carento API Development and Integration Specialist</p>
                                 <ul className="list-inline">
@@ -80,7 +80,7 @@ const Team = () => {
                         </div>
                         <div className="col-lg-4">
                             <div className="card">
-                                <div className="card-body text-center"> <img src="" className="rounded-circle" width="200" height="200"></img>
+                                <div className="card-body text-center"> <img src="/images/fahad.jpeg" className="rounded-circle" width="200" height="200"></img>
                                     <h5 className="card-title mt-2 mb-1">Fahad Al Qahtani</h5> <span className="fs-2 mb-3 font-weight-bold">Software Engineering Student</span>
                                     <p className="mb-3 mt-3">Carento API Integration with Flutter and Mongo Database</p>
                                     <ul className="list-inline">
