@@ -8,10 +8,7 @@ const LatestNews = () => {
                 Latest News
             </h2>
             <p className="grey-text w-responsive mx-auto mb-5">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                est laborum.
+                Stay tuned and see Carento latest news and achievements
             </p>
 
             <MDBRow className="text-center">
@@ -27,10 +24,9 @@ const LatestNews = () => {
                         </a>
                     </MDBView>
                     <MDBCardBody className="pb-0">
-                        <h4 className="font-weight-bold my-3">Title of the news</h4>
+                        <h4 className="font-weight-bold my-3"> Coming Soon to Eastren Province</h4>
                         <p className="grey-text">
-                            Temporibus autem quibusdam et aut officiis debitis aut rerum
-                            necessitatibus saepe eveniet ut et voluptates repudiandae.
+                            As Carento platform going wider inside Saudi Arabia it is going to be launched inside Eastren Province to cover more customers
                         </p>
                         <MDBBtn gradient="blue" size="sm">
                             <MDBIcon far icon="clone" className="left" /> Read More
@@ -49,10 +45,9 @@ const LatestNews = () => {
                         </a>
                     </MDBView>
                     <MDBCardBody className="pb-0">
-                        <h4 className="font-weight-bold my-3">Title of the news</h4>
+                        <h4 className="font-weight-bold my-3">New Cars are Coming</h4>
                         <p className="grey-text">
-                            Temporibus autem quibusdam et aut officiis debitis aut rerum
-                            necessitatibus saepe eveniet ut et voluptates repudiandae.
+                            Carento car providers are offering their latest cars models on Carento platform to be available for retners through the platform
                         </p>
                         <MDBBtn gradient="blue" size="sm">
                             <MDBIcon far icon="clone" className="left" /> Read More
@@ -71,10 +66,9 @@ const LatestNews = () => {
                         </a>
                     </MDBView>
                     <MDBCardBody className="pb-0">
-                        <h4 className="font-weight-bold my-3">Title of the news</h4>
+                        <h4 className="font-weight-bold my-3">Maintenance Policies</h4>
                         <p className="grey-text">
-                            Temporibus autem quibusdam et aut officiis debitis aut rerum
-                            necessitatibus saepe eveniet ut et voluptates repudiandae.
+                            Carento new policies for car maintenance stricts the maintenance process to ensure high quality cars for renters
                         </p>
                         <MDBBtn gradient="blue" size="sm">
                             <MDBIcon far icon="clone" className="left" /> Read More

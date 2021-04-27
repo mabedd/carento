@@ -8,10 +8,8 @@ const Values = () => {
                 Carento Values
         </h2>
             <p className="lead grey-text w-responsive mx-auto mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                ad minim veniam.
-        </p>
+                Carento is an online platform that was mainly found to help car rental parties in all aspects.
+            </p>
             {/**values first line */}
             <MDBRow>
                 <MDBCol md="4">

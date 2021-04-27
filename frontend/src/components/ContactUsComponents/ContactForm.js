@@ -38,7 +38,7 @@ const ContactForm = () => {//TODO: sumbilt handler for form submission
                                     <label for="form-text">Send message</label>
                                 </div>
                                 <div className="text-center">
-                                    <button className="btn btn-light-blue">Submit</button>
+                                    <button className="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>

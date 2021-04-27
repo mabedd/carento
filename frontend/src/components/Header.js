@@ -10,7 +10,7 @@ const Header = () => {
     const dispatch = useDispatch()
 
     const userLogin = useSelector(state => state.userLogin)
-    const { userInfo } = userLogin
+    const { userInfo, user } = userLogin
 
     const companyLogin = useSelector(state => state.companyLogin)
     const { companyInfo } = companyLogin

@@ -69,8 +69,7 @@ class IntroSection extends React.Component {
                                 <MDBBtn
                                     className='btn-indigo text-white'
                                     size='lg'
-                                    href='https://mdbootstrap.com/docs/react/css/parallax/'
-                                    target='_blank'
+                                    href='/company/register'
                                 >
                                     Register Now
                                 </MDBBtn>

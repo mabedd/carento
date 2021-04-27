@@ -27,9 +27,7 @@ const FeaturesPage = () => {
                             <MDBCol xl="10" md="11" size="10">
                                 <h5 className="font-weight-bold mb-3">Safety</h5>
                                 <p className="grey-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                    enim ad minima veniam, quis nostrum exercitationem ullam.
-                                    Reprehenderit maiores aperiam assumenda deleniti hic.
+                                    Take your ride with Carento and we will assure you a completely safe process from the beginning to the end.
                                 </p>
                             </MDBCol>
                         </MDBRow>
@@ -38,11 +36,9 @@ const FeaturesPage = () => {
                                 <MDBIcon icon="share" size="lg" className="indigo-text" />
                             </MDBCol>
                             <MDBCol xl="10" md="11" size="10">
-                                <h5 className="font-weight-bold mb-3">Advantages</h5>
+                                <h5 className="font-weight-bold mb-3">Best Prices</h5>
                                 <p className="grey-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                    enim ad minima veniam, quis nostrum exercitationem ullam.
-                                    Reprehenderit maiores aperiam assumenda deleniti hic.
+                                    Carento partners are providing their cars with best prices and features that will satisfy your needs.
                                 </p>
                             </MDBCol>
                         </MDBRow>
@@ -53,10 +49,8 @@ const FeaturesPage = () => {
                             <MDBCol xl="10" md="11" size="10">
                                 <h5 className="font-weight-bold mb-3">Satisfaction</h5>
                                 <p className="grey-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                    enim ad minima veniam, quis nostrum exercitationem ullam.
-                                    Reprehenderit maiores aperiam assumenda deleniti hic.
-                </p>
+                                    Our clients are our main priority here. We will satisfy their needs with as much as we can and we will provide them with whatever they need.
+                                </p>
                             </MDBCol>
                         </MDBRow>
                     </MDBCol>
