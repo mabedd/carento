@@ -19,7 +19,9 @@ car.get('/find-company-cars', authenticate, CarController.findAll);
 car.get('/find-all-cars', CarController.findAllCars);
 
 car.get('/get-car-details/:id', CarController.getCarDetails);
-car.put('/rate-car/:id', CarController.rateCar);
+car.put('/rate-car/:id',authenticate, CarController.rateCar);
+car.put('/return-car/:id',authenticate, CarController.returnCar);
+
 
 
 

@@ -9,6 +9,11 @@ const carSchema = new Schema(
       required: true,
       ref: 'RentalCompany'
     },
+    companyName: {
+      type: String,
+      required: true,
+      
+    },
     image: {
       type: String,
       //required: true
