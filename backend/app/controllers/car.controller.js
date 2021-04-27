@@ -61,8 +61,7 @@ class CarsController extends BaseController {
   };
   deleteCar = async (req, res, next) => {
     try {
-      const { id } = req.params;
-      const car = await Car.deleteOne({ _id: id }, { new: true });
+      const car = await Car.deleteOne({ _id: req.params.id}, { new: true });
       if (!car) {
         return res.status(200).json({ message: 'car not found with this id', success: 0 });
       }
@@ -138,6 +137,33 @@ class CarsController extends BaseController {
       next(err);
     }
   };
+
+  // returnCar = async (req, res, next) => {
+  //   try {
+  //     // find user by its id
+  //     // find user by its id and update
+  //     // rating car
+  //     // rating renter
+  //     const user = await Car.findById({ _id: req.params.id });
+
+  //     if (!user) {
+  //       return res.status(404).json({ msg: Constants.messages.userNotFound });
+  //     }
+  //     if (user.numberOfRents == 0) {
+  //       user.rating = req.body.rating,
+  //         user.numberOfRents++
+  //     } else {
+  //       let newNumberOfRents = (user.numberOfRents) + 1;
+  //       user.rating = ((user.numberOfRents * user.rating) + (req.body.rating)) / newNumberOfRents;
+  //       user.numberOfRents++;
+  //     }
+  //     user.save()
+  //     return res.status(200).json({ msg: Constants.messages.success, user: user });
+  //   } catch (err) {
+  //     err.status = 400;
+  //     next(err);
+  //   }
+  // };
 }
 
 export default new CarsController();
