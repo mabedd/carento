@@ -15,7 +15,7 @@ import RegisterScreen from './screens/RegisterScreen'
 import UserProfileScreen from './screens/UserProfileScreen'
 import RentSummaryScreen from './screens/RentSummaryScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
-import RenterFeedbackScreen from './screens/RenterFeedbackScreen'
+import RenterRateCarScreen from './screens/RenterRateCarScreen'
 
 //Company View
 import CompanyHomeScreen from './screens/CompanyHomeScreen'
@@ -27,6 +27,7 @@ import CompanyEditCarScreen from './screens/CompanyEditCarScreen'
 import CompanyOrderListScreen from './screens/CompanyOrderListScreen'
 import CompanyProfileScreen from './screens/CompanyProfileScreen'
 import CompanyLoginScreen from './screens/CompanyLoginScreen'
+import CompanyRateRenterScreen from './screens/CompanyRateRenterScreen'
 
 //Admin View
 import AdminListCarsScreen from './screens/AdminListCarsScreen'
@@ -53,7 +54,7 @@ function App() {
       <Route path='/rentsummary/:id' component={RentSummaryScreen} />
       <Route path='/placeorder' component={PlaceOrderScreen} />
       <Route path='/profile' component={UserProfileScreen} />
-      <Route path='/rent/feedback' component={RenterFeedbackScreen} /> {/** TODO: add rent id */}
+      <Route path='/rate/:id' component={RenterRateCarScreen} />
 
       <Route path='/company/home' component={CompanyHomeScreen} />
       <Route path='/company/register' component={CompanyRegister} />
@@ -64,6 +65,7 @@ function App() {
       <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />
       <Route path='/company/orders' component={CompanyOrderListScreen} />
       <Route path='/company/profile' component={CompanyProfileScreen} />
+      <Route path='/company/renter/rate/:id' component={CompanyRateRenterScreen} />
 
       <Route path='/admin/home' component={AdminHomeScreen} />
       <Route path='/admin/carslist' component={AdminListCarsScreen} />

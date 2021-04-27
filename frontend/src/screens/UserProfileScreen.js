@@ -14,6 +14,8 @@ const UserProfileScreen = ({ location, history }) => {
     //state
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [nationalId, setNationalId] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState(null)
@@ -58,7 +60,7 @@ const UserProfileScreen = ({ location, history }) => {
         if (password !== confirmPassword) {
             setMessage('Passwords do not match')
         } else {
-            //dispatch(updateUserProfile({ id: user._id, name, email, password }))
+            dispatch(updateUserProfile({ id: user._id, name, email, password }))
         }
     }
 
@@ -94,15 +96,35 @@ const UserProfileScreen = ({ location, history }) => {
                                         onChange={(e) => setEmail(e.target.value)}
                                     ></Form.Control>
                                 </Form.Group>
+
+                                <Form.Group controlId='pnum'>
+                                    <Form.Label>Phone Number</Form.Label>
+                                    <Form.Control
+                                        type='number'
+                                        placeholder='Enter phone number'
+                                        value={user.phoneNumber}
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                    ></Form.Control>
+                                </Form.Group>
                             </Col>
 
                             <Col md={6}>
+                                <Form.Group controlId='nationalid'>
+                                    <Form.Label>National ID</Form.Label>
+                                    <Form.Control
+                                        type='text'
+                                        placeholder='Enter national id'
+                                        value={user.nationalId}
+                                        onChange={(e) => setNationalId(e.target.value)}
+                                    ></Form.Control>
+                                </Form.Group>
+
                                 <Form.Group controlId='password'>
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control
                                         type='password'
                                         placeholder='Enter password'
-                                        value={password}
+                                        value={user.password}
                                         onChange={(e) => setPassword(e.target.value)}
                                     ></Form.Control>
                                 </Form.Group>
@@ -149,6 +171,7 @@ const UserProfileScreen = ({ location, history }) => {
                             <th>START DATE</th>
                             <th>END DATE</th>
                             <th>STATUS</th>
+                            <th>RATE</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -165,6 +188,12 @@ const UserProfileScreen = ({ location, history }) => {
                                 ) : (
                                     <p>Ended</p>
                                 )}</td>
+
+                                <td>
+                                    <LinkContainer to={`/rate/${order.carId}`}>
+                                        <Button className='btn btn-primary'>Rate</Button>
+                                    </LinkContainer>
+                                </td>
                             </tr>
                         )) : ''}
                     </tbody>

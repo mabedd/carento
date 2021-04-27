@@ -118,7 +118,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
             },
         }
 
-        await axios.delete(`http://localhost:5000/api/car/${id}/delete-car`, config)
+        await axios.delete(`http://localhost:5000/api/car/delete-car/${id}`, config)
 
         dispatch({
             type: CAR_DELETE_SUCCESS,
@@ -244,8 +244,7 @@ export const updateCar = (car) => async (dispatch, getState) => {
     }
 }
 
-// TODO: do backend
-export const rateCar = (car, rate) => async (dispatch, getState) => {
+export const rateCar = (carId, rate) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CAR_RATE_REQUEST,
@@ -258,13 +257,12 @@ export const rateCar = (car, rate) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${userInfo.token}`,
             },
         }
 
-        //TODO: check
-        await axios.post(
-            `http://localhost:5000/api/cars/${car._id}/rate`,
+        await axios.put(
+            `http://localhost:5000/api/car/rate-car/${carId}`,
             rate,
             config
         )
@@ -272,8 +270,6 @@ export const rateCar = (car, rate) => async (dispatch, getState) => {
         dispatch({
             type: CAR_RATE_SUCCESS,
         })
-
-        dispatch({ type: CAR_RATE_SUCCESS })
 
     } catch (error) {
         const message =

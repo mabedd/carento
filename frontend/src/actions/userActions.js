@@ -140,7 +140,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     }
 }
 
-//TODO: check backend and do frontend
 export const updateUserProfile = (user) => async (dispatch, getState) => {
     try {
         dispatch({
@@ -156,12 +155,12 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `${userInfo.token}`,
             },
         }
 
         //put request to user profile
-        const { data } = await axios.put(`http://localhost:5000/api/users/profile`, user, config)
+        const { data } = await axios.put(`http://localhost:5000/api/renter/change-profile`, user, config)
 
         dispatch({
             type: USER_UPDATE_PROFILE_SUCCESS,
@@ -368,7 +367,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.put(`http://localhost:5000/api/change-profile/${user._id}`, user, config)
+        const { data } = await axios.put(`http://localhost:5000/api/renter/change-profile/${user._id}`, user, config)
 
         dispatch({ type: USER_UPDATE_SUCCESS })
 

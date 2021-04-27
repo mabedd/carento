@@ -18,10 +18,6 @@ const RenterFeedbackScreen = ({ location, match }) => {
 
     const dispatch = useDispatch()
 
-    //!! FIX
-    // const rentDetails = useSelector((state) => state.rentDetails)
-    // const { error, rent } = rentDetails
-
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
@@ -31,24 +27,20 @@ const RenterFeedbackScreen = ({ location, match }) => {
     // redirect to thank you screen
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
-    // useEffect(() => {
-    //     if (sucessCarReview) {
-    //         setRating(0)
-    //         setMessage('')
-    //     }
-    //     if (!rent._id || rent._id !== match.params.id) {
-    //         dispatch(getOrderDetails(match.params.id))
-    //         dispatch({ type: CAR_RATE_RESET })
-    //     }
-    // }, [dispatch, match, sucessCarReview])
+    useEffect(() => {
+        if (sucessRate) {
+            setRating(0)
+            setMessage('')
+        }
+
+    }, [dispatch, match, sucessRate])
 
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(
-            rateCar(match.params.id, {
+            rateCar(match.params.id,
                 rating,
-                message,
-            })
+            )
         )
     }
 

@@ -73,7 +73,7 @@ const Offers = ({ history, match }) => {
                                     There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
                          <br></br>
                                     <br></br>
-                                    <p className="text-justify text-truncate para mb-0">Offerd By: {car.companyId} </p>
+                                    <p className="text-justify text-truncate para mb-0">Offerd By: {car.companyName} </p>
                                     <br></br>
                                 </p>
                             </div>
