@@ -5,11 +5,11 @@ import multer from 'multer'
 const router = express.Router()
 
 const storage = multer.diskStorage({
-    // uploads destination folderS
+    //destination folder
     destination(req, file, cb) {
         cb(null, 'uploads/')
     },
-    // uploaded files naming
+    // naming
     filename(req, file, cb) {
         cb(
             null,
@@ -19,8 +19,8 @@ const storage = multer.diskStorage({
 })
 
 function checkFileType(file, cb) {
-    const filetypes = /jpg|jpeg|png/ // allowed formats
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase()) // save file extensions
+    const filetypes = /jpg|jpeg|png/ //allowed fromats
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase()) // get file format from name
     const mimetype = filetypes.test(file.mimetype)
 
     if (extname && mimetype) {
@@ -29,7 +29,6 @@ function checkFileType(file, cb) {
         cb('Images only!')
     }
 }
-
 const upload = multer({
     storage,
     fileFilter: function (req, file, cb) {

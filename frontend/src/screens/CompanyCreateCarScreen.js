@@ -75,7 +75,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
         dispatch(
             //companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits
             createCar(
-                image,
+                //image,
                 plate,
                 model,
                 color,
@@ -105,11 +105,12 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
             }
 
             const { data } = await axios.post('http://localhost:5000/api/upload', formData, config)
+            console.log(data)
 
             setImage(data)
             setUploading(false)
         } catch (error) {
-            //console.error(error)
+            console.error(error)
             setUploading(false)
         }
     }

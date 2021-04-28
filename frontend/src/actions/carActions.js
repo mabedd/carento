@@ -138,7 +138,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
     }
 }
 
-export const createCar = (image, companyId, carPlate, carModel, color, totalMileage, price, vendor, size, gasoline) => async (dispatch, getState) => {
+export const createCar = (carPlate, carModel, color, totalMileage, price, vendor, size, gasoline) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CAR_CREATE_REQUEST,
@@ -154,7 +154,7 @@ export const createCar = (image, companyId, carPlate, carModel, color, totalMile
             },
         }
 
-        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { image, companyId, carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
+        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
         console.log(data)
         //console.log(size)
         dispatch({
@@ -244,7 +244,7 @@ export const updateCar = (car) => async (dispatch, getState) => {
     }
 }
 
-export const rateCar = (carId, rate) => async (dispatch, getState) => {
+export const rateCar = (carId, rating) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CAR_RATE_REQUEST,
@@ -261,11 +261,13 @@ export const rateCar = (carId, rate) => async (dispatch, getState) => {
             },
         }
 
-        await axios.put(
+        const data = await axios.put(
             `http://localhost:5000/api/car/rate-car/${carId}`,
-            rate,
+            rating,
             config
         )
+
+        console.log(data)
 
         dispatch({
             type: CAR_RATE_SUCCESS,
