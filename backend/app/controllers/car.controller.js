@@ -36,11 +36,12 @@ class CarsController extends BaseController {
           success: 1,
         });
       }
-      const company = await RentalCompany.findById({_id : req.user._id}) 
+      const company = await RentalCompany.findById({ _id: req.user._id })
+      console.log(company)
       const newCar = new Car({
         ...params,
         companyId: req.user._id,
-        companyName: req.company.companyName
+        companyName: company.companyName
       });
       const carSaved = await newCar.save();
       if (carSaved) {
@@ -61,7 +62,7 @@ class CarsController extends BaseController {
   };
   deleteCar = async (req, res, next) => {
     try {
-      const car = await Car.deleteOne({ _id: req.params.id}, { new: true });
+      const car = await Car.deleteOne({ _id: req.params.id }, { new: true });
       if (!car) {
         return res.status(200).json({ message: 'car not found with this id', success: 0 });
       }
@@ -104,7 +105,7 @@ class CarsController extends BaseController {
       const user = await Car.findById({ _id: req.params.id });
 
       if (!user) {
-        return res.status(404).json({ msg: Constants.messages.userNotFound,success : 0 });
+        return res.status(404).json({ msg: Constants.messages.userNotFound, success: 0 });
       }
 
       return res.status(200).json({ msg: Constants.messages.success, user: user });
@@ -114,13 +115,14 @@ class CarsController extends BaseController {
     }
   };
   rateCar = async (req, res, next) => {
+
     try {
       // find user by its id
       // find user by its id and update
       const user = await Car.findById({ _id: req.params.id });
 
       if (!user) {
-        return res.status(404).json({ msg: Constants.messages.userNotFound, success:0 });
+        return res.status(404).json({ msg: Constants.messages.userNotFound, success: 0 });
       }
       if (user.numberOfRents == 0) {
         user.rating = req.body.rating,
@@ -145,7 +147,7 @@ class CarsController extends BaseController {
       const user = await Car.findById({ _id: req.params.id });
 
       if (!user) {
-        return res.status(404).json({ msg: Constants.messages.userNotFound ,success:0});
+        return res.status(404).json({ msg: Constants.messages.userNotFound, success: 0 });
       }
       user.status = true;
       user.save()

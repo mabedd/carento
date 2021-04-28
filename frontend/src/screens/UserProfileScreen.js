@@ -8,6 +8,8 @@ import Loader from '../components/Loader'
 import Rating from '../components/Rating'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { listRenterOrders } from '../actions/orderActions'
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
+
 
 const UserProfileScreen = ({ location, history }) => {
 
@@ -42,18 +44,19 @@ const UserProfileScreen = ({ location, history }) => {
             history.push('/login')
         } else {
             if (!user.name) {
-                //dispatch({ type: USER_UPDATE_PROFILE_RESET })
+                dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
                 dispatch(listRenterOrders())
             } else {
                 setName(user.username)
                 setEmail(user.email)
+                setPhoneNumber(user.phoneNumber)
+                setNationalId(user.nationalId)
             }
         }
         //dispatch(getUserDetails('profile'))
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, userInfo, success])
 
-    //console.log(orders)
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -74,6 +77,7 @@ const UserProfileScreen = ({ location, history }) => {
                     {message && <Message variant='danger'>{message}</Message>}
                     {error && <Message variant='danger'>{error}</Message>}
                     {success && <Message variant='success'>Profile Updated</Message>}
+
                     <Form onSubmit={submitHandler}>
                         <Row>
                             <Col md={6}>

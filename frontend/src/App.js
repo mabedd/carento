@@ -65,7 +65,7 @@ function App() {
       <Route path='/company/car/:plate/edit' component={CompanyEditCarScreen} />
       <Route path='/company/orders' component={CompanyOrderListScreen} />
       <Route path='/company/profile' component={CompanyProfileScreen} />
-      <Route path='/company/renter/rate/:id' component={CompanyRateRenterScreen} />
+      <Route path='/company/renter/rate/:id' component={CompanyRateRenterScreen} />{/**  */}
 
       <Route path='/admin/home' component={AdminHomeScreen} />
       <Route path='/admin/carslist' component={AdminListCarsScreen} />
