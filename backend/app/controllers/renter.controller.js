@@ -43,7 +43,7 @@ class RenterController extends BaseController {
 				const hash = await bcrypt.hash(params['password'], salt);
 				params['password'] = hash;
 			}
-
+			
 			const newRenter = new Renter(
 				{
 					...params,
@@ -80,7 +80,9 @@ class RenterController extends BaseController {
 			if (!renter) {
 				return res.status(400).json({ msg: 'Incorrect username or password', success: 0 });
 			}
-
+			if (renter.isBlackListed) {
+				return res.status(200).json({ message: 'YOU ARE BLACKLISTED', success: 0 });
+			}
 			const isMatch = await bcrypt.compare(password, renter.password);
 			if (!isMatch) {
 				return res.status(400).json({ msg: 'Incorrect username or password', success: 0 });
@@ -114,7 +116,7 @@ class RenterController extends BaseController {
 				rating: renter.rating,
 				phoneNumber: renter.phoneNumber,
 			};
-			return res.status(200).json({ msg: 'Profile Updated Successfully!', renter: data });
+			return res.status(200).json({ msg: 'Profile Updated Successfully!', user: renter });
 		} catch (err) {
 			err.status = 400;
 			next(err);
@@ -169,6 +171,28 @@ class RenterController extends BaseController {
 	rateRenter = async (req, res, next) => {
 		try {
 			const user = await Renter.findById({ _id: req.params.id });
+
+			if (!user) {
+				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			}
+			if (user.numberOfRents == 0) {
+				user.rating = req.body.rating,
+					user.numberOfRents++
+			} else {
+				let newNumberOfRents = (user.numberOfRents) + 1;
+				user.rating = ((user.numberOfRents * user.rating) + (req.body.rating)) / newNumberOfRents;
+				user.numberOfRents++;
+			}
+			user.save()
+			return res.status(200).json({ msg: Constants.messages.success, user: user });
+		} catch (err) {
+			err.status = 400;
+			next(err);
+		}
+	};
+	findAllRentersByCompany = async (req, res, next) => {
+		try {
+			const user = await Rent.find({ _id: req.user.id });
 
 			if (!user) {
 				return res.status(404).json({ msg: Constants.messages.userNotFound });
