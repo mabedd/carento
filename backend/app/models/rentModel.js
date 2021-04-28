@@ -12,6 +12,10 @@ const rentSchema = new Schema(
       required: true,
       ref: 'renter'
     },
+    companyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
     mileage: {
       type: Number,
       //required : true

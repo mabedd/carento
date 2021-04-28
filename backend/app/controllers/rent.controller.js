@@ -30,11 +30,11 @@ class RentController extends BaseController {
       }
       car.status = false;
       car.save();
-      console.log(car);
+
       const newRent = new Rent({
         ...params,
         renterId: req.user._id,
-        //carId: req.params.id
+        companyId: car.companyId
       });
       const rentSaved = await newRent.save();
       if (rentSaved) {
@@ -81,6 +81,17 @@ class RentController extends BaseController {
         success: 1,
         car: rentSaved,
         count: rentSaved.length,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+  findAllRentsByCompany = async (req, res, next) => {
+    try {
+      const rentSaved = await Rent.find({ companyId: req.user._id });
+      res.status(200).json({
+        success: 1,
+        rent: rentSaved,
       });
     } catch (error) {
       next(error);

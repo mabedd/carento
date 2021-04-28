@@ -16,6 +16,8 @@ rent.get('/test', (req, res) => {
 rent.post('/add-rent', authenticate, RentController.addRent);
 rent.get('/find-renter-rents', authenticate, RentController.findAllRentsByRenter);
 rent.get('/find-car-rents/:id', authenticate, RentController.findAllRentsByCar);
+
+rent.get('/find-company-rents/', authenticate, RentController.findAllRentsByCompany);
 rent.get('/find-all-rents', RentController.findAllRents);
 rent.get('/get-rent-details/:id', authenticate, RentController.getRentDetails);
 

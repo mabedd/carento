@@ -64,7 +64,7 @@ class RentalCompanyController extends BaseController {
 			if (!rentalCompany) {
 				return res.status(400).json({ msg: 'Incorrect username or password', success: 0 });
 			}
-			if (renter.status) {
+			if (!rentalCompany.status) {
 				return res.status(200).json({ message: 'PLEASE WAIT FOR ACTIVATION', success: 0 });
 			}
 
