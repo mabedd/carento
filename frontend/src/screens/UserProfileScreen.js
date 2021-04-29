@@ -148,7 +148,7 @@ const UserProfileScreen = ({ location, history }) => {
                         <Row className='justify-content-center'>
                             <Form.Group controlId='rating'>
                                 <Form.Label>Rating</Form.Label>
-                                <Rating />
+                                <Rating value={user.rating} />
                             </Form.Group>
                         </Row>
 

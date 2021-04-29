@@ -67,6 +67,19 @@ app.use(`${Constants.apiPrefix}/upload`, upload);
 const __dirname = path.resolve() //dirname doesnt work with es modules -- this way it works correctly
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
+// !! CHECK for production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  )
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running....')
+  })
+}
+
 app.listen(Constants.port, () => {
   // eslint-disable-next-line no-console
   console.log(`

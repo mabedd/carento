@@ -10,11 +10,11 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/')
     },
     filename(req, file, cb) {
-        filename - date - fileextension
-        cb(null, `${file.fieldname}-${Date.now().toISOString().replace(/:/g, '-')}${path.extname(file.originalname)}`)
-        // var fileFormat = (file.originalname).split(".");
-        // cb(null, file.fieldname + '-' + new Date().toISOString().replace(/:/g, '-') + '.' + fileFormat[fileFormat.length - 1]);
-    }
+        cb(
+            null,
+            `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+        )
+    },
 })
 
 function checkFileType(file, cb) {

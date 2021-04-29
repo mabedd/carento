@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { Router } from 'express';
-import AdminController from '../controllers/admin.controller';
+import AdminController from '../controllers/admin.controller.js';
 import authenticate from '../middleware/authenticate.js';
 import errorHandler from '../middleware/error-handler.js';
 
