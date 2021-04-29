@@ -24,7 +24,7 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         //make request
-        const { data } = await axios.post('http://localhost:5000/api/renter/login', { email, password }, config)
+        const { data } = await axios.post('/api/renter/login', { email, password }, config)
 
         dispatch({
             type: USER_LOGIN_SUCCESS,

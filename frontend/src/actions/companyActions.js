@@ -22,7 +22,7 @@ export const loginCompany = (email, password) => async (dispatch) => {
         }
 
         //make request
-        const { data } = await axios.post('http://localhost:5000/api/rental-company/login', { email, password }, config)
+        const { data } = await axios.post('/api/rental-company/login', { email, password }, config)
 
         console.log(data.id)
 

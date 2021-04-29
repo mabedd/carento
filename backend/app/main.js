@@ -61,13 +61,9 @@ app.use(`${Constants.apiPrefix}/ticket`, ticket);
 app.use(`${Constants.apiPrefix}/admin`, admin);
 app.use(`${Constants.apiPrefix}/upload`, upload);
 
-// const __dirname = path.resolve()
-// app.use(`${Constants.apiPrefix}/uploads`, express.static(path.join(__dirname, '/uploads')))
-
-
-
-
-
+//make uploads folder static
+const __dirname = path.resolve() //dirname doesnt work with es modules -- this way it works correctly
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.listen(Constants.port, () => {
   // eslint-disable-next-line no-console

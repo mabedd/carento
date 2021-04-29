@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-import { listCarDetails, createCar, addCar } from '../actions/carActions'
+import { listCarDetails, createCar } from '../actions/carActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { CAR_UPDATE_RESET } from '../constants/carConstants'
@@ -104,7 +104,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                 },
             }
 
-            const { data } = await axios.post('http://localhost:5000/api/upload', formData, config)
+            const { data } = await axios.post('/api/upload', formData, config)
             console.log(data)
 
             setImage(data)
