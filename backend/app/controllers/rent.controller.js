@@ -1,5 +1,8 @@
 import BaseController from './base.controller.js';
 import Rent from '../models/rentModel.js';
+import Company from '../models/renatalCompanyModel.js';
+import Renter from '../models/renterModel.js';
+
 import Constants from '../config/constants.js';
 import Car from '../models/carModel.js'
 
@@ -29,15 +32,28 @@ class RentController extends BaseController {
         return res.status(200).json({ message: 'car is not available or not found', success: 0 });
       }
       car.status = false;
-      car.save();
-
+      await car.save();
       const newRent = new Rent({
         ...params,
         renterId: req.user._id,
         companyId: car.companyId
       });
       const rentSaved = await newRent.save();
+      
       if (rentSaved) {
+        const company = await  Company.findById({_id : car.companyId})
+        const user = await  Renter.findById({_id : req.user._id})
+        let flag = false
+        company.renters.forEach(renter => {
+          if (renter && renter._id == req.user._id){
+            flag = true
+             
+          }
+        });
+        if(!flag){
+          company.renters.push(user)
+        }
+        company.save() 
         res.status(200).json({
           message: 'rent has been saved',
           success: 1,
@@ -113,6 +129,7 @@ class RentController extends BaseController {
       next(err);
     }
   };
+
 }
 
 export default new RentController();

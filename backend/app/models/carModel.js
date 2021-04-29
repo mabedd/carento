@@ -11,7 +11,7 @@ const carSchema = new Schema(
     },
     companyName: {
       type: String,
-      required: true,
+      // required: true,
 
     },
     image: {
