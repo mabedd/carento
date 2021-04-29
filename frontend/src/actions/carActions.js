@@ -18,7 +18,7 @@ export const listCars = (keyword = '', pageNumber = '') => async (
         dispatch({ type: CAR_LIST_REQUEST })
 
         const { data } = await axios.get(
-            `http://localhost:5000/api/car/find-all-cars`
+            `/api/car/find-all-cars`
         )
 
         console.log(data.car)
@@ -56,7 +56,7 @@ export const listCompanyCars = (keyword = '', pageNumber = '') => async (
         }
 
         const { data } = await axios.get(
-            `http://localhost:5000/api/car/find-company-cars`,
+            `/api/car/find-company-cars`,
             config
         )
 
@@ -83,7 +83,7 @@ export const listCarDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: CAR_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`http://localhost:5000/api/car/get-car-details/${id}`)
+        const { data } = await axios.get(`/api/car/get-car-details/${id}`)
 
         //console.log(data)
 
@@ -118,7 +118,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
             },
         }
 
-        await axios.delete(`http://localhost:5000/api/car/delete-car/${id}`, config)
+        await axios.delete(`/api/car/delete-car/${id}`, config)
 
         dispatch({
             type: CAR_DELETE_SUCCESS,
@@ -154,7 +154,7 @@ export const createCar = (carPlate, carModel, color, totalMileage, price, vendor
             },
         }
 
-        const { data } = await axios.post(`http://localhost:5000/api/car/add-car`, { carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
+        const { data } = await axios.post(`/api/car/add-car`, { carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
         console.log(data)
         //console.log(size)
         dispatch({
@@ -194,7 +194,7 @@ export const addCar = form => {
                 Authorization: `${companyInfo.token}`,
             },
         }
-        const res = await axios.post(`http://localhost:5000/api/car/add-car`, form, config)
+        const res = await axios.post(`/api/car/add-car`, form, config)
         console.log(res)
     }
 }
@@ -219,7 +219,7 @@ export const updateCar = (car) => async (dispatch, getState) => {
 
         //TODO: check
         const { data } = await axios.put(
-            `http://localhost:5000/api/cars/${car.plate}`,
+            `/api/cars/${car.plate}`,
             car,
             config
         )
@@ -262,7 +262,7 @@ export const rateCar = (carId, rating) => async (dispatch, getState) => {
         }
 
         const data = await axios.put(
-            `http://localhost:5000/api/car/rate-car/${carId}`,
+            `/api/car/rate-car/${carId}`,
             rating,
             config
         )

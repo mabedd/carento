@@ -4,7 +4,8 @@
     "start": "node backend/app/main",
     "server": "nodemon backend/app/main",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "deployfrontend": "npm run build --prefix frontend"
   },
   "devDependencies": {
     "concurrently": "^6.0.0",

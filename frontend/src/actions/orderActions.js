@@ -27,7 +27,7 @@ export const createOrder = (duration, price, carId) => async (dispatch, getState
             },
         }
 
-        const { data } = await axios.post(`http://localhost:5000/api/rent/add-rent`, { duration, price, carId }, config)
+        const { data } = await axios.post(`/api/rent/add-rent`, { duration, price, carId }, config)
         console.log(data)
 
         dispatch({
@@ -68,7 +68,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 
         console.log(data)
 
-        const { data } = await axios.get(`http://localhost:5000/api/rents/${id}`, config)
+        const { data } = await axios.get(`/api/rents/${id}`, config)
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -108,7 +108,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
         }
 
         const { data } = await axios.put(
-            `http://localhost:5000/api/orders/${orderId}/pay`,
+            `/api/orders/${orderId}/pay`,
             paymentResult,
             config
         )
@@ -149,7 +149,7 @@ export const listOrders = () => async (dispatch, getState) => {
         }
 
 
-        const { data } = await axios.get(`http://localhost:5000/api/rent/find-all-rents`, config)
+        const { data } = await axios.get(`/api/rent/find-all-rents`, config)
 
         console.log(data)
 
@@ -189,7 +189,7 @@ export const listRenterOrders = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`http://localhost:5000/api/rent/find-renter-rents`, config)
+        const { data } = await axios.get(`/api/rent/find-renter-rents`, config)
 
         console.log(data)
 

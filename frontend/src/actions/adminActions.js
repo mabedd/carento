@@ -22,7 +22,7 @@ export const loginAdmin = (email, password) => async (dispatch) => {
         }
 
         //make request
-        const { data } = await axios.post('http://localhost:5000/api/admin/login', { email, password }, config)
+        const { data } = await axios.post('/api/admin/login', { email, password }, config)
 
         dispatch({
             type: ADMIN_LOGIN_SUCCESS,
@@ -61,7 +61,7 @@ export const activateCompany = (id) => async (dispatch, getState) => {
         }
 
         await axios.put(
-            `http://localhost:5000/api/rental-company/activate/${id}`,
+            `/api/rental-company/activate/${id}`,
             config
         )
 
@@ -103,7 +103,7 @@ export const blacklistRenter = (id) => async (dispatch, getState) => {
         }
 
         await axios.put(
-            `http://localhost:5000/api/renter/blacklist/${id}`,
+            `/api/renter/blacklist/${id}`,
             config
         )
 

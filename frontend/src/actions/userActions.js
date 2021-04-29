@@ -71,7 +71,7 @@ export const register = (username, nationalId, phoneNumber, email, password, dat
         }
 
         //make request
-        const { data } = await axios.post('http://localhost:5000/api/renter/register', { username, nationalId, phoneNumber, email, password, dateOfBirth }, config)
+        const { data } = await axios.post('/api/renter/register', { username, nationalId, phoneNumber, email, password, dateOfBirth }, config)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -117,7 +117,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         }
 
         //get request to user profile
-        const { data } = await axios.get(`http://localhost:5000/api/renter/get-profile`, config)
+        const { data } = await axios.get(`/api/renter/get-profile`, config)
         console.log(data)
 
         dispatch({
@@ -160,7 +160,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         }
 
         //put request to user profile
-        const { data } = await axios.put(`http://localhost:5000/api/renter/change-profile`, user, config)
+        const { data } = await axios.put(`/api/renter/change-profile`, user, config)
 
         dispatch({
             type: USER_UPDATE_PROFILE_SUCCESS,
@@ -208,7 +208,7 @@ export const RaiseTicket = (rentId, ticket) => async (
             },
         }
 
-        await axios.post(`http://localhost:5000/api/ticket/raise-ticket-renter`, ticket, config)
+        await axios.post(`/api/ticket/raise-ticket-renter`, ticket, config)
 
         dispatch({
             type: USER_RAISE_TICKET_SUCCESS,
@@ -248,7 +248,7 @@ export const companyRegister = (companyName, email, phoneNumber, password) => as
         }
 
         //make request
-        const { data } = await axios.post('http://localhost:5000/api/rental-company/register', { companyName, email, phoneNumber, password }, config)
+        const { data } = await axios.post('/api/rental-company/register', { companyName, email, phoneNumber, password }, config)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -291,7 +291,7 @@ export const listUsers = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`http://localhost:5000/api/renter/find-all-renters`, config)
+        const { data } = await axios.get(`/api/renter/find-all-renters`, config)
         console.log(data);
 
         dispatch({
@@ -331,7 +331,7 @@ export const listCompanyUsers = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`http://localhost:5000/api/renter/find-all-renters`, config)
+        const { data } = await axios.get(`/api/renter/find-all-renters`, config)
         //console.log(data);
         dispatch({
             type: USER_LIST_SUCCESS,
@@ -372,7 +372,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
             },
         }
 
-        await axios.delete(`http://localhost:5000/api/users/${id}`, config)
+        await axios.delete(`/api/users/${id}`, config)
 
         dispatch({ type: USER_DELETE_SUCCESS })
     } catch (error) {
@@ -407,7 +407,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.put(`http://localhost:5000/api/renter/change-profile/${user._id}`, user, config)
+        const { data } = await axios.put(`/api/renter/change-profile/${user._id}`, user, config)
 
         dispatch({ type: USER_UPDATE_SUCCESS })
 

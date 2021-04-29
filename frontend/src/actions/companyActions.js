@@ -61,7 +61,7 @@ export const listCompanies = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`http://localhost:5000/api/rental-company/find-all-companies`, config)
+        const { data } = await axios.get(`/api/rental-company/find-all-companies`, config)
         //console.log(data)
         dispatch({
             type: COMPANY_LIST_SUCCESS,
@@ -102,7 +102,7 @@ export const getCompanyDetails = (id) => async (dispatch, getState) => {
         }
 
         //get request to user profile
-        const { data } = await axios.get(`http://localhost:5000/api/rental-company/get-profile`, config)
+        const { data } = await axios.get(`/api/rental-company/get-profile`, config)
         //console.log(data)
 
         dispatch({
@@ -144,7 +144,7 @@ export const listCompanyRenters = (id) => async (dispatch, getState) => {
         }
 
         //get request to user profile
-        const { data } = await axios.get(`http://localhost:5000/api/rental-company/get-profile`, config)
+        const { data } = await axios.get(`/api/rental-company/get-profile`, config)
         console.log(data)
 
         dispatch({
