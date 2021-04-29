@@ -10,8 +10,10 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/')
     },
     filename(req, file, cb) {
-        //filename-date-fileextension
-        cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
+        filename - date - fileextension
+        cb(null, `${file.fieldname}-${Date.now().toISOString().replace(/:/g, '-')}${path.extname(file.originalname)}`)
+        // var fileFormat = (file.originalname).split(".");
+        // cb(null, file.fieldname + '-' + new Date().toISOString().replace(/:/g, '-') + '.' + fileFormat[fileFormat.length - 1]);
     }
 })
 
@@ -39,7 +41,7 @@ const upload = multer({
 
 router.post('/', upload.single('image'), (req, res) => {
     //send image path
-    res.send(`/${req.file.path}`)
+    res.send(`/ ${req.file.path}`)
 })
 
 
