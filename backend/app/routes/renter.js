@@ -16,7 +16,7 @@ renter.get('/test', (req, res) => {
 renter.post('/register', RenterController.register);
 renter.post('/login', RenterController.login);
 renter.get('/get-profile', authenticate, RenterController.getProfile);
-renter.post('/change-profile', authenticate, RenterController.changeProfile);
+renter.put('/change-profile', authenticate, RenterController.changeProfile);
 renter.get('/find-all-renters', authenticate, RenterController.findAllRenters);
 renter.put('/blacklist/:id', RenterController.blackList);
 renter.put('/rate-car/:id', RenterController.rateRenter);

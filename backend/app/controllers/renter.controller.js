@@ -98,25 +98,31 @@ class RenterController extends BaseController {
 		}
 	};
 	changeProfile = async (req, res, next) => {
-		// filter body data with whitelist data
-		const params = this.filterParams(req.body, this.whitelist);
 		try {
-			// find user by its id and update
-			const renter = await Renter.findByIdAndUpdate({ _id: req.renter._id }, { $set: params }, { new: true });
-			if (!renter) {
-				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			const user = await Renter.findById({_id : req.user._id})
+			if (req.body.email){
+				console.log(req.body.email);
+				if(!Renter.findOne({email : req.body.email})){
+					return res.status(200).json({ message: 'another user has the same email', success: 0 });
+				}
+				user.email = req.body.email
 			}
-			const data = {
-				id: renter._id,
-				email: renter.email,
-				username: renter.username,
-				nationalId: renter.nationalId,
-				password: renter.password,
-				dateOfBirth: renter.dateOfBirth,
-				rating: renter.rating,
-				phoneNumber: renter.phoneNumber,
-			};
-			return res.status(200).json({ msg: 'Profile Updated Successfully!', user: renter });
+			if (req.body.username){
+				if(!Renter.findOne({username : req.body.username})){
+					return res.status(200).json({ message: 'another user has the same username', success: 0 });
+				}
+				user.username = req.body.username
+			}
+			if (req.body.phoneNumber){
+				user.phoneNumber = req.body.phoneNumber
+			}
+			if (req.body.password){
+				user.password = await bcrypt.hash(req.body.password, 10);
+			}
+			user.save()
+			return res.status(200).json({ msg: Constants.messages.success, user: user });
+
+			
 		} catch (err) {
 			err.status = 400;
 			next(err);
@@ -190,28 +196,28 @@ class RenterController extends BaseController {
 			next(err);
 		}
 	};
-	findAllRentersByCompany = async (req, res, next) => {
-		try {
-			const user = await Rent.find({ _id: req.user.id });
+	// findAllRentersByCompany = async (req, res, next) => {
+	// 	try {
+	// 		const user = await Rent.find({ _id: req.user.id });
 
-			if (!user) {
-				return res.status(404).json({ msg: Constants.messages.userNotFound });
-			}
-			if (user.numberOfRents == 0) {
-				user.rating = req.body.rating,
-					user.numberOfRents++
-			} else {
-				let newNumberOfRents = (user.numberOfRents) + 1;
-				user.rating = ((user.numberOfRents * user.rating) + (req.body.rating)) / newNumberOfRents;
-				user.numberOfRents++;
-			}
-			user.save()
-			return res.status(200).json({ msg: Constants.messages.success, user: user });
-		} catch (err) {
-			err.status = 400;
-			next(err);
-		}
-	};
+	// 		if (!user) {
+	// 			return res.status(404).json({ msg: Constants.messages.userNotFound });
+	// 		}
+	// 		if (user.numberOfRents == 0) {
+	// 			user.rating = req.body.rating,
+	// 				user.numberOfRents++
+	// 		} else {
+	// 			let newNumberOfRents = (user.numberOfRents) + 1;
+	// 			user.rating = ((user.numberOfRents * user.rating) + (req.body.rating)) / newNumberOfRents;
+	// 			user.numberOfRents++;
+	// 		}
+	// 		user.save()
+	// 		return res.status(200).json({ msg: Constants.messages.success, user: user });
+	// 	} catch (err) {
+	// 		err.status = 400;
+	// 		next(err);
+	// 	}
+	// };
 }
 
 export default new RenterController();

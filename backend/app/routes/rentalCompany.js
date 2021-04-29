@@ -16,7 +16,7 @@ users.get('/test', (req, res) => {
 users.post('/register', RentalCompanyController.register);
 users.post('/login', RentalCompanyController.login);
 
-users.post('/change-profile', authenticate, RentalCompanyController.changeProfile);
+users.put('/change-profile', authenticate, RentalCompanyController.changeProfile);
 
 users.get('/get-profile', authenticate, RentalCompanyController.getProfile);
 users.get('/find-all-companies', authenticate, RentalCompanyController.findAllCompanies);

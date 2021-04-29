@@ -86,22 +86,31 @@ class RentalCompanyController extends BaseController {
 		}
 	};
 	changeProfile = async (req, res, next) => {
-		// filter body data with whitelist data
-		const params = this.filterParams(req.body, this.whitelist);
 		try {
-			// find user by its id and update
-			const rentalCompany = await RentalCompany.findByIdAndUpdate({ _id: req.rentalCompany._id }, { $set: params }, { new: true });
-			if (!rentalCompany) {
-				return res.status(404).json({ msg: Constants.messages.userNotFound });
+			const user = await RentalCompany.findById({_id : req.user._id})
+			if (req.body.email){
+				console.log(req.body.email);
+				if(!RentalCompany.findOne({email : req.body.email})){
+					return res.status(200).json({ message: 'another user has the same email', success: 0 });
+				}
+				user.email = req.body.email
 			}
-			const data = {
-				id: rentalCompany._id,
-				email: rentalCompany.email,
-				companyName: rentalCompany.companyName,
-				password: rentalCompany.password,
-				phoneNumber: rentalCompany.phoneNumber,
-			};
-			return res.status(200).json({ msg: 'Profile Updated Successfully!', rentalCompany: data });
+			if (req.body.username){
+				if(!RentalCompany.findOne({username : req.body.username})){
+					return res.status(200).json({ message: 'another user has the same username', success: 0 });
+				}
+				user.username = req.body.username
+			}
+			if (req.body.phoneNumber){
+				user.phoneNumber = req.body.phoneNumber
+			}
+			if (req.body.password){
+				user.password = await bcrypt.hash(req.body.password, 10);
+			}
+			user.save()
+			return res.status(200).json({ msg: Constants.messages.success, user: user });
+
+			
 		} catch (err) {
 			err.status = 400;
 			next(err);
