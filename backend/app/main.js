@@ -61,6 +61,8 @@ app.use(`${Constants.apiPrefix}/ticket`, ticket);
 app.use(`${Constants.apiPrefix}/admin`, admin);
 app.use(`${Constants.apiPrefix}/upload`, upload);
 
+//deployment
+
 //make uploads folder static
 const __dirname = path.resolve() //dirname doesnt work with es modules -- this way it works correctly
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))

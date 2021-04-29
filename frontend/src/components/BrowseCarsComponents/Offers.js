@@ -51,7 +51,7 @@ const Offers = ({ history, match }) => {
                     {cars ? cars.map((car) => (
                         <div className="row p-2 mb-3 bg-white border rounded">
                             <div className="col-md-3 mt-1">
-                                <img className="img-fluid img-responsive rounded product-image" src={car.image}></img>
+                                <img className="img-fluid img-responsive rounded product-image" src='/images/featuredOffers2.jpg'></img>
                             </div>
 
                             <div className="col-md-6 mt-1">
