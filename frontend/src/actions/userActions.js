@@ -6,7 +6,7 @@ import {
     USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS,
     USER_UPDATE_PROFILE_FAIL, USER_UPDATE_PROFILE_REQUEST, USER_UPDATE_PROFILE_SUCCESS,
     USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAIL,
-    USER_UPDATE_SUCCESS, USER_UPDATE_FAIL, USER_UPDATE_REQUEST
+    USER_UPDATE_SUCCESS, USER_UPDATE_FAIL, USER_UPDATE_REQUEST, USER_RAISE_TICKET_REQUEST, USER_RAISE_TICKET_FAIL, USER_RAISE_TICKET_SUCCESS
 } from '../constants/userConstants'
 
 // WORKS FINE 
@@ -183,6 +183,46 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         }
         dispatch({
             type: USER_UPDATE_PROFILE_FAIL,
+            payload: message,
+        })
+    }
+}
+
+export const RaiseTicket = (rentId, ticket) => async (
+    dispatch,
+    getState
+) => {
+    try {
+        dispatch({
+            type: USER_RAISE_TICKET_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `${userInfo.token}`,
+            },
+        }
+
+        await axios.post(`http://localhost:5000/api/ticket/raise-ticket-renter`, ticket, config)
+
+        dispatch({
+            type: USER_RAISE_TICKET_SUCCESS,
+        })
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message
+        if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+        }
+        dispatch({
+            type: USER_RAISE_TICKET_FAIL,
             payload: message,
         })
     }

@@ -176,6 +176,7 @@ const UserProfileScreen = ({ location, history }) => {
                             <th>END DATE</th>
                             <th>STATUS</th>
                             <th>RATE</th>
+                            <th>RAISE TICKET</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -196,6 +197,11 @@ const UserProfileScreen = ({ location, history }) => {
                                 <td>
                                     <LinkContainer to={`/rate/${order.carId}`}>
                                         <Button className='btn btn-primary'>Rate</Button>
+                                    </LinkContainer>
+                                </td>
+                                <td>
+                                    <LinkContainer to={`/renter/raiseticket/${order._id}`}>
+                                        <Button className='btn btn-primary'>Raise</Button>
                                     </LinkContainer>
                                 </td>
                             </tr>

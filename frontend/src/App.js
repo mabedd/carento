@@ -16,6 +16,7 @@ import UserProfileScreen from './screens/UserProfileScreen'
 import RentSummaryScreen from './screens/RentSummaryScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import RenterRateCarScreen from './screens/RenterRateCarScreen'
+import RenterRaiseTicketScreen from './screens/RenterRaiseTicketScreen'
 
 //Company View
 import CompanyHomeScreen from './screens/CompanyHomeScreen'
@@ -55,6 +56,7 @@ function App() {
       <Route path='/placeorder' component={PlaceOrderScreen} />
       <Route path='/profile' component={UserProfileScreen} />
       <Route path='/rate/:id' component={RenterRateCarScreen} />
+      <Route path='/renter/raiseticket/:id' component={RenterRaiseTicketScreen} />
 
       <Route path='/company/home' component={CompanyHomeScreen} />
       <Route path='/company/register' component={CompanyRegister} />

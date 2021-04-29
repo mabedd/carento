@@ -15,8 +15,8 @@ ticket.get('/test', (req, res) => {
 });
 ticket.post('/raise-ticket-company', authenticate, TicketController.raiseTicketByCompany);
 ticket.post('/raise-ticket-renter', authenticate, TicketController.raiseTicketByRenter);
-ticket.get('/find-all-tickets',authenticate, TicketController.findAllTickets);
-ticket.get('/get-ticket-details/:id',authenticate, TicketController.getTicketDetails);
+ticket.get('/find-all-tickets', authenticate, TicketController.findAllTickets);
+ticket.get('/get-ticket-details/:id', authenticate, TicketController.getTicketDetails);
 
 
 ticket.use(errorHandler);
