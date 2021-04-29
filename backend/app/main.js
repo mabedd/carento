@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import multer from 'multer'
 import renter from './routes/renter.js';
 import rentalCompany from './routes/rentalCompany.js';
 import car from './routes/car.js'
@@ -60,8 +61,10 @@ app.use(`${Constants.apiPrefix}/ticket`, ticket);
 app.use(`${Constants.apiPrefix}/admin`, admin);
 app.use(`${Constants.apiPrefix}/upload`, upload);
 
-const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+// const __dirname = path.resolve()
+// app.use(`${Constants.apiPrefix}/uploads`, express.static(path.join(__dirname, '/uploads')))
+
+
 
 
 
