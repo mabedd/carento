@@ -6,21 +6,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listUsers } from '../actions/userActions'
+import { listCompanyRenters } from '../actions/companyActions'
 
 const CompanyUserListScreen = () => {
 
     const dispatch = useDispatch()
 
-    const userList = useSelector(state => state.userList)
-    const { loading, error, users } = userList
+    const companyListRenters = useSelector(state => state.companyListRenters)
+    const { loading, error, company } = companyListRenters
 
     const companyLogin = useSelector(state => state.companyLogin)
     const { companyInfo } = companyLogin
 
     useEffect(() => {
         //TODO: check if user is company or not and redirect to login if not
-        dispatch(listUsers())
+        dispatch(listCompanyRenters())
     }, [dispatch])
 
     //TODO: add delete handler
@@ -45,8 +45,17 @@ const CompanyUserListScreen = () => {
                             <th>RATING</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        {/**TODO: loop throguh users and display their info */}
+                        {company.renters && company.renters.length > 0 && company.renters.map((renter) => (
+                            <tr key={renter._id}>
+                                <td>{company.renter.username}</td>
+                                <td>{renter.email}</td>
+                                <td>{renter.phoneNumber}</td>
+                                <td>{renter.nationalId}</td>
+                                <td><Rating value={renter.rating} /></td>
+                            </tr>
+                        ))}
                     </tbody>
                 </Table>
             </Container>

@@ -7,7 +7,7 @@ import { cartReducer } from './reducers/cartReducers'
 import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListReducer, orderListRenterReducer } from './reducers/orderReducers'
 import { carListReducer, carDeleteReducer, carDetailsReducer, carCreateReducer, carUpdateReducer, carRateReducer } from './reducers/carReducers'
 import { adminLoginReducer, adminActivateCompanyReducer, adminBlacklistCompanyReducer } from './reducers/adminReducers'
-import { companyLoginReducer, companyListReducer, companyDetailsReducer } from './reducers/companyReducers'
+import { companyLoginReducer, companyListReducer, companyDetailsReducer, companyListRentersReducer } from './reducers/companyReducers'
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -20,6 +20,7 @@ const reducer = combineReducers({
     userUpdate: userUpdateReducer,
     companyLogin: companyLoginReducer,
     companyDetails: companyDetailsReducer,
+    companyListRenters: companyListRentersReducer,
     //admin reducers
     adminLogin: adminLoginReducer,
     adminActivateCompany: adminActivateCompanyReducer,

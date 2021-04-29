@@ -43,7 +43,7 @@ class RenterController extends BaseController {
 				const hash = await bcrypt.hash(params['password'], salt);
 				params['password'] = hash;
 			}
-			
+
 			const newRenter = new Renter(
 				{
 					...params,
@@ -81,7 +81,7 @@ class RenterController extends BaseController {
 				return res.status(400).json({ msg: 'Incorrect username or password', success: 0 });
 			}
 			if (renter.isBlackListed) {
-				return res.status(200).json({ message: 'YOU ARE BLACKLISTED', success: 0 });
+				return res.status(400).json({ message: 'YOU ARE BLACKLISTED', success: 0 });
 			}
 			const isMatch = await bcrypt.compare(password, renter.password);
 			if (!isMatch) {
@@ -99,30 +99,30 @@ class RenterController extends BaseController {
 	};
 	changeProfile = async (req, res, next) => {
 		try {
-			const user = await Renter.findById({_id : req.user._id})
-			if (req.body.email){
+			const user = await Renter.findById({ _id: req.user._id })
+			if (req.body.email) {
 				console.log(req.body.email);
-				if(!Renter.findOne({email : req.body.email})){
+				if (!Renter.findOne({ email: req.body.email })) {
 					return res.status(200).json({ message: 'another user has the same email', success: 0 });
 				}
 				user.email = req.body.email
 			}
-			if (req.body.username){
-				if(!Renter.findOne({username : req.body.username})){
+			if (req.body.username) {
+				if (!Renter.findOne({ username: req.body.username })) {
 					return res.status(200).json({ message: 'another user has the same username', success: 0 });
 				}
 				user.username = req.body.username
 			}
-			if (req.body.phoneNumber){
+			if (req.body.phoneNumber) {
 				user.phoneNumber = req.body.phoneNumber
 			}
-			if (req.body.password){
+			if (req.body.password) {
 				user.password = await bcrypt.hash(req.body.password, 10);
 			}
 			user.save()
 			return res.status(200).json({ msg: Constants.messages.success, user: user });
 
-			
+
 		} catch (err) {
 			err.status = 400;
 			next(err);

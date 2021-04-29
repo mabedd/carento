@@ -1,7 +1,8 @@
 import {
     COMPANY_LOGIN_FAIL, COMPANY_LOGIN_REQUEST, COMPANY_LOGIN_SUCCESS, COMPANY_LOGOUT,
     COMPANY_LIST_FAIL, COMPANY_LIST_REQUEST, COMPANY_LIST_SUCCESS, COMPANY_LIST_RESET,
-    COMPANY_DETAILS_FAIL, COMPANY_DETAILS_REQUEST, COMPANY_DETAILS_SUCCESS, COMPANY_DETAILS_RESET
+    COMPANY_DETAILS_FAIL, COMPANY_DETAILS_REQUEST, COMPANY_DETAILS_SUCCESS, COMPANY_DETAILS_RESET,
+    COMPANY_LIST_RENTERS_REQUEST, COMPANY_LIST_RENTERS_SUCCESS, COMPANY_LIST_RENTERS_FAIL
 } from '../constants/compnayConstants'
 
 export const companyLoginReducer = (state = {}, action) => {
@@ -29,6 +30,19 @@ export const companyListReducer = (state = { companies: [] }, action) => {
             return { loading: false, error: action.payload }
         case COMPANY_LIST_RESET:
             return { companies: [] }
+        default:
+            return state
+    }
+}
+
+export const companyListRentersReducer = (state = { company: {} }, action) => {
+    switch (action.type) {
+        case COMPANY_LIST_RENTERS_REQUEST:
+            return { loading: true }
+        case COMPANY_LIST_RENTERS_SUCCESS:
+            return { loading: false, company: action.payload }
+        case COMPANY_LIST_RENTERS_FAIL:
+            return { loading: false, error: action.payload }
         default:
             return state
     }
