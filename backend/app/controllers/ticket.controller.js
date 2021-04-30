@@ -1,6 +1,8 @@
 import BaseController from './base.controller.js';
 import Ticket from '../models/ticketModel.js';
 import Constants from '../config/constants.js';
+import Rent from '../models/ticketModel.js';
+
 
 
 class TicketController extends BaseController {
@@ -18,15 +20,19 @@ class TicketController extends BaseController {
   raiseTicketByRenter = async (req, res, next) => {
     const params = this.filterParams(req.body, this.whitelist);
     try {
+      const rent = await Rent.findOne({ _id: req.params.id });
+
       
         const newTicket = new Ticket({
           ...params,
           raisedByRenter : req.user._id,
-          raisedOnCompany : req.body.raisedOnCompany,
-          rentId : req.body.rentId
+          raisedOnCompany : req.rent.companyId,
+          rentId : req.rent._id
         });
         const ticketSaved = await newTicket.save();
         if (ticketSaved) {
+          rent.raiseTicketByRenter = true;
+          rent.save();
           res.status(200).json({
             message: 'ticket has been saved',
             success: 1,
@@ -44,15 +50,17 @@ class TicketController extends BaseController {
   raiseTicketByCompany = async (req, res, next) => {
     const params = this.filterParams(req.body, this.whitelist);
     try {
-      
+        const rent = await Rent.findOne({ _id: req.params.id });
         const newTicket = new Ticket({
           ...params,
-          raisedByRenter : req.body.raisedOnRenter,
-          raisedOnCompany : req.body.raisedByCompany,
-          rentId : req.body.rentId
+          raisedByRenter : req.rent.renterId,
+          raisedOnCompany : req.user._id,
+          rentId : req.rent._id
         });
         const ticketSaved = await newTicket.save();
         if (ticketSaved) {
+          rent.raiseTicketByCompany = true;
+          rent.save();
           res.status(200).json({
             message: 'ticket has been saved',
             success: 1,
