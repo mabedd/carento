@@ -15,7 +15,7 @@ const carSchema = new Schema(
 
     },
     image: {
-      type: String,
+      type: {},
       //required: true
     },
     carPlate: {

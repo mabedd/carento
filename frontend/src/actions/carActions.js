@@ -138,7 +138,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
     }
 }
 
-export const createCar = (image = {},carPlate="sdaa", carModel=21, color="ass", totalMileage=211, price=21, vendor="sas", size=4, gasoline=91) => async (dispatch, getState) => {
+export const createCar = (image,carPlate, carModel, color, totalMileage, price, vendor, size, gasoline) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CAR_CREATE_REQUEST,
@@ -151,11 +151,21 @@ export const createCar = (image = {},carPlate="sdaa", carModel=21, color="ass", 
         const config = {
             headers: {
                 Authorization: `${companyInfo.token}`,
+                'Content-Type': `multipart/form-data`,
             },
         }
-        console.log(image,carPlate)
-
-        const { data } = await axios.post(`/api/car/add-car`, { image,carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
+        let formData = new FormData();
+        formData.append('image', image);
+        formData.append('carPlate', carPlate);
+        formData.append('carModel', carModel);
+        formData.append('color', color);
+        formData.append('size', size);
+        formData.append('gasoline', gasoline);
+        formData.append('vendor', vendor);
+        formData.append('totalMileage', totalMileage);
+        formData.append('price', price);
+        const dataObj = formData;
+        const { data } = await axios.post(`/api/car/add-car`, dataObj, config)
         //console.log(size)
         dispatch({
             type: CAR_CREATE_SUCCESS,

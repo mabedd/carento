@@ -7,7 +7,6 @@ import RentalCompany from '../models/renatalCompanyModel.js';
 class CarsController extends BaseController {
   whitelist = [
     'companyId',
-    'image',
     'carPlate',
     'carModel',
     'color',
@@ -27,20 +26,20 @@ class CarsController extends BaseController {
 
   addCar = async (req, res, next) => {
     const params = this.filterParams(req.body, this.whitelist);
+   
     try {
       const car = await Car.findOne({ carPlate: params['carPlate'] });
       if (car) {
-        console.log('line33' + req.body, car);
-        res.status(200).json({
+        return res.status(200).json({
           message: 'car has been already added with this car plate number',
           success: 1,
         });
       }
       const company = await RentalCompany.findById({ _id: req.user._id })
-      console.log(company)
       const newCar = new Car({
         ...params,
         companyId: req.user._id,
+        image: req.files.image[0].filename,
         companyName: company.companyName
       });
       const carSaved = await newCar.save();

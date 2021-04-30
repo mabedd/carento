@@ -52,25 +52,20 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
             if (car._id !== carId) {
                 dispatch(listCarDetails(carId))
             } 
-            // else {
-            //     setImage(image)
-            //     setPlate(car.carPlate)
-            //     setModel(car.carModel)
-            //     setColor(car.color)
-            //     setMileage(car.totalMileage)
-            //     setStatus(car.status)
-            //     setPrice(car.price)
-            //     setGasoline(car.gasoline)
-            //     setVendor(car.vendor)
-            //     setSize(car.size)
-            // }
+            else {
+                setImage(image)
+                setPlate(car.carPlate)
+                setModel(car.carModel)
+                setColor(car.color)
+                setMileage(car.totalMileage)
+                setStatus(car.status)
+                setPrice(car.price)
+                setGasoline(car.gasoline)
+                setVendor(car.vendor)
+                setSize(car.size)
+            }
         }
     }, [dispatch, history, carId, car, successCreate])
-
-
-
-
-
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(
@@ -88,34 +83,6 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
             )
         )
     }
-
-
-
-    //for image uploading
-    const uploadFileHandler = async (e) => {
-        const file = e.target.files[0]
-        const formData = new FormData()
-        formData.append('image', file)
-        setUploading(true)
-
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            }
-
-            const { data } = await axios.post('/api/upload', formData, config)
-            console.log(data)
-
-            setImage(data)
-            setUploading(false)
-        } catch (error) {
-            console.error(error)
-            setUploading(false)
-        }
-    }
-
 
     return (
         <div>

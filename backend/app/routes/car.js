@@ -15,7 +15,7 @@ car.get('/test', (req, res) => {
 });
 car.post('/add-car', [authenticate, profileMedia.fields( [
   {
-    name: 'imageUrl',
+    name: 'image',
     maxCount: 1,
   },
 ])], CarController.addCar);
