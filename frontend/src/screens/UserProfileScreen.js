@@ -180,15 +180,15 @@ const UserProfileScreen = ({ location, history }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders ? orders.map((order) => (
-                            <tr key={order._id}>
-                                <td>{order._id}</td>
-                                <td>{order.carId}</td>
-                                <td>{order.duration}</td>
-                                <td>{order.startDate}</td>
-                                <td>{order.endDate}</td>
+                        {orders && orders.length > 0 ? orders.map((order) => (
+                            <tr key={order && order._id}>
+                                <td>{order && order._id}</td>
+                                <td>{order && order.carId}</td>
+                                <td>{order && order.duration}</td>
+                                <td>{order && order.startDate}</td>
+                                <td>{order && order.endDate}</td>
 
-                                <td>{order.status ? (
+                                <td>{order && order.status ? (
                                     <p>Active</p>
                                 ) : (
                                     <p>Ended</p>

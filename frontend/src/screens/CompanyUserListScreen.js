@@ -12,8 +12,9 @@ const CompanyUserListScreen = () => {
 
     const dispatch = useDispatch()
 
-    const companyListRenters = useSelector(state => state.companyListRenters)
-    const { loading, error, company } = companyListRenters
+    const companyListRenters = useSelector(state => state && state.companyListRenters)
+    console.log(useSelector(state => console.log('state', state)));
+    const { loading, error, company= [] } = companyListRenters
 
     const companyLogin = useSelector(state => state.companyLogin)
     const { companyInfo } = companyLogin
@@ -48,12 +49,12 @@ const CompanyUserListScreen = () => {
 
                     <tbody>
                         {company.renters && company.renters.length > 0 && company.renters.map((renter) => (
-                            <tr key={renter._id}>
-                                <td>{company.renter.username}</td>
-                                <td>{renter.email}</td>
-                                <td>{renter.phoneNumber}</td>
-                                <td>{renter.nationalId}</td>
-                                <td><Rating value={renter.rating} /></td>
+                            <tr key={renter && renter._id}>
+                                <td>{renter && renter.username}</td>
+                                <td>{renter && renter.email}</td>
+                                <td>{renter && renter.phoneNumber}</td>
+                                <td>{renter && renter.nationalId}</td>
+                                <td><Rating value={renter && renter.rating} /></td>
                             </tr>
                         ))}
                     </tbody>
@@ -63,4 +64,4 @@ const CompanyUserListScreen = () => {
     )
 }
 
-export default CompanyUserListScreen
+export default CompanyUserListScreen;

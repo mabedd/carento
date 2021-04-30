@@ -62,7 +62,7 @@ const CompanyRentScreen = ({ history, match }) => {
                         </thead>
                         <tbody>
 
-                            {orders.map((order) => (
+                            {orders && orders.length > 0 && orders.map((order) => (
                                 <tr key={order.carId}>
                                     <td>{order.renterId}</td>
                                     <td>{order.mileage}</td>

@@ -60,7 +60,7 @@ const CompanyOrderListScreen = ({ history }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map((order) => (
+                        {orders && orders.length > 0 && orders.map((order) => (
                             <tr>
                                 <td>{order.carId}</td>
                                 <td>{order.renterId}</td>
