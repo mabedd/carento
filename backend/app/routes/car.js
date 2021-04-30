@@ -3,7 +3,7 @@ import { Router } from 'express';
 import CarController from '../controllers/car.controller.js';
 import authenticate from '../middleware/authenticate.js';
 import errorHandler from '../middleware/error-handler.js';
-
+import profileMedia from '../middleware/profile-media.js'
 
 const car = new Router();
 
@@ -13,7 +13,12 @@ car.get('/test', (req, res) => {
     message: 'welcome in car rental way',
   });
 });
-car.post('/add-car', authenticate, CarController.addCar);
+car.post('/add-car', [authenticate, profileMedia.fields( [
+  {
+    name: 'imageUrl',
+    maxCount: 1,
+  },
+])], CarController.addCar);
 car.delete('/delete-car/:id', authenticate, CarController.deleteCar);
 car.get('/find-company-cars', authenticate, CarController.findAll);
 car.get('/find-all-cars', CarController.findAllCars);

@@ -65,7 +65,7 @@ class RentalCompanyController extends BaseController {
 				return res.status(400).json({ msg: 'Incorrect username or password', success: 0 });
 			}
 			if (!rentalCompany.status) {
-				return res.status(400).json({ message: 'PLEASE WAIT FOR ACTIVATION', success: 0 });
+				return res.status(200).json({ message: 'PLEASE WAIT FOR ACTIVATION', success: 0 });
 			}
 
 			const isMatch = await bcrypt.compare(password, rentalCompany.password);
@@ -87,30 +87,30 @@ class RentalCompanyController extends BaseController {
 	};
 	changeProfile = async (req, res, next) => {
 		try {
-			const user = await RentalCompany.findById({ _id: req.user._id })
-			if (req.body.email) {
+			const user = await RentalCompany.findById({_id : req.user._id})
+			if (req.body.email){
 				console.log(req.body.email);
-				if (!RentalCompany.findOne({ email: req.body.email })) {
+				if(!RentalCompany.findOne({email : req.body.email})){
 					return res.status(200).json({ message: 'another user has the same email', success: 0 });
 				}
 				user.email = req.body.email
 			}
-			if (req.body.username) {
-				if (!RentalCompany.findOne({ username: req.body.username })) {
+			if (req.body.username){
+				if(!RentalCompany.findOne({username : req.body.username})){
 					return res.status(200).json({ message: 'another user has the same username', success: 0 });
 				}
 				user.username = req.body.username
 			}
-			if (req.body.phoneNumber) {
+			if (req.body.phoneNumber){
 				user.phoneNumber = req.body.phoneNumber
 			}
-			if (req.body.password) {
+			if (req.body.password){
 				user.password = await bcrypt.hash(req.body.password, 10);
 			}
 			user.save()
 			return res.status(200).json({ msg: Constants.messages.success, user: user });
 
-
+			
 		} catch (err) {
 			err.status = 400;
 			next(err);
@@ -159,6 +159,7 @@ class RentalCompanyController extends BaseController {
 			next(err);
 		}
 	};
+	
 }
 
 export default new RentalCompanyController();

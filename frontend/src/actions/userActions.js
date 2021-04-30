@@ -208,7 +208,7 @@ export const RaiseTicket = (rentId, ticket) => async (
             },
         }
 
-        await axios.post(`/api/ticket/raise-ticket-renter`, ticket, config)
+        await axios.post(`/api/ticket/raise-ticket-renter/${rentId}`, {ticketmessage:ticket}, config)
 
         dispatch({
             type: USER_RAISE_TICKET_SUCCESS,

@@ -13,8 +13,8 @@ ticket.get('/test', (req, res) => {
     message: 'welcome in car rental way',
   });
 });
-ticket.post('/raise-ticket-company', authenticate, TicketController.raiseTicketByCompany);
-ticket.post('/raise-ticket-renter', authenticate, TicketController.raiseTicketByRenter);
+ticket.post('/raise-ticket-company:id', authenticate, TicketController.raiseTicketByCompany);
+ticket.post('/raise-ticket-renter:id', authenticate, TicketController.raiseTicketByRenter);
 ticket.get('/find-all-tickets', authenticate, TicketController.findAllTickets);
 ticket.get('/get-ticket-details/:id', authenticate, TicketController.getTicketDetails);
 

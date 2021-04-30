@@ -21,7 +21,7 @@ class TicketController extends BaseController {
       
         const newTicket = new Ticket({
           ...params,
-          raisedByRenter : req.body.raisedByRenter,
+          raisedByRenter : req.user._id,
           raisedOnCompany : req.body.raisedOnCompany,
           rentId : req.body.rentId
         });

@@ -138,7 +138,7 @@ export const deleteCar = (id) => async (dispatch, getState) => {
     }
 }
 
-export const createCar = (carPlate, carModel, color, totalMileage, price, vendor, size, gasoline) => async (dispatch, getState) => {
+export const createCar = (image = {},carPlate="sdaa", carModel=21, color="ass", totalMileage=211, price=21, vendor="sas", size=4, gasoline=91) => async (dispatch, getState) => {
     try {
         dispatch({
             type: CAR_CREATE_REQUEST,
@@ -153,9 +153,9 @@ export const createCar = (carPlate, carModel, color, totalMileage, price, vendor
                 Authorization: `${companyInfo.token}`,
             },
         }
+        console.log(image,carPlate)
 
-        const { data } = await axios.post(`/api/car/add-car`, { carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
-        console.log(data)
+        const { data } = await axios.post(`/api/car/add-car`, { image,carPlate, carModel, color, size, gasoline, vendor, totalMileage, price }, config)
         //console.log(size)
         dispatch({
             type: CAR_CREATE_SUCCESS,
@@ -263,7 +263,7 @@ export const rateCar = (carId, rating) => async (dispatch, getState) => {
 
         const data = await axios.put(
             `/api/car/rate-car/${carId}`,
-            rating,
+            {rating},
             config
         )
 

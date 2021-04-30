@@ -42,7 +42,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
     // get company ID from state to be sent with the create car request
     //const companyId = companyInfo._id
 
-    //console.log(companyInfo)
+    console.log(image)
 
     useEffect(() => {
         if (successCreate) {
@@ -51,18 +51,19 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
         } else {
             if (car._id !== carId) {
                 dispatch(listCarDetails(carId))
-            } else {
-                //setImage(car.image)
-                setPlate(car.carPlate)
-                setModel(car.carModel)
-                setColor(car.color)
-                setMileage(car.totalMileage)
-                setStatus(car.status)
-                setPrice(car.price)
-                setGasoline(car.gasoline)
-                setVendor(car.vendor)
-                setSize(car.size)
-            }
+            } 
+            // else {
+            //     setImage(image)
+            //     setPlate(car.carPlate)
+            //     setModel(car.carModel)
+            //     setColor(car.color)
+            //     setMileage(car.totalMileage)
+            //     setStatus(car.status)
+            //     setPrice(car.price)
+            //     setGasoline(car.gasoline)
+            //     setVendor(car.vendor)
+            //     setSize(car.size)
+            // }
         }
     }, [dispatch, history, carId, car, successCreate])
 
@@ -75,7 +76,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
         dispatch(
             //companyId, image, carPlate, carModel, color, totalMileage, price, status, benefits
             createCar(
-                //image,
+                image,
                 plate,
                 model,
                 color,
@@ -225,7 +226,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                                             id='image-file'
                                             label='Choose File'
                                             custom
-                                            onChange={uploadFileHandler}
+                                            onChange={(e) => setImage(e.target.files[0])}
                                         ></Form.File>
                                         {uploading && <Loader />}
                                     </Form.Group>
