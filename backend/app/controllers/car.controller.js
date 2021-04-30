@@ -26,7 +26,7 @@ class CarsController extends BaseController {
 
   addCar = async (req, res, next) => {
     const params = this.filterParams(req.body, this.whitelist);
-   
+
     try {
       const car = await Car.findOne({ carPlate: params['carPlate'] });
       if (car) {
@@ -39,7 +39,7 @@ class CarsController extends BaseController {
       const newCar = new Car({
         ...params,
         companyId: req.user._id,
-        image: req.files.image[0].filename,
+        image: '../../../../backend/app/public/' + req.files.image[0].filename,
         companyName: company.companyName
       });
       const carSaved = await newCar.save();

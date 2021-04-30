@@ -22,8 +22,8 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
     const [plate, setPlate] = useState('')
     const [model, setModel] = useState(0)
     const [color, setColor] = useState('')
-    const [size, setSize] = useState(4)
-    const [gasoline, setGasoline] = useState(91)
+    const [size, setSize] = useState('')
+    const [gasoline, setGasoline] = useState('')
     const [vendor, setVendor] = useState('')
     const [mileage, setMileage] = useState(0)
     const [status, setStatus] = useState('')
@@ -51,7 +51,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
         } else {
             if (car._id !== carId) {
                 dispatch(listCarDetails(carId))
-            } 
+            }
             else {
                 setImage(image)
                 setPlate(car.carPlate)
@@ -132,7 +132,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                                     <Form.Group controlId='size'>
                                         <Form.Label>Size</Form.Label>
                                         <Form.Control
-                                            type='number'
+                                            type='text'
                                             placeholder='Enter size'
                                             value={size}
                                             onChange={(e) => setSize(e.target.value)}
@@ -154,7 +154,7 @@ const CompanyCreateCarScreen = ({ location, history, match }) => {
                                     <Form.Group controlId='gasoline'>
                                         <Form.Label>Gasoline</Form.Label>
                                         <Form.Control
-                                            type='number'
+                                            type='text'
                                             placeholder='Enter gasoline'
                                             value={gasoline}
                                             onChange={(e) => setGasoline(e.target.value)}

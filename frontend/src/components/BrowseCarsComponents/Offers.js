@@ -51,7 +51,7 @@ const Offers = ({ history, match }) => {
                     {cars ? cars.map((car) => (
                         <div className="row p-2 mb-3 bg-white border rounded">
                             <div className="col-md-3 mt-1">
-                                <img className="img-fluid img-responsive rounded product-image" src='/images/featuredOffers2.jpg'></img>
+                                <img className="img-fluid img-responsive rounded product-image" src='../../../../backend/app/public/users/cars/image-1619787946857.jpg'></img>
                             </div>
 
                             <div className="col-md-6 mt-1">
@@ -87,9 +87,15 @@ const Offers = ({ history, match }) => {
                                     ) : (
                                         <MDBBtn rounded color='danger text-white' disabled><i className='fas fa-times' style={{ color: 'red' }}></i>  Not Available</MDBBtn>
                                     )}
-                                    <LinkContainer to={`/rentsummary/${car._id}`}>
-                                        <MDBBtn rounded gradient='blue-gradient text-white'>Rent Now</MDBBtn>
-                                    </LinkContainer>
+
+                                    {car.status ? (
+                                        <LinkContainer to={`/rentsummary/${car._id}`}>
+                                            <MDBBtn rounded gradient='blue-gradient text-white'>Rent Now</MDBBtn>
+                                        </LinkContainer>
+                                    ) : (
+                                        <MDBBtn rounded gradient='blue-gradient text-white' disabled>Rented</MDBBtn>
+                                    )}
+
                                 </div>
                             </div>
                         </div>
