@@ -141,10 +141,10 @@ export const listOrders = () => async (dispatch, getState) => {
         const {
             adminLogin: { adminInfo },
         } = getState()
-
+        console.log('calledd', JSON.parse(localStorage.getItem('companyInfo')).token)
         const config = {
             headers: {
-                Authorization: `${adminInfo.token}`,
+                Authorization: `${JSON.parse(localStorage.getItem('companyInfo')).token || adminInfo.token}`,
             },
         }
 

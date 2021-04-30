@@ -51,7 +51,7 @@ export const listCompanyCars = (keyword = '', pageNumber = '') => async (
 
         const config = {
             headers: {
-                Authorization: `${companyInfo.token}`,
+                Authorization: `${localStorage.getItem('accessToken') || companyInfo.token}`,
             },
         }
 
@@ -113,10 +113,9 @@ export const deleteCar = (id) => async (dispatch, getState) => {
         } = getState()
 
         const config = {
-            headers: {
-                Authorization: `${companyInfo.token}`,
-            },
-        }
+             headers: {
+                Authorization: `${localStorage.getItem('accessToken') || companyInfo.token}`,
+            },        }
 
         await axios.delete(`/api/car/delete-car/${id}`, config)
 
@@ -200,10 +199,9 @@ export const addCar = form => {
         } = getState()
 
         const config = {
-            headers: {
-                Authorization: `${companyInfo.token}`,
-            },
-        }
+             headers: {
+                Authorization: `${localStorage.getItem('accessToken') || companyInfo.token}`,
+            },        }
         const res = await axios.post(`/api/car/add-car`, form, config)
         console.log(res)
     }

@@ -96,10 +96,9 @@ export const getCompanyDetails = (id) => async (dispatch, getState) => {
 
         //pass auth token
         const config = {
-            headers: {
-                Authorization: `${companyInfo.token}`,
-            },
-        }
+             headers: {
+                Authorization: `${localStorage.getItem('accessToken') || companyInfo.token}`,
+            },        }
 
         //get request to user profile
         const { data } = await axios.get(`/api/rental-company/get-profile`, config)
@@ -138,10 +137,9 @@ export const listCompanyRenters = (id) => async (dispatch, getState) => {
 
         //pass auth token
         const config = {
-            headers: {
-                Authorization: `${companyInfo.token}`,
-            },
-        }
+             headers: {
+                Authorization: `${localStorage.getItem('accessToken') || companyInfo.token}`,
+            },        }
 
         //get request to user profile
         const { data } = await axios.get(`/api/rental-company/get-profile`, config)

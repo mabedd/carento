@@ -326,10 +326,9 @@ export const listCompanyUsers = () => async (dispatch, getState) => {
         } = getState()
 
         const config = {
-            headers: {
-                Authorization: `${companyInfo.token}`,
-            },
-        }
+             headers: {
+                Authorization: `${localStorage.getItem('accessToken') || companyInfo.token}`,
+            },        }
 
         const { data } = await axios.get(`/api/renter/find-all-renters`, config)
         //console.log(data);

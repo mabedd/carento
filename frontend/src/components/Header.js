@@ -22,6 +22,7 @@ const Header = () => {
     const { loading, error, users, page, pages } = userList
 
     const logoutHandler = () => {
+        localStorage.removeItem('companyInfo');
         dispatch(logout())
     }
 
@@ -48,8 +49,8 @@ const Header = () => {
                             <NavDropdown.Item onClick={logoutHandler}><i class="fas fa-sign-out-alt"></i> Logout</NavDropdown.Item>
                         </NavDropdown>
 
-                    ) : companyInfo ? (
-                        <NavDropdown title={companyInfo.companyName} id='username'>
+                    ) : JSON.parse(localStorage.getItem('companyInfo')) && JSON.parse(localStorage.getItem('companyInfo')).token ? (
+                        <NavDropdown title={companyInfo && companyInfo.companyName ? companyInfo.companyName : 'Guest User'} id='username'>
                             <LinkContainer to='/company/profile'>
                                 <NavDropdown.Item><i class="fas fa-user-circle"></i> Profile</NavDropdown.Item>
                             </LinkContainer>

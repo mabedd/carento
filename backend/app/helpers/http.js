@@ -58,6 +58,7 @@ exports.responseHandler = (event, info) => {
     case LOGIN_SUCCESS:
       // eslint-disable-next-line no-case-declarations
       const { token, changePassword } = info;
+      localStorage.setItem('accessToken', token);
       return {
         data: {
           message: 'login successfully',
