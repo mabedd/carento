@@ -50,7 +50,15 @@ const rentSchema = new Schema(
     status: {
       type: Boolean,
       default: true
-    }
+    },
+    ticketraisedByRenter:{
+      type : Boolean,
+      default : false
+    },
+    ticketraisedByCompany:{
+      type : Boolean,
+      default : false
+    },
   },
   {
     timestamps: true
