@@ -20,10 +20,8 @@ const HomeLocations = () => {
                                     <strong>Riyadh</strong>
                                 </MDBCardTitle>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit
-                                    officia accusamus minus error nisi architecto nulla ipsum
-                                    dignissimos. Odit sed qui, dolorum!
+                                    The platform launched mainly in Riyadh under the sponsorship of Prince Sultan University.
+                                    The paltform was and idea of a senior project in College of Computer.
                                 </p>
                                 <MDBBtn gradient='blue'>
                                     <MDBIcon icon='clone left' disabled /> Available
@@ -38,7 +36,7 @@ const HomeLocations = () => {
                         className='card-image'
                         style={{
                             backgroundImage:
-                                "url('https://i.pinimg.com/originals/26/9d/3c/269d3cdb6feaca2952f214b33a32558b.jpg')"
+                                "url('https://as2.ftcdn.net/jpg/03/57/48/49/500_F_357484998_hJKSHvELmWbMEow7nSkgwhw05glEOFgv.jpg')"
                         }}
                     >
                         <div className='text-white text-center d-flex align-items-center rgba-indigo-strong py-5 px-4'>
@@ -47,10 +45,7 @@ const HomeLocations = () => {
                                     <strong>Jeddah</strong>
                                 </MDBCardTitle>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit
-                                    officia accusamus minus error nisi architecto nulla ipsum
-                                    dignissimos. Odit sed qui, dolorum!
+                                    Carento system is going to be launced in Jeddah. The system was authorized by DOT and all agreements have been signed.
                                 </p>
                                 <MDBBtn gradient='blue'>
                                     <MDBIcon icon='clone left' /> Coming soon

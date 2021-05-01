@@ -73,6 +73,13 @@ class IntroSection extends React.Component {
                                 >
                                     Register Now
                                 </MDBBtn>
+                                <MDBBtn
+                                    className='btn-indigo text-white'
+                                    size='lg'
+                                    href='/company/login'
+                                >
+                                    Login Now
+                                </MDBBtn>
                             </MDBCol>
                         </MDBRow>
                     </MDBContainer>

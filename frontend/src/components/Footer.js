@@ -5,7 +5,7 @@ import './Footer.css'
 
 const Footer = () => {
     return (
-        <footer className="page-footer font-small" style={{ backgroundColor: '#2c3e50', bottom: '0' }} >
+        <footer className="page-footer font-small main-footer" style={{ backgroundColor: '#2c3e50', bottom: '0' }} >
 
             <div className="container">
 

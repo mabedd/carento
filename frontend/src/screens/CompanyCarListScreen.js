@@ -64,7 +64,7 @@ const CompanyCarListScreen = ({ history, match }) => {
             <Container>
                 <Row className='align-items-center mt-3'>
                     <Col>
-                        <h1 className='mt-5'>CARS</h1>
+                        <h1 className='text-center mt-5'>CARS</h1>
                     </Col>
                     <Col className='text-right'>
                         <Link className='my-3' to='/company/car/create'><i className='fas fa-plus'></i> Create Car</Link>
@@ -116,9 +116,9 @@ const CompanyCarListScreen = ({ history, match }) => {
                                     </td>
 
                                     <td>{car.status ? (
-                                        <Button>Mark as returned</Button>
-                                    ) : (
                                         <Button>Mark as rented</Button>
+                                    ) : (
+                                        <Button>Mark as returned</Button>
                                     )}</td>
 
                                     <td><Button variant='danger' onClick={() => deleteHandler(car._id)}>Delete</Button></td>

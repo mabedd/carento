@@ -55,7 +55,7 @@ export const activateCompany = (id) => async (dispatch, getState) => {
 
         const config = {
             headers: {
-                Authorization: `${JSON.parse(localStorage.getItem('companyInfo')).token || adminInfo.token}`,
+                Authorization: `${JSON.parse(localStorage.getItem('adminInfo')).token || adminInfo.token}`,
             },
         }
 
@@ -96,7 +96,7 @@ export const blacklistRenter = (id) => async (dispatch, getState) => {
 
         const config = {
             headers: {
-                Authorization: `${JSON.parse(localStorage.getItem('companyInfo')).token || adminInfo.token}`,
+                Authorization: `${JSON.parse(localStorage.getItem('adminInfo')).token || adminInfo.token}`,
             },
         }
 

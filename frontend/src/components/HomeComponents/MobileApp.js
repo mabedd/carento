@@ -8,9 +8,7 @@ const FeaturesPage = () => {
                 Try Carento on your Smart Phone
             </h2>
             <p className="lead grey-text w-responsive text-center mx-auto mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                ad minim veniam.
+                You can use our mobile application that is available on Google Play store and save the time.
             </p>
 
             <MDBRow>

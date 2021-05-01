@@ -55,6 +55,7 @@ const RenterFeedbackScreen = ({ location, match }) => {
                                 <div class="card-body">
                                     <h2 class="title text-center">Your Opinion Matters</h2>
 
+                                    {sucessRate && <Message>Thank you, your satisfaction is our concern</Message>}
 
                                     <form onSubmit={submitHandler}>
 

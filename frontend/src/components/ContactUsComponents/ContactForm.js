@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 
+import Message from '../../components/Message'
 import './ContactForm.css'
 
-const ContactForm = () => {//TODO: sumbilt handler for form submission
+const ContactForm = () => {
+
+    const [message, setMessage] = useState('')
+
+    const onClickHandler = () => {
+        setMessage('Thank you for contacting us. We will reply to you soon !!')
+    }
+
     return (
         <>
             <section className="my-5">
-
                 <div className='row'>
                     <div className='col'>
                         <div className="card">
@@ -16,7 +23,7 @@ const ContactForm = () => {//TODO: sumbilt handler for form submission
                                     <h3 className="mt-2"><i className="fas fa-envelope" style={{ color: '#E4C00A' }}></i><br></br>Write to us:</h3>
                                 </div>
                                 <p className="dark-grey-text text-center">Your opinion matters.</p>
-
+                                {message && <Message>{message}</Message>}
                                 <div className="md-form">
                                     <i className="fas fa-user prefix grey-text"></i>
                                     <input type="text" id="form-name" className="form-control"></input>
@@ -38,7 +45,7 @@ const ContactForm = () => {//TODO: sumbilt handler for form submission
                                     <label for="form-text">Send message</label>
                                 </div>
                                 <div className="text-center">
-                                    <button className="btn btn-primary">Submit</button>
+                                    <button className="btn btn-primary" type="submit" onClick={onClickHandler}>Submit</button>
                                 </div>
                             </div>
                         </div>
