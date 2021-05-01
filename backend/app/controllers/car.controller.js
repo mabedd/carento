@@ -39,7 +39,7 @@ class CarsController extends BaseController {
       const newCar = new Car({
         ...params,
         companyId: req.user._id,
-        image: '../../../../backend/app/public/users/cars/' + req.files.image[0].filename,
+        image: req.files.image[0].filename,
         companyName: company.companyName
       });
       const carSaved = await newCar.save();

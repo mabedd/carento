@@ -43,7 +43,7 @@ if (!Constants.envs.test) {
 // https://github.com/expressjs/body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(__dirname, './public/users/cars')))
 // Lets you use HTTP verbs such as PUT or DELETE
 // https://github.com/expressjs/method-override
 app.use(methodOverride());
